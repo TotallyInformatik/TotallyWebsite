@@ -19,8 +19,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     measurementId: process.env.SECRET_MEASUREMENT_ID
   };
 
-  console.log(process.env.SECRET_API_KEY);
-
   // Initialize Firebase
   //const app: FirebaseApp = initializeApp(firebaseConfig);
   //const db: Firestore = getFirestore(app);
@@ -29,7 +27,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
   if (req.method === "GET") {
 
-    res.status(200).json({message: "something"});
+    res.status(200).json({message: process.env.SECRET_API_KEY});
 
   }
 
