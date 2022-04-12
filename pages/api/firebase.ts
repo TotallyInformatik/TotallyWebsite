@@ -1,12 +1,13 @@
 import { initializeApp  } from "firebase/app";
 import type { FirebaseApp } from "firebase/app";
+import { collection, doc, DocumentSnapshot, Firestore, getDoc, getFirestore } from "firebase/firestore";
 import { NextApiRequest, NextApiResponse } from "next";
 
 type Data = {
   message: string | undefined
 }
 
-export default function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
 
   const firebaseConfig = {
     apiKey: process.env.SECRET_API_KEY,
@@ -18,12 +19,17 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Data>)
     measurementId: process.env.SECRET_MEASUREMENT_ID
   };
 
+  console.log(process.env.SECRET_API_KEY);
+
   // Initialize Firebase
-  const app: FirebaseApp = initializeApp(firebaseConfig);
+  //const app: FirebaseApp = initializeApp(firebaseConfig);
+  //const db: Firestore = getFirestore(app);
+
+  //const firebaseResult: DocumentSnapshot = await getDoc(doc(db, "links/publicLinks"));
 
   if (req.method === "GET") {
 
-    res.status(200).json({message: process.env.SECRET_API_KEY});
+    res.status(200).json({message: "something"});
 
   }
 
