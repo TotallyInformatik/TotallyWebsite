@@ -1,12 +1,12 @@
 import type { NextPage } from 'next'
 import Head from 'next/head';
 
-
 import ProgressComponent from "../components/progressComponent/progressComponent";
 
 import styles from "./index.module.css";
 
 const Home: NextPage = () => {
+
   return <>
     <Head>
       <title>TotallyInformatik</title>
@@ -39,11 +39,3 @@ const Home: NextPage = () => {
 }
 
 export default Home
-
-
-/*
-export async function getStaticProps() {
-
-
-}
-*/

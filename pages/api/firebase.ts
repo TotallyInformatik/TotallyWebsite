@@ -3,21 +3,18 @@ import type { FirebaseApp } from "firebase/app";
 import { collection, doc, DocumentSnapshot, Firestore, getDoc, getFirestore } from "firebase/firestore";
 import { NextApiRequest, NextApiResponse } from "next";
 
-type Data = {
-  message: string | undefined
-}
-
-export default async function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
 
   if (req.method === "GET") {
+
     const firebaseConfig = {
-      apiKey: process.env.SECRET_API_KEY,
-      authDomain: process.env.SECRET_AUTH_DOMAIN,
-      projectId: process.env.SECRET_PROJECT_ID,
-      storageBucket: process.env.SECRET_STORAGE_BUCKET,
-      messagingSenderId: process.env.SECRET_MESSAGING_SENDER_ID,
-      appId: process.env.SECRET_APP_ID,
-      measurementId: process.env.SECRET_MEASUREMENT_ID
+      apiKey: "AIzaSyCWR_WJB4Nqs44rA4HgYSvFnujVd5wNvcs",
+      authDomain: "totallylinks.firebaseapp.com",
+      projectId: "totallylinks",
+      storageBucket: "totallylinks.appspot.com",
+      messagingSenderId: "71338439134",
+      appId: "1:71338439134:web:28c53a7c4b60b06db66d4f",
+      measurementId: "G-YGP6S4WJ4Y"
     };
   
     // Initialize Firebase
@@ -26,7 +23,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   
     const firebaseResult: DocumentSnapshot = await getDoc(doc(db, "links/publicLinks"));
 
-    res.status(200).json({message: firebaseResult.data.toString()});
+    if (firebaseResult === undefined) {
+      res.status(204).json({});
+    } else {
+      res.status(200).json(firebaseResult.data()); 
+    }
   }
 
 }
