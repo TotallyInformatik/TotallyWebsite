@@ -19,15 +19,17 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     measurementId: process.env.SECRET_MEASUREMENT_ID
   };
 
-  // Initialize Firebase
-  const app: FirebaseApp = initializeApp(firebaseConfig);
-  const db: Firestore = getFirestore(app);
+  console.log(process.env.SECRET_API_KEY);
 
-  const firebaseResult: DocumentSnapshot = await getDoc(doc(db, "links/publicLinks"));
+  // Initialize Firebase
+  //const app: FirebaseApp = initializeApp(firebaseConfig);
+  //const db: Firestore = getFirestore(app);
+
+  //const firebaseResult: DocumentSnapshot = await getDoc(doc(db, "links/publicLinks"));
 
   if (req.method === "GET") {
 
-    res.status(200).json({message: firebaseResult.data.toString()});
+    res.status(200).json({message: "something"});
 
   }
 
