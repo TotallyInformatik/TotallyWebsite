@@ -1,12 +1,18 @@
 import type { NextPage } from 'next'
 import Head from 'next/head';
 
+import { initializeApp  } from "firebase/app";
+import type { FirebaseApp } from "firebase/app";
+import { collection, doc, DocumentSnapshot, Firestore, getDoc, getFirestore } from "firebase/firestore";
 
 import ProgressComponent from "../components/progressComponent/progressComponent";
 
 import styles from "./index.module.css";
 
 const Home: NextPage = () => {
+
+  test();
+
   return <>
     <Head>
       <title>TotallyInformatik</title>
