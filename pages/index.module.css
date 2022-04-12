@@ -1,0 +1,70 @@
+.landingSection {
+  position: relative;
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 50px;
+  overflow: visible;
+}
+.landingSection .landingChinese {
+  display: flex;
+  top: 8rem;
+  left: 100px;
+  height: 600px;
+}
+.landingSection .landingChinese h1 {
+  -ms-writing-mode: tb-lr;
+      writing-mode: vertical-lr;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+.landingSection .landingName {
+  top: 0;
+  right: 0;
+}
+.landingSection .landingName h1 {
+  font-size: 8rem;
+  font-family: "Playfair Display", serif;
+  line-height: 0.9em;
+}
+.landingSection img {
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  box-shadow: 0 50px 150px rgba(0, 0, 0, 0.5);
+}
+.landingSection article {
+  width: 50%;
+}
+.landingSection article p {
+  line-height: 2;
+  margin-left: 10px;
+}
+.landingSection article h1 {
+  word-wrap: normal;
+  word-break: keep-all;
+  -webkit-hyphens: initial;
+      -ms-hyphens: initial;
+          hyphens: initial;
+  margin-bottom: 50px;
+}
+
+@media screen and (max-width: 1300px) {
+  .landingSection {
+    flex-direction: column;
+  }
+  .landingSection article {
+    width: 100%;
+    text-align: center;
+  }
+}
+.projectsSection {
+  margin-top: 100px;
+}
+.projectsSection h2 {
+  opacity: 0.1;
+  font-size: 10em;
+}/*# sourceMappingURL=index.module.css.map */

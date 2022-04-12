@@ -1,0 +1,9 @@
+.progressComponent {
+  position: fixed;
+  top: 0;
+  right: 0;
+}
+.progressComponent p {
+  font-size: 3rem;
+  opacity: 0.5;
+}/*# sourceMappingURL=progressComponent.module.css.map */

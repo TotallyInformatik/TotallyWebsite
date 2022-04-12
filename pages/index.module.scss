@@ -1,0 +1,88 @@
+.landingSection {
+
+  position: relative;
+  width: 100%;
+  height: auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 50px;
+  
+  overflow: visible;
+
+  .landingChinese {
+    display: flex;
+    top: 8rem;
+    left: 100px;
+    height: 600px;
+
+    h1 {
+      writing-mode: vertical-lr;
+      height: fit-content;
+    }
+
+  }
+
+  .landingName {
+    top: 0;
+    right: 0;
+    h1 {
+      font-size: 8rem;
+      font-family: 'Playfair Display', serif;
+      line-height: 0.9em;
+    }
+  }
+
+  img {
+    $offset: 50px;
+    $size: 300px;
+    width: $size;
+    height: $size;
+    border-radius: 50%;
+    box-shadow: 0 $offset 150px rgba(0, 0, 0, 0.5);
+  }
+
+  article {
+    width: 50%;
+  } 
+
+  article p {
+    line-height: 2;
+    margin-left: 10px;
+  }
+  article h1 {
+    word-wrap: normal;
+    word-break:keep-all;
+    hyphens: initial;
+    margin-bottom: 50px;
+  }
+
+}
+
+@media screen and (max-width: 1300px) {
+
+  .landingSection {
+    flex-direction: column;
+
+    article {
+      width: 100%;
+      text-align: center;
+    }
+
+  }
+
+}
+
+.projectsSection {
+
+  margin-top: 100px;
+
+  h2 {
+    opacity: 0.1;
+    font-size: 10em;
+  }
+
+
+
+}
