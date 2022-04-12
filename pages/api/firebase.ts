@@ -1,30 +1,29 @@
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
+import { initializeApp  } from "firebase/app";
+import type { FirebaseApp } from "firebase/app";
 import { NextApiRequest, NextApiResponse } from "next";
 
-export function handler(req: NextApiRequest, res: NextApiResponse) {
+type Data = {
+  message: string | undefined
+}
 
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web /setup#available-libraries
+export default function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
 
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
   const firebaseConfig = {
-    apiKey: "AIzaSyCWR_WJB4Nqs44rA4HgYSvFnujVd5wNvcs",
-    authDomain: "totallylinks.firebaseapp.com",
-    projectId: "totallylinks",
-    storageBucket: "totallylinks.appspot.com",
-    messagingSenderId: "71338439134",
-    appId: "1:71338439134:web:28c53a7c4b60b06db66d4f",
-    measurementId: "G-YGP6S4WJ4Y"
+    apiKey: process.env.SECRET_API_KEY,
+    authDomain: process.env.SECRET_AUTH_DOMAIN,
+    projectId: process.env.SECRET_PROJECT_ID,
+    storageBucket: process.env.SECRET_STORAGE_BUCKET,
+    messagingSenderId: process.env.SECRET_MESSAGING_SENDER_ID,
+    appId: process.env.SECRET_APP_ID,
+    measurementId: process.env.SECRET_MEASUREMENT_ID
   };
 
   // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
-
+  const app: FirebaseApp = initializeApp(firebaseConfig);
 
   if (req.method === "GET") {
+
+    res.status(200).json({message: process.env.SECRET_API_KEY});
 
   }
 
