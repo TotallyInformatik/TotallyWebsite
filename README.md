@@ -1,5 +1,9 @@
 
 # TotallyInformatik's Linktree
 
-Just a website for all my links and projects. 
-Made with [Next.js](https://nextjs.org/)
+My first project with Next.js
+
+A Website with my links and projects. With an API to retrieve all the links.
+
+Made with [Next.js](https://nextjs.org/) and Passion.
+Currently deployed on [Vercel](https://vercel.com/).

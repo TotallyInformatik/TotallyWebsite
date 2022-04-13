@@ -7,6 +7,8 @@ import styles from "./index.module.css";
 
 const Home: NextPage = () => {
 
+  console.log("testing environment variables: " + process.env.SECRET_API_KEY);
+
   return <>
     <Head>
       <title>TotallyInformatik</title>
