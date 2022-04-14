@@ -40,7 +40,7 @@ class Home extends React.Component<{ data: PublicProjectsData }, {}> {
             <h1>Totally<br/>Informatik</h1>
             <p>Rui Zhang - 16 - Male</p>
             <p>Enthusiastic and Entrepreneurial Software Developer and Student</p>
-            <p>Established and Leads "Annette-Entwickelt-Software"</p>
+            <p>Established and Leads "Annette-Entwickelt-Software</p>
           </article>
           <img src="/images/logo.png" alt="logo / profile pic"/>
         </section>
