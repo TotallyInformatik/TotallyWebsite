@@ -1,3 +1,11 @@
+$fancyHeadingFontSize: 10rem;
+
+.fancyHeading {
+  font-size: 10rem;
+  font-family: 'Playfair Display', serif;
+  line-height: 0.9em;
+}
+
 .landingSection {
 
   position: relative;
@@ -6,16 +14,15 @@
 
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-evenly;
   gap: 50px;
-  
-  overflow: visible;
 
   .landingChinese {
     display: flex;
-    top: 8rem;
+    top: $fancyHeadingFontSize;
     left: 100px;
     height: 600px;
+    opacity: 0.05;
 
     h1 {
       writing-mode: vertical-lr;
@@ -27,11 +34,7 @@
   .landingName {
     top: 0;
     right: 0;
-    h1 {
-      font-size: 8rem;
-      font-family: 'Playfair Display', serif;
-      line-height: 0.9em;
-    }
+    opacity: 0.05;
   }
 
   img {
@@ -39,17 +42,15 @@
     $size: 300px;
     width: $size;
     height: $size;
-    border-radius: 50%;
-    box-shadow: 0 $offset 150px rgba(0, 0, 0, 0.5);
+    border-radius: 20%;
+    background-color: white;
+    box-shadow: 0 $offset 150px rgba(0, 0, 0, 0.2);
   }
 
-  article {
-    width: 50%;
-  } 
-
   article p {
-    line-height: 2;
+    line-height: 1.5;
     margin-left: 10px;
+    margin-bottom: 15px;
   }
   article h1 {
     word-wrap: normal;
@@ -74,15 +75,67 @@
 
 }
 
-.projectsSection {
+@media screen and (max-width: 600px) { 
 
-  margin-top: 100px;
 
-  h2 {
-    opacity: 0.1;
-    font-size: 10em;
+  .landingSection article h1 {
+    font-size: 3em;
   }
 
+}
 
+.projectsSection {
+
+  position: relative;
+  padding: 100px 0 0 100px;
+  margin: 200px 0;
+  
+  $top: 50px;
+
+  .line {
+    width: 80%;
+    height: 3px;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.5);
+    font-size: 30px;
+    opacity: 0.4;
+  }
+
+  .lineStart {
+    top: $top;
+    left: 0;
+  }
+
+  .lineEnd {
+    right: 0;
+    text-align: right;
+  }
+
+  h2 {
+    z-index: 2;
+    left: 10%;
+    opacity: 0.1;
+    font-size: 10em;
+    position: sticky;
+    text-align: right;
+    top: $top;
+    line-height: 1;
+    width: min-intrinsic;
+    width: -webkit-min-content;
+    width: -moz-min-content;
+    width: min-content;
+    display: table-caption;
+    display: -ms-grid;
+    -ms-grid-columns: min-content;
+    font-family: 'Playfair Display', serif;
+  }
+
+}
+
+@media screen and (max-width: 700px) {
+  
+  .projectsSection h2 {
+    font-size: 6em;
+  }
 
 }

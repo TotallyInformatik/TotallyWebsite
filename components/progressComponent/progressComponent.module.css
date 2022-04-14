@@ -1,7 +1,10 @@
 .progressComponent {
-  position: fixed;
+  position: -webkit-sticky;
+  position: sticky;
+  z-index: 999999;
   top: 0;
-  right: 0;
+  width: 100%;
+  text-align: right;
 }
 .progressComponent p {
   font-size: 3rem;
