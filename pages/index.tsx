@@ -70,8 +70,9 @@ export async function getStaticProps() {
  
   //* Note that a change in Environment Variables requires a full restart of the development server
 
-  const response = await fetch(process.env.NEXT_PUBLIC_WEBURL + "/api/firebase/public/projects");
+  const response = await fetch("/api/firebase/public/projects");
   const data = await response.json();
+
 
   return {
     props: {
