@@ -18,12 +18,16 @@
 .transparent {
   position: absolute;
   color: black;
-  opacity: 0.05;
   z-index: -1;
 }
 
-body, html {
+#__next, body, html {
   width: 100%;
+  contain: paint;
+}
+
+main {
+  min-width: 100%;
 }
 
 h1 {
@@ -45,5 +49,10 @@ section {
 @media screen and (max-width: 900px) {
   section {
     padding: 100px 50px;
+  }
+}
+@media screen and (max-width: 600px) {
+  p {
+    font-size: 1.2em;
   }
 }/*# sourceMappingURL=global.css.map */

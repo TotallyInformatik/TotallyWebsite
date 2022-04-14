@@ -1,1 +1,1 @@
-{"version":3,"sources":["progressComponent.module.scss","progressComponent.module.css"],"names":[],"mappings":"AAAA;EAEE,eAAA;EACA,MAAA;EACA,QAAA;ACAF;ADEE;EACE,eAAA;EACA,YAAA;ACAJ","file":"progressComponent.module.css"}
+{"version":3,"sources":["progressComponent.module.scss","progressComponent.module.css"],"names":[],"mappings":"AAAA;EAEE,wBAAA;EAAA,gBAAA;EACA,eAAA;EACA,MAAA;EACA,WAAA;EACA,iBAAA;ACAF;ADEE;EACE,eAAA;EACA,YAAA;ACAJ","file":"progressComponent.module.css"}

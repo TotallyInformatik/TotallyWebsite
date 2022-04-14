@@ -1,14 +1,13 @@
 import { FirebaseApp, initializeApp } from "firebase/app";
 import { doc, DocumentData, DocumentSnapshot, Firestore, getDoc, getFirestore } from "firebase/firestore";
 import { deprecate } from "util";
-import { PublicProject } from "./types";
-
+import { PublicProjectData, PublicProjectsData } from "./types";
 
 /**
  * @param projects a object containing all of the public projects. For the json structure refer to firestore database
  * @returns the same list of projects, but sorted by date. If no date is given in the project, then it will be last.
  */
-export function sortProjects(projects: {}): any[] {
+export function sortProjects(projects: PublicProjectsData): PublicProjectData[] {
 
   return Object.values(projects).sort((a: any, b: any) => {
 

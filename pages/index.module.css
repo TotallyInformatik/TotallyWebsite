@@ -1,18 +1,24 @@
+.fancyHeading {
+  font-size: 10rem;
+  font-family: "Playfair Display", serif;
+  line-height: 0.9em;
+}
+
 .landingSection {
   position: relative;
   width: 100%;
   height: auto;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-evenly;
   gap: 50px;
-  overflow: visible;
 }
 .landingSection .landingChinese {
   display: flex;
-  top: 8rem;
+  top: 10rem;
   left: 100px;
   height: 600px;
+  opacity: 0.05;
 }
 .landingSection .landingChinese h1 {
   -ms-writing-mode: tb-lr;
@@ -24,24 +30,19 @@
 .landingSection .landingName {
   top: 0;
   right: 0;
-}
-.landingSection .landingName h1 {
-  font-size: 8rem;
-  font-family: "Playfair Display", serif;
-  line-height: 0.9em;
+  opacity: 0.05;
 }
 .landingSection img {
   width: 300px;
   height: 300px;
-  border-radius: 50%;
-  box-shadow: 0 50px 150px rgba(0, 0, 0, 0.5);
-}
-.landingSection article {
-  width: 50%;
+  border-radius: 20%;
+  background-color: white;
+  box-shadow: 0 50px 150px rgba(0, 0, 0, 0.2);
 }
 .landingSection article p {
-  line-height: 2;
+  line-height: 1.5;
   margin-left: 10px;
+  margin-bottom: 15px;
 }
 .landingSection article h1 {
   word-wrap: normal;
@@ -61,10 +62,81 @@
     text-align: center;
   }
 }
+@media screen and (max-width: 600px) {
+  .landingSection article h1 {
+    font-size: 3em;
+  }
+}
 .projectsSection {
-  margin-top: 100px;
+  position: relative;
+  padding: 100px 0 0 100px;
+  margin: 200px 0;
+}
+.projectsSection .line {
+  width: 80%;
+  height: 3px;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.5);
+  font-size: 30px;
+  opacity: 0.4;
+}
+.projectsSection .lineStart {
+  top: 50px;
+  left: 0;
+}
+.projectsSection .lineEnd {
+  right: 0;
+  text-align: right;
 }
 .projectsSection h2 {
+  z-index: 2;
+  left: 10%;
   opacity: 0.1;
   font-size: 10em;
+  position: -webkit-sticky;
+  position: sticky;
+  text-align: right;
+  top: 50px;
+  line-height: 1;
+  width: min-intrinsic;
+  width: -webkit-min-content;
+  width: -moz-min-content;
+  width: min-content;
+  display: table-caption;
+  display: -ms-grid;
+  -ms-grid-columns: min-content;
+  font-family: "Playfair Display", serif;
+}
+.projectsSection .projectItem {
+  margin: 400px 0;
+  padding: 0;
+  margin-left: 30%;
+  position: relative;
+}
+.projectsSection .projectItem img {
+  width: 80%;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+.projectsSection .projectItem article {
+  width: 800px;
+  background-color: white;
+  position: absolute;
+  z-index: 1;
+  bottom: 0;
+  left: -350px;
+  padding: 50px 150px;
+}
+.projectsSection .projectItem article h3 {
+  font-size: 3em;
+  margin-bottom: 50px;
+}
+.projectsSection .projectItem article p {
+  text-align: justify;
+}
+
+@media screen and (max-width: 700px) {
+  .projectsSection h2 {
+    font-size: 6em;
+  }
 }/*# sourceMappingURL=index.module.css.map */
