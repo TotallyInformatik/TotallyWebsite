@@ -1,9 +1,7 @@
 import React from "react";
-import type { NextPage } from 'next'
 import Head from 'next/head';
 
 import { sortProjects } from "../lib/firebase";
-import { Timestamp } from "firebase/firestore";
 
 import ProgressComponent from "../components/progressComponent/progressComponent";
 
@@ -11,7 +9,7 @@ import styles from "./index.module.css";
 import { PublicProjectsData } from "../lib/types";
 import ProjectComponent from "../components/projectComponent/projectComponent";
 
-class Home extends React.Component<{data: PublicProjectsData}, {}> {
+class Home extends React.Component<{ data: PublicProjectsData }, {}> {
 
   constructor(props: { data: PublicProjectsData }) {
     super(props);
@@ -52,7 +50,7 @@ class Home extends React.Component<{data: PublicProjectsData}, {}> {
           {
             sortProjects(this.props.data).map(
               (value) => {
-                return <ProjectComponent data={value} />
+                return <ProjectComponent key={value.title} data={value} />
               }
             )
           }
