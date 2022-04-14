@@ -1,0 +1,35 @@
+.projectItem {
+  margin: 400px 0;
+  padding: 0;
+  margin-left: 30%;
+  position: relative;
+
+  img {
+    width: 80%;
+    object-fit: contain;
+  }
+
+  article {
+    width: 800px;
+    background-color: white;
+    position: absolute;
+    z-index: 1;
+    bottom: 0;
+    left: -350px;
+
+    padding: 50px 150px;
+
+    h3 {
+      font-size: 3em;
+      margin-bottom: 50px;
+    }
+
+    p {
+      text-align: justify;
+    }
+
+
+  }
+
+
+}

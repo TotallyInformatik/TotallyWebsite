@@ -19,6 +19,12 @@ export default class ProgressComponent extends React.Component {
   }
 
   positionProgressComponent() {
+
+    const currentRef = this.progressRef.current;
+    if (currentRef == null) return;
+
+    const refHeight = currentRef!.clientHeight;
+
     const currentScrollPosition = window.scrollY;
 
     let body = document.body;
@@ -26,8 +32,6 @@ export default class ProgressComponent extends React.Component {
 
     const height = Math.max( body.scrollHeight, body.offsetHeight, 
                           html.clientHeight, html.scrollHeight, html.offsetHeight );
-
-    const refHeight = this.progressRef.current!.clientHeight;
 
     const documentSize = height - window.innerHeight;
     const relation = currentScrollPosition / documentSize;

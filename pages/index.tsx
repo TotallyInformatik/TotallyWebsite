@@ -9,10 +9,11 @@ import ProgressComponent from "../components/progressComponent/progressComponent
 
 import styles from "./index.module.css";
 import { PublicProjectsData } from "../lib/types";
+import ProjectComponent from "../components/projectComponent/projectComponent";
 
 class Home extends React.Component<{data: PublicProjectsData}, {}> {
 
-  constructor(props: {data: PublicProjectsData}) {
+  constructor(props: { data: PublicProjectsData }) {
     super(props);
   }
 
@@ -51,16 +52,7 @@ class Home extends React.Component<{data: PublicProjectsData}, {}> {
           {
             sortProjects(this.props.data).map(
               (value) => {
-                return <section key={value.title} className={styles.projectItem}>
-                  <article>
-                    {
-                      value.date != null ? <time>{Timestamp.fromMillis(value.date.seconds * 1000).toDate().toLocaleDateString()}</time> : null
-                    }
-                    <h3>{value.title}</h3>
-                    <p>{value.description}</p>
-                  </article>
-                  <img src="/images/planify.jpg" alt="" />
-                </section>
+                return <ProjectComponent data={value} />
               }
             )
           }

@@ -1,21 +1,31 @@
+import { Timestamp } from "firebase/firestore";
 import React from "react";
-// TODO: put project component here
+import { PublicProjectData } from "../../lib/types";
+
+import styles from "./projectComponent.module.css";
 
 
-class ProjectComponent extends React.Component {
+class ProjectComponent extends React.Component<{data: PublicProjectData}> {
 
-  constructor(props) {
+  constructor(props: {data: PublicProjectData}) {
     super(props);
   }
 
   render() {
-    return <section key={value.title} className={styles.projectItem}>
+    return <section key={this.props.data.title} className={styles.projectItem}>
       <article>
         {
-          value.date != null ? <time>{Timestamp.fromMillis(value.date.seconds * 1000).toDate().toLocaleDateString()}</time> : null
+          this.props.data.date != null ? 
+            <time>
+              {
+                Timestamp.fromMillis(this.props.data.date.seconds * 1000)
+                  .toDate()
+                  .toLocaleDateString()
+              }
+            </time> : null
         }
-        <h3>{value.title}</h3>
-        <p>{value.description}</p>
+        <h3>{this.props.data.title}</h3>
+        <p>{this.props.data.description}</p>
       </article>
       <img src="/images/planify.jpg" alt="" />
     </section>;
