@@ -1,6 +1,7 @@
 import { FirebaseApp, initializeApp } from "firebase/app";
+import { getStorage, getBytes, ref, getDownloadURL } from "firebase/storage";
+
 import { doc, DocumentData, DocumentSnapshot, Firestore, getDoc, getFirestore } from "firebase/firestore";
-import { deprecate } from "util";
 import { PublicProjectData, PublicProjectsData } from "./types";
 
 /**
@@ -23,10 +24,7 @@ export function sortProjects(projects: PublicProjectsData): PublicProjectData[] 
 }
 
 
-/**
- * @returns {Firestore} the firestore Database where are links and projects should be located
- */
- function getDatabase(): Firestore {
+function getFirebaseApp(): FirebaseApp {
 
   const firebaseConfig = {
     apiKey: process.env.SECRET_API_KEY,
@@ -40,10 +38,42 @@ export function sortProjects(projects: PublicProjectsData): PublicProjectData[] 
   
   // Initialize Firebase
   const app: FirebaseApp = initializeApp(firebaseConfig);
+  return app;
+
+}
+
+/**
+ * @returns {Firestore} the firestore Database where are links and projects should be located
+ */
+ function getDatabase(): Firestore {
   
+  const app = getFirebaseApp();
   return getFirestore(app);
 
 } 
+
+/**
+ * 
+ * @param {string} query a path leading to the desired image 
+ * @returns the url which is used to download the image. 
+ *          Can by inserted into a next image / img tag directly
+ */
+export async function getFirebaseImageFromQuery(query: string): Promise<string> {
+
+  const app = getFirebaseApp();
+  const storage = getStorage(app, "gs://totallylinks.appspot.com");
+  const imageRef = ref(storage, query);
+  let imageUrl: string = "none";
+  await getDownloadURL(imageRef)
+    .then((url) => {
+      imageUrl = url;
+    });
+
+  console.log("image url" +  imageUrl);
+
+  return imageUrl;
+
+}
 
 /**
  * 
