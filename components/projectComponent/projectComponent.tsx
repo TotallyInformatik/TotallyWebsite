@@ -16,8 +16,6 @@ class ProjectComponent extends React.Component<{ data: PublicProjectData }, { im
       imageUrl: undefined
     };
 
-    this.getImageUrl();
-
   }
 
   async getImageUrl() {
@@ -43,10 +41,14 @@ class ProjectComponent extends React.Component<{ data: PublicProjectData }, { im
           <div className={styles.projectImage}>
             <Image src={
               this.state.imageUrl
-            } width="1000" height="1000" />
+            } width="1000" height="800" />
           </div> : null
       }
     </section>;
+  }
+
+  componentDidMount() {
+    this.getImageUrl();
   }
 
 }
