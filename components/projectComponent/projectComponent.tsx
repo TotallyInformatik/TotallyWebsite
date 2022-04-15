@@ -16,13 +16,7 @@ class ProjectComponent extends React.Component<{data: PublicProjectData}> {
       <article>
         {
           this.props.data.date != null ? 
-            <time>
-              {
-                Timestamp.fromMillis(this.props.data.date.seconds * 1000)
-                  .toDate()
-                  .toLocaleDateString()
-              }
-            </time> : null
+            <time>{this.props.data.date}</time> : null
         }
         <h3>{this.props.data.title}</h3>
         <p>{this.props.data.description}</p>

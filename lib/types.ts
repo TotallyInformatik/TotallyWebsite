@@ -1,8 +1,5 @@
 export type PublicProjectData = {
-  date?: {
-    seconds: number,
-    milliseconds: number
-  },
+  date?: string,
   description: string,
   title: string,
   url: string

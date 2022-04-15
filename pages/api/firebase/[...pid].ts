@@ -7,6 +7,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     const { pid } = req.query;
 
+
     const result = await getFirestoreDataFromApiQuery(pid)
       .catch(() => {
         res.status(500).send("Error, Status Code 500");
