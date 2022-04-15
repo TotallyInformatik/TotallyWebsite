@@ -74,9 +74,7 @@ export async function getStaticProps() {
   //* Just use the functions you've written, it will be exaclty as safe, since this runs on the server-side 
 
   const data = await getFirestoreDataFromApiQuery(["public", "projects"]) as PublicProjectsData;
-
-  console.log(data);
-
+  
   return {
     props: {
       data: data
