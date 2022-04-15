@@ -1,5 +1,5 @@
 import { FirebaseApp, initializeApp } from "firebase/app";
-import { getStorage, getBytes, ref, getDownloadURL } from "firebase/storage";
+import { getStorage, ref, getDownloadURL } from "firebase/storage";
 
 import { doc, DocumentData, DocumentSnapshot, Firestore, getDoc, getFirestore } from "firebase/firestore";
 import { PublicProjectData, PublicProjectsData } from "./types";
@@ -10,13 +10,36 @@ import { PublicProjectData, PublicProjectsData } from "./types";
  */
 export function sortProjects(projects: PublicProjectsData): PublicProjectData[] {
 
-  return Object.values(projects).sort((a: any, b: any) => {
+  return Object.values(projects).sort((a: PublicProjectData, b: PublicProjectData) => {
 
     if (typeof a.date == "undefined") return 1;
     if (typeof b.date == "undefined") return -1;
 
-    if (a.date.seconds > b.date.seconds) return 1;
-    if (a.date.seconds < b.date.seconds) return -1;
+    //* if you look in firebase, the date is formated as dd.mm.yyyy (european)
+
+    let dateList = a.date.split(".");
+    let days = dateList[0]!;
+    let month = dateList[1]!;
+    let year = dateList[2]!;
+
+    const comparisonValueForA = 
+      Number.parseInt(
+        year.concat(month, days)
+      );
+
+
+    let dateListb = b.date.split(".");
+    let daysb = dateListb[0]!;
+    let monthb = dateListb[1]!;
+    let yearb = dateListb[2]!;
+
+    const comparisonValueForB = 
+      Number.parseInt(
+        yearb.concat(monthb, daysb)
+      );
+
+    if (comparisonValueForB > comparisonValueForA) return 1;
+    if (comparisonValueForB < comparisonValueForA) return -1;
     else return 0;
 
   });
@@ -68,8 +91,6 @@ export async function getFirebaseImageFromQuery(query: string): Promise<string> 
     .then((url) => {
       imageUrl = url;
     });
-
-  console.log("image url" +  imageUrl);
 
   return imageUrl;
 

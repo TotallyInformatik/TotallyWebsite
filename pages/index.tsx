@@ -19,6 +19,8 @@ class Home extends React.Component<{ data: PublicProjectsData }, {}> {
     //** This following line might work in development, but in production, secrets are only available to the node.js server */
     //console.log("testing environment variables: " + process.env.SECRET_API_KEY);
 
+    console.log(sortProjects(this.props.data));
+
     return <>
       <Head>
         <title>TotallyInformatik</title>
@@ -50,7 +52,7 @@ class Home extends React.Component<{ data: PublicProjectsData }, {}> {
           {
             sortProjects(this.props.data).map(
               (value) => {
-                return <ProjectComponent key={value.title} data={value} />
+                return <ProjectComponent data={value} />
               }
             )
           }
