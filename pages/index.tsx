@@ -1,7 +1,7 @@
 import React from "react";
 import Head from 'next/head';
 
-import { sortProjects } from "../lib/firebase";
+import { getFirestoreDataFromApiQuery, sortProjects } from "../lib/firebase";
 
 import ProgressComponent from "../components/progressComponent/progressComponent";
 
@@ -70,13 +70,16 @@ export async function getStaticProps() {
  
   //* Note that a change in Environment Variables requires a full restart of the development server
 
-  const response = await fetch("/api/firebase/public/projects");
-  const data = await response.json();
+  //* NOTE that you should not fetch from your own api in a server-side function such as getStaticProps. 
+  //* Just use the functions you've written, it will be exaclty as safe, since this runs on the server-side 
 
+  const data = await getFirestoreDataFromApiQuery(["public", "projects"]) as PublicProjectsData;
+
+  console.log(data);
 
   return {
     props: {
-      data: data as PublicProjectsData
+      data: data
     }
   };
   
