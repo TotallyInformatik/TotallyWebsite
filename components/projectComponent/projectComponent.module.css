@@ -1,8 +1,8 @@
 .projectItem {
-  width: 85%;
+  width: 90%;
   height: 500px;
   padding: 0;
-  margin: 200px 10% 200px 5%;
+  margin: 200px 10% 200px 0%;
   cursor: pointer;
   position: relative;
   display: flex;

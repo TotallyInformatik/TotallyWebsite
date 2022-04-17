@@ -2,6 +2,7 @@
   font-size: 10rem;
   font-family: "Playfair Display", serif;
   line-height: 0.9em;
+  opacity: 0.05;
 }
 
 .landingSection {
@@ -30,19 +31,13 @@
 .landingSection .landingName {
   top: 0;
   right: 0;
-  opacity: 0.05;
 }
 .landingSection img {
   width: 300px;
   height: 300px;
   border-radius: 20%;
   background-color: white;
-  box-shadow: 0 50px 150px rgba(0, 0, 0, 0.2);
-}
-.landingSection article p {
-  line-height: 1.5;
-  margin-left: 10px;
-  margin-bottom: 15px;
+  box-shadow: 0 50px 200px rgba(0, 0, 0, 0.15);
 }
 .landingSection article h1 {
   word-wrap: normal;
@@ -50,7 +45,10 @@
   -webkit-hyphens: initial;
       -ms-hyphens: initial;
           hyphens: initial;
-  margin-bottom: 50px;
+}
+.landingSection article p {
+  margin-left: 10px;
+  margin-bottom: 10px;
 }
 
 @media screen and (max-width: 1300px) {
@@ -67,75 +65,22 @@
     font-size: 3em;
   }
 }
-.projectsIntroductionSection {
-  margin: 500px 0;
-  align-items: flex-start;
-  justify-content: stretch;
-  display: flex;
-}
-.projectsIntroductionSection section {
-  padding: 0;
-}
-.projectsIntroductionSection h2 {
-  flex: 1;
-  font-size: 10em;
-}
-.projectsIntroductionSection h2 span {
-  display: block;
-}
-.projectsIntroductionSection section {
-  flex: 1;
-  display: grid;
-  grid-template-areas: ". . f ." "s o . t" "w . r e" ". a . .";
-  gap: 0;
-}
-.projectsIntroductionSection section h2 {
-  width: 5px;
-  text-align: center;
-}
-.projectsIntroductionSection section .s {
-  grid-area: s;
-  opacity: 0.7;
-}
-.projectsIntroductionSection section .o {
-  grid-area: o;
-  opacity: 0.7;
-}
-.projectsIntroductionSection section .f {
-  grid-area: f;
-  opacity: 0.7;
-}
-.projectsIntroductionSection section .t {
-  grid-area: t;
-  opacity: 0.7;
-}
-.projectsIntroductionSection section .w {
-  grid-area: w;
-}
-.projectsIntroductionSection section .a {
-  grid-area: a;
-}
-.projectsIntroductionSection section .r {
-  grid-area: r;
-}
-.projectsIntroductionSection section .e {
-  grid-area: e;
-}
-
 .projectsSection {
   position: relative;
   padding: 100px 0 0 100px;
   margin: 200px 0;
   display: grid;
   grid-template-areas: "headingAside projectListSection";
+  gap: 5%;
 }
 .projectsSection .line {
   width: 80%;
-  height: 3px;
+  height: 5px;
   position: absolute;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgb(0, 0, 0);
   font-size: 30px;
-  opacity: 0.4;
+  opacity: 0.1;
+  z-index: -1;
 }
 .projectsSection .lineStart {
   top: 50px;
@@ -146,19 +91,22 @@
   bottom: 0;
   text-align: right;
 }
+.projectsSection .lineHorizontal {
+  top: 55px;
+  height: calc(100% - 50px - 10px);
+  font-size: 80px;
+  width: 100px;
+  right: 20%;
+  color: white;
+  text-align: center;
+}
 .projectsSection .headingAside {
   grid-area: headingAside;
 }
-.projectsSection .projectListSection {
-  margin-top: 300px;
-  grid-area: projectListSection;
-  padding: 0;
-}
-.projectsSection h2 {
+.projectsSection .headingAside > h2 {
   z-index: 2;
   left: 5%;
-  opacity: 0.1;
-  font-size: 10em;
+  font-size: 10rem;
   position: -webkit-sticky;
   position: sticky;
   text-align: right;
@@ -172,6 +120,16 @@
   display: -ms-grid;
   -ms-grid-columns: min-content;
   font-family: "Playfair Display", serif;
+}
+.projectsSection .projectListSection {
+  grid-area: projectListSection;
+  padding: 0;
+}
+.projectsSection .projectListSection > article {
+  padding: 50px 0;
+}
+.projectsSection .projectListSection > article h1 {
+  line-height: 1.4;
 }
 
 @media screen and (max-width: 700px) {
