@@ -61,7 +61,7 @@ class Home extends React.Component<{ data: PublicProjectsData }, {}> {
             {
               sortProjects(this.props.data).map(
                 (value) => {
-                  return <ProjectComponent data={value} />
+                  return <ProjectComponent key={value.title} data={value} />
                 }
               )
             }
