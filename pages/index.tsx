@@ -8,6 +8,7 @@ import ProgressComponent from "../components/progressComponent/progressComponent
 import styles from "./index.module.css";
 import { PublicProjectsData } from "../lib/types";
 import ProjectComponent from "../components/projectComponent/projectComponent";
+import Image from "next/image";
 
 class Home extends React.Component<{ data: PublicProjectsData }, {}> {
 
@@ -41,22 +42,26 @@ class Home extends React.Component<{ data: PublicProjectsData }, {}> {
           <article>
             <h1>Totally<br/>Informatik</h1>
             <p>Rui Zhang - 16 - Male</p>
-            <p>Enthusiastic and Entrepreneurial Software Developer and Student</p>
+            <p>Enthusiastic and Creative Student and Creator</p>
             <p>Established and Leads {"\""}Annette-Entwickelt-Software{"\""}</p>
           </article>
           <img src="/images/logo.png" alt="logo / profile pic"/>
         </section>
+
         <section className={styles.projectsSection}>
           <small className={`${styles.line} ${styles.lineStart}`}>我的创作</small>
-          <h2 className={styles.fancyHeading}>My Work</h2>
-          {
-            sortProjects(this.props.data).map(
-              (value) => {
-                return <ProjectComponent data={value} />
-              }
-            )
-          }
-
+          <aside className={styles.headingAside}>
+            <h2 className={styles.fancyHeading}>My Work</h2>
+          </aside>
+          <section className={styles.projectListSection}>
+            {
+              sortProjects(this.props.data).map(
+                (value) => {
+                  return <ProjectComponent data={value} />
+                }
+              )
+            }
+          </section>
           <small className={`${styles.line} ${styles.lineEnd}`}>我的创作</small>
         </section>
       </main>

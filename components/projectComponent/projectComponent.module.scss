@@ -1,41 +1,50 @@
 .projectItem {
-  margin: 400px 0;
+
+  $margin-left: 5%;
+  $margin-right: 10%;
+  $margin-vertical: 200px;
+
+  width: 100% - $margin-left - $margin-right;
+  height: 500px;
+
   padding: 0;
-  margin-left: 30%;
+
+  margin: $margin-vertical $margin-right $margin-vertical $margin-left;
+  cursor: pointer;
   position: relative;
 
-  img {
-    width: 80%;
-    object-fit: contain;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   article {
-    width: 800px;
-    background-color: white;
-    position: absolute;
+    height: 100%;
+    width: 50%;
     z-index: 1;
-    bottom: 0;
-    left: -350px;
+    background-color: whitesmoke;
+    padding: 50px;
 
-    padding: 50px 150px;
 
     h3 {
       font-size: 3em;
       margin-bottom: 50px;
     }
 
-    p {
-      text-align: justify;
-    }
-
 
   }
 
   .projectImage {
-    position: relative;
-    width: 80%;
-    object-fit: contain;
-    background-color: black;
+
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    display: flex;
+
+    img {
+      object-fit: cover;
+      object-position: 0 center;
+    }
+    
   }
 
 

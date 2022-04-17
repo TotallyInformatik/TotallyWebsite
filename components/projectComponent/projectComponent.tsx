@@ -28,6 +28,19 @@ class ProjectComponent extends React.Component<{ data: PublicProjectData }, { im
 
   render() {
     return <section key={this.props.data.title} className={styles.projectItem}>
+      {
+        this.state.imageUrl != undefined ?
+          <div className={styles.projectImage}>
+            <Image 
+              src={
+                this.state.imageUrl
+              } 
+              width="1000" 
+              height="800"
+              alt={`Title Image for ${this.props.data.title}`} 
+            />
+          </div> : null
+      }
       <article>
         {
           this.props.data.date != undefined ? 
@@ -36,14 +49,6 @@ class ProjectComponent extends React.Component<{ data: PublicProjectData }, { im
         <h3>{this.props.data.title}</h3>
         <p>{this.props.data.description}</p>
       </article>
-      {
-        this.state.imageUrl != undefined ?
-          <div className={styles.projectImage}>
-            <Image src={
-              this.state.imageUrl
-            } width="1000" height="800" />
-          </div> : null
-      }
     </section>;
   }
 
