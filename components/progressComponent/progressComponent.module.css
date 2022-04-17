@@ -3,8 +3,15 @@
   position: sticky;
   z-index: 999999;
   top: 0;
-  width: 100%;
+  left: 100%;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
   text-align: right;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 .progressComponent p {
   font-size: 3rem;
