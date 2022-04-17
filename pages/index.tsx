@@ -42,18 +42,24 @@ class Home extends React.Component<{ data: PublicProjectsData }, {}> {
           <article>
             <h1>Totally<br/>Informatik</h1>
             <p>Rui Zhang - 16 - Male</p>
-            <p>Enthusiastic and Creative Student and Creator</p>
-            <p>Established and Leads {"\""}Annette-Entwickelt-Software{"\""}</p>
+            <p>Enthusiastic and Creative Student and Creator.</p>
+            <p>Established and Leads {"\""}Annette-Entwickelt-Software{"\""}.</p>
           </article>
           <img src="/images/logo.png" alt="logo / profile pic"/>
         </section>
 
         <section className={styles.projectsSection}>
           <small className={`${styles.line} ${styles.lineStart}`}>我的创作</small>
+          <h2 className={`${styles.line} ${styles.lineHorizontal}`}>我的创作</h2>
           <aside className={styles.headingAside}>
             <h2 className={styles.fancyHeading}>My Work</h2>
           </aside>
           <section className={styles.projectListSection}>
+            <article>
+              <h1>My Work</h1>
+              <p>Publicly available applications and websites.</p>
+              <p>Built with passion and care.</p>
+            </article>
             {
               sortProjects(this.props.data).map(
                 (value) => {

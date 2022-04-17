@@ -16,6 +16,8 @@ class ProjectComponent extends React.Component<{ data: PublicProjectData }, { im
       imageUrl: undefined
     };
 
+    this.redirectToProject = this.redirectToProject.bind(this);
+
   }
 
   async getImageUrl() {
@@ -26,8 +28,12 @@ class ProjectComponent extends React.Component<{ data: PublicProjectData }, { im
     }
   }
 
+  redirectToProject() {
+    window.location.href = this.props.data.url;
+  }
+
   render() {
-    return <section key={this.props.data.title} className={styles.projectItem}>
+    return <section key={this.props.data.title} className={styles.projectItem} onClick={() => this.redirectToProject()}>
       {
         this.state.imageUrl != undefined ?
           <div className={styles.projectImage}>
