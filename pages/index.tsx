@@ -8,7 +8,6 @@ import ProgressComponent from "../components/progressComponent/progressComponent
 import styles from "./index.module.css";
 import { PublicProjectsData } from "../lib/types";
 import ProjectComponent from "../components/projectComponent/projectComponent";
-import Image from "next/image";
 
 class Home extends React.Component<{ data: PublicProjectsData }, {}> {
 

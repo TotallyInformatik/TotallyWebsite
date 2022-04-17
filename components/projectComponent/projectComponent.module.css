@@ -9,14 +9,14 @@
   justify-content: center;
   align-items: center;
 }
-.projectItem article {
+.projectItem .simplebar {
   height: 100%;
   width: 50%;
   z-index: 1;
   background-color: whitesmoke;
   padding: 50px;
 }
-.projectItem article h3 {
+.projectItem .simplebar h3 {
   font-size: 3em;
   margin-bottom: 50px;
 }

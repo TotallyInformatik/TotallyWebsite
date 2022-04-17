@@ -1,4 +1,3 @@
-import { getImageSize } from "next/dist/server/image-optimizer";
 import Image from "next/image";
 import React from "react";
 import { getFirebaseImageFromQuery } from "../../lib/firebase";
@@ -6,6 +5,8 @@ import { PublicProjectData } from "../../lib/types";
 
 import styles from "./projectComponent.module.css";
 
+import SimpleBar from "simplebar-react";
+import "simplebar/dist/simplebar.min.css";
 
 class ProjectComponent extends React.Component<{ data: PublicProjectData }, { imageUrl?: string }> {
 
@@ -47,14 +48,14 @@ class ProjectComponent extends React.Component<{ data: PublicProjectData }, { im
             />
           </div> : null
       }
-      <article>
+      <SimpleBar autoHide={false} forceVisible="y" className={styles.simplebar}>
         {
           this.props.data.date != undefined ? 
             <time>{this.props.data.date}</time> : undefined
         }
         <h3>{this.props.data.title}</h3>
         <p>{this.props.data.description}</p>
-      </article>
+      </SimpleBar>
     </section>;
   }
 
