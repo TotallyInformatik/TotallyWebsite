@@ -49,7 +49,7 @@ $fancyHeadingFontSize: 10rem;
     height: $size;
     border-radius: 20%;
     background-color: white;
-    box-shadow: 0 $offset 200px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 $offset 200px $softShadowColor;
   }
 
   article h1 {

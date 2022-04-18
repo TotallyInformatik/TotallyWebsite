@@ -11,28 +11,66 @@ import styles from "./instagramPostComponent.module.css";
  * as a component (where I won't even be able to implement all parts because of lacking data)
  */
 
-class InstagramPostComponent extends React.Component<{postData: InstagramPostData, profileData: InstagramProfileData}> {
+type InstagramPostProps = {
+  postData: InstagramPostData, 
+  profileData: InstagramProfileData
+}
+
+class InstagramPostComponent extends 
+  React.Component<InstagramPostProps> {
+
+  constructor(props: InstagramPostProps) {
+    super(props);
+    this.redirect = this.redirect.bind(this);
+  }
+
+  redirect() {
+    window.location.href = this.props.postData.permalink;
+  }
 
   render() {
-    return <div className={styles.instagramPost}>
-      <section className={styles.mediaSection}>
+
+    const logoSize = 30;
+    const postSize = 400;
+
+    return <div 
+      className={styles.instagramPost} 
+    >
+      <section 
+        className={styles.mediaSection} 
+        onClick={() => this.redirect()}
+      >
         <Image
           src={this.props.postData.media_url}
           objectFit="contain"
+          width={postSize}
+          height={postSize}
         />
       </section>
       <section className={styles.captionSection}>
         <header>
-          <i className={styles.profileIcon}></i>
-          <p>{this.props.profileData.username}</p>
+          <div className={styles.profileIcon}>
+            <Image  
+              width={logoSize}
+              height={logoSize}
+              src="/images/logo.png"
+            />
+          </div>
+          <b>{this.props.profileData.username}</b>
         </header>
-        <SimpleBar autoHide={false}>
-          <i className={styles.profileIcon}></i>
+        <main>
+          <div className={styles.profileIcon}>
+            <Image 
+              width={logoSize}
+              height={logoSize}
+              src="/images/logo.png"
+            />
+          </div>
           <p>
-            <span>{this.props.profileData.username}</span>
-            {this.props.postData.caption}
+            <b>{this.props.profileData.username}</b>
+            {" " + this.props.postData.caption}
           </p>
-        </SimpleBar>
+        </main>
       </section>
     </div>
   }

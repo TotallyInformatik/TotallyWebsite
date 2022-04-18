@@ -6,17 +6,22 @@ import { getFirestoreDataFromApiQuery, sortProjects } from "../lib/firebase";
 import ProgressComponent from "../components/progressComponent/progressComponent";
 
 import styles from "./index.module.css";
-import { InstagramPostData, PublicProjectsData } from "../lib/types";
+import { InstagramPostData, InstagramProfileData, PublicProjectsData } from "../lib/types";
 import ProjectComponent from "../components/projectComponent/projectComponent";
 import SocialMediaComponent from "../components/socialMediaComponent/socialMediaComponent";
 import { Instagram } from "../lib/instagram";
+import InstagramPostComponent from "../components/instagramPostComponent/instagramPostComponent";
+
+type HomeData = { 
+  projectsData: PublicProjectsData,
+  instagramData: InstagramPostData[],
+  instagramProfileData: InstagramProfileData
+}
 
 class Home extends 
-  React.Component<{ 
-    projectsData: PublicProjectsData 
-  }, {}> {
+  React.Component<HomeData, {}> {
 
-  constructor(props: { projectsData: PublicProjectsData, instagramData: InstagramPostData }) {
+  constructor(props: HomeData) {
     super(props);
   }
 
@@ -89,6 +94,10 @@ class Home extends
             title="Instagram"
             icon=""
           >
+            <InstagramPostComponent 
+              postData={this.props.instagramData[0]}
+              profileData={this.props.instagramProfileData}
+            />
           </SocialMediaComponent>
 
         </section>
@@ -109,13 +118,13 @@ export async function getStaticProps() {
 
   const projectsData = await getFirestoreDataFromApiQuery(["public", "projects"]) as PublicProjectsData;
   const instagramData = await Instagram.getMostRecentPosts() as InstagramPostData[];
-
-  console.log(instagramData);
+  const instagramProfileData = await Instagram.getUserProfile() as InstagramProfileData;
 
   return {
     props: {
       projectsData: projectsData,
-      instagramData: instagramData
+      instagramData: instagramData,
+      instagramProfileData: instagramProfileData
     }
   };
   

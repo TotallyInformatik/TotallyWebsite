@@ -1,6 +1,8 @@
+@import "./../../styles/constants.scss";
+
 .projectItem {
 
-  box-shadow: 0 50px 200px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 50px 200px $softShadowColor;
 
   $margin-left: 0%;
   $margin-right: 5%;
