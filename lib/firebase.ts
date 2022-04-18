@@ -4,6 +4,9 @@ import { getStorage, ref, getDownloadURL } from "firebase/storage";
 import { doc, DocumentData, DocumentSnapshot, Firestore, getDoc, getFirestore } from "firebase/firestore";
 import { PublicProjectData, PublicProjectsData } from "./types";
 
+// TODO: write tests like a cool programmer
+
+
 /**
  * @param projects a object containing all of the public projects. For the json structure refer to firestore database
  * @returns the same list of projects, but sorted by date. If no date is given in the project, then it will be last.

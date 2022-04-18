@@ -8,10 +8,11 @@ import ProgressComponent from "../components/progressComponent/progressComponent
 import styles from "./index.module.css";
 import { PublicProjectsData } from "../lib/types";
 import ProjectComponent from "../components/projectComponent/projectComponent";
+import { Instagram } from "../lib/instagram";
 
-class Home extends React.Component<{ data: PublicProjectsData }, {}> {
+class Home extends React.Component<{ projectsData: PublicProjectsData }, {}> {
 
-  constructor(props: { data: PublicProjectsData }) {
+  constructor(props: { projectsData: PublicProjectsData }) {
     super(props);
   }
 
@@ -47,7 +48,7 @@ class Home extends React.Component<{ data: PublicProjectsData }, {}> {
 
         <section className={styles.projectsSection}>
           <small className={`${styles.line} ${styles.lineStart}`}>我的创作</small>
-          <h2 className={`${styles.line} ${styles.lineHorizontal}`}>我的创作</h2>
+          <h2 className={`${styles.line} ${styles.lineVertical}`}>我的创作</h2>
           <aside className={styles.headingAside}>
             <h2 className={styles.fancyHeading}>My Work</h2>
           </aside>
@@ -58,7 +59,7 @@ class Home extends React.Component<{ data: PublicProjectsData }, {}> {
               <p>Built with passion and care.</p>
             </article>
             {
-              sortProjects(this.props.data).map(
+              sortProjects(this.props.projectsData).map(
                 (value) => {
                   return <ProjectComponent key={value.title} data={value} />
                 }
@@ -67,8 +68,11 @@ class Home extends React.Component<{ data: PublicProjectsData }, {}> {
           </section>
           <small className={`${styles.line} ${styles.lineEnd}`}>我的创作</small>
         </section>
-      </main>
 
+        <section>
+
+        </section>
+      </main>
     </>;
   }
 
@@ -83,11 +87,15 @@ export async function getStaticProps() {
   //* NOTE that you should not fetch from your own api in a server-side function such as getStaticProps. 
   //* Just use the functions you've written, it will be exaclty as safe, since this runs on the server-side 
 
-  const data = await getFirestoreDataFromApiQuery(["public", "projects"]) as PublicProjectsData;
-  
+  const projectsData = await getFirestoreDataFromApiQuery(["public", "projects"]) as PublicProjectsData;
+  const instagramUserProfileData = await Instagram.getUserProfile();
+  const intstagramPostsData = await Instagram.getMostRecentPosts();
+
+  console.log(instagramUserProfileData);
+
   return {
     props: {
-      data: data
+      projectsData: projectsData
     }
   };
   

@@ -1,20 +1,22 @@
 .projectItem {
-  width: 90%;
+  box-shadow: 0 50px 200px rgba(0, 0, 0, 0.15);
+  width: 95%;
   height: 500px;
   padding: 0;
-  margin: 200px 10% 200px 0%;
+  margin: 200px 5% 200px 0%;
   cursor: pointer;
   position: relative;
   display: flex;
-  justify-content: center;
+  justify-content: stretch;
   align-items: center;
 }
 .projectItem .simplebar {
   height: 100%;
-  width: 50%;
+  width: 100%;
   z-index: 1;
   background-color: whitesmoke;
   padding: 50px;
+  flex: 1;
 }
 .projectItem .simplebar h3 {
   font-size: 3em;
@@ -25,10 +27,49 @@
   height: 100%;
   background-color: transparent;
   display: flex;
+  flex: 2;
 }
 .projectItem .projectImage img {
   -o-object-fit: cover;
      object-fit: cover;
   -o-object-position: 0 center;
      object-position: 0 center;
+}
+
+@media screen and (max-width: 1500px) {
+  .projectItem {
+    flex-direction: column;
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+    width: 90%;
+  }
+  .projectItem .simplebar {
+    width: 100%;
+  }
+  .projectItem .projectImage {
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+  }
+  .projectItem .projectImage img {
+    -o-object-fit: contain;
+       object-fit: contain;
+    height: object;
+  }
+}
+@media screen and (max-width: 1000px) {
+  .projectItem {
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
+}
+@media screen and (max-width: 700px) {
+  .projectItem .simplebar h3 {
+    font-size: 2em;
+  }
+
+  .projectItem .simplebar {
+    padding: 50px 5%;
+  }
 }/*# sourceMappingURL=projectComponent.module.css.map */

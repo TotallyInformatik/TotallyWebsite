@@ -24,7 +24,7 @@ $fancyHeadingFontSize: 10rem;
     top: $fancyHeadingFontSize;
     left: 100px;
     height: 600px;
-    opacity: 0.05;
+    opacity: 0.04;
 
     h1 {
       writing-mode: vertical-lr;
@@ -75,21 +75,17 @@ $fancyHeadingFontSize: 10rem;
 
 }
 
-@media screen and (max-width: 600px) { 
-
-
-  .landingSection article h1 {
-    font-size: 3em;
-  }
-
-}
-
 
 .projectsSection {
 
   position: relative;
-  padding: 100px 0 0 100px;
+  padding: 100px 0 0 5%;
   margin: 200px 0;
+
+  display: flex;
+  justify-content: space-evenly;
+  gap: 100px;
+
 
   $top: 50px;
   $line-length: 80%;
@@ -100,9 +96,10 @@ $fancyHeadingFontSize: 10rem;
     width: $line-length;
     height: $line-width;
     position: absolute;
+    color: black;
     background-color: rgba(0, 0, 0);
     font-size: $font-size;
-    opacity: 0.1;
+    opacity: 0.05;
     z-index: -1;
   }
 
@@ -117,7 +114,7 @@ $fancyHeadingFontSize: 10rem;
     text-align: right;
   }
 
-  .lineHorizontal {
+  .lineVertical {
     top: $top + $line-width;
     height: calc(100% - $top - 2 * $line-width);
     $font-size: 80px;
@@ -128,17 +125,10 @@ $fancyHeadingFontSize: 10rem;
     text-align: center;
   }
 
-  display: grid;
-  grid-template-areas: 
-    "headingAside projectListSection";
-  gap: 5%;
-
   .headingAside { 
-    grid-area: headingAside;
     
     > h2 {
       z-index: 2;
-      left: 5%;
       font-size: $fancyHeadingFontSize;
       position: sticky;
       text-align: right;
@@ -156,7 +146,6 @@ $fancyHeadingFontSize: 10rem;
   }
 
   .projectListSection { 
-    grid-area: projectListSection;
     padding: 0;
 
     > article {
@@ -172,10 +161,71 @@ $fancyHeadingFontSize: 10rem;
   }
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 1000px) {
+
+  .projectsSection {
+    
+    flex-direction: column;
+    gap: 0;
+
+    $top: 100px;
+
+    .headingAside {
+
+      // * choose arbitrarily large number
+      width: 1000px;
+      height:auto;
+
+      h2 {
+        top: $top;
+        position: absolute;
+        text-align: left;
+        width: 1000px;
+      }
+
+    }
+
+    $line-length: 100%;
+    $line-width: 5px;
+    $font-size: 30px;
   
-  .projectsSection h2 {
-    font-size: 6em;
+    .line {
+      width: $line-length;
+      height: $line-width;
+      position: absolute;
+      color: black;
+      background-color: rgba(0, 0, 0);
+      font-size: $font-size;
+      opacity: 0.05;
+      z-index: -1;
+    }
+
+    .lineVertical {
+      color: white;
+      $font-size: 150px;
+      font-size: $font-size;
+      position: absolute;
+      width: $font-size * 2 + 20px;
+      height: fit-content;
+      top: calc($fancyHeadingFontSize + $top * 2);
+      right: 0;
+      opacity: 0.04;
+    }
+
+    .projectListSection {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-top: $top - 50px;
+
+      > article {
+        text-align: center;
+        margin-bottom: 100px;
+      }
+
+    }
+
   }
 
 }
