@@ -43,12 +43,13 @@ class ProjectComponent extends React.Component<{ data: PublicProjectData }, { im
                 this.state.imageUrl
               } 
               width="1000" 
-              height="800"
+              height="500"
               alt={`Title Image for ${this.props.data.title}`} 
+              objectFit="cover"
             />
           </div> : null
       }
-      <SimpleBar autoHide={false} forceVisible="y" className={styles.simplebar}>
+      <SimpleBar autoHide={false} className={styles.simplebar}>
         {
           this.props.data.date != undefined ? 
             <time>{this.props.data.date}</time> : undefined

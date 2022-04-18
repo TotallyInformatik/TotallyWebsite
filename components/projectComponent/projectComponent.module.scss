@@ -1,7 +1,9 @@
 .projectItem {
 
+  box-shadow: 0 50px 200px rgba(0, 0, 0, 0.15);
+
   $margin-left: 0%;
-  $margin-right: 10%;
+  $margin-right: 5%;
   $margin-vertical: 200px;
 
   width: 100% - $margin-left - $margin-right;
@@ -14,15 +16,16 @@
   position: relative;
 
   display: flex;
-  justify-content: center;
+  justify-content: stretch;
   align-items: center;
 
   .simplebar {
     height: 100%;
-    width: 50%;
+    width: 100%;
     z-index: 1;
     background-color: whitesmoke;
     padding: 50px;
+    flex: 1;
 
     h3 {
       font-size: 3em;
@@ -37,6 +40,7 @@
     height: 100%;
     background-color: transparent;
     display: flex;
+    flex: 2;
 
     img {
       object-fit: cover;
@@ -45,5 +49,47 @@
     
   }
 
+}
+
+
+@media screen and (max-width: 1500px) {
+  
+  .projectItem {
+
+    flex-direction: column;
+    height: fit-content;
+    width: 90%;
+
+    .simplebar {
+      width: 100%;
+    }
+
+    .projectImage {
+      height: fit-content;
+      img {
+        object-fit: contain;
+        height: object;
+
+      }
+    }
+
+  }
+
+} 
+@media screen and (max-width: 1000px) {
+  .projectItem {
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  
+  .projectItem .simplebar h3 {
+    font-size: 2em;
+  }
+  .projectItem .simplebar {
+    padding: 50px 5%;
+  }
 
 }

@@ -19,7 +19,7 @@
   top: 10rem;
   left: 100px;
   height: 600px;
-  opacity: 0.05;
+  opacity: 0.04;
 }
 .landingSection .landingChinese h1 {
   -ms-writing-mode: tb-lr;
@@ -60,26 +60,22 @@
     text-align: center;
   }
 }
-@media screen and (max-width: 600px) {
-  .landingSection article h1 {
-    font-size: 3em;
-  }
-}
 .projectsSection {
   position: relative;
-  padding: 100px 0 0 100px;
+  padding: 100px 0 0 5%;
   margin: 200px 0;
-  display: grid;
-  grid-template-areas: "headingAside projectListSection";
-  gap: 5%;
+  display: flex;
+  justify-content: space-evenly;
+  gap: 100px;
 }
 .projectsSection .line {
   width: 80%;
   height: 5px;
   position: absolute;
+  color: black;
   background-color: rgb(0, 0, 0);
   font-size: 30px;
-  opacity: 0.1;
+  opacity: 0.05;
   z-index: -1;
 }
 .projectsSection .lineStart {
@@ -91,7 +87,7 @@
   bottom: 0;
   text-align: right;
 }
-.projectsSection .lineHorizontal {
+.projectsSection .lineVertical {
   top: 55px;
   height: calc(100% - 50px - 10px);
   font-size: 80px;
@@ -100,12 +96,8 @@
   color: white;
   text-align: center;
 }
-.projectsSection .headingAside {
-  grid-area: headingAside;
-}
 .projectsSection .headingAside > h2 {
   z-index: 2;
-  left: 5%;
   font-size: 10rem;
   position: -webkit-sticky;
   position: sticky;
@@ -122,7 +114,6 @@
   font-family: "Playfair Display", serif;
 }
 .projectsSection .projectListSection {
-  grid-area: projectListSection;
   padding: 0;
 }
 .projectsSection .projectListSection > article {
@@ -132,8 +123,52 @@
   line-height: 1.4;
 }
 
-@media screen and (max-width: 700px) {
-  .projectsSection h2 {
-    font-size: 6em;
+@media screen and (max-width: 1000px) {
+  .projectsSection {
+    flex-direction: column;
+    gap: 0;
+  }
+  .projectsSection .headingAside {
+    width: 1000px;
+    height: auto;
+  }
+  .projectsSection .headingAside h2 {
+    top: 100px;
+    position: absolute;
+    text-align: left;
+    width: 1000px;
+  }
+  .projectsSection .line {
+    width: 100%;
+    height: 5px;
+    position: absolute;
+    color: black;
+    background-color: rgb(0, 0, 0);
+    font-size: 30px;
+    opacity: 0.05;
+    z-index: -1;
+  }
+  .projectsSection .lineVertical {
+    color: white;
+    font-size: 150px;
+    position: absolute;
+    width: 320px;
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+    top: calc(10rem + 200px);
+    right: 0;
+    opacity: 0.04;
+  }
+  .projectsSection .projectListSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+  }
+  .projectsSection .projectListSection > article {
+    text-align: center;
+    margin-bottom: 100px;
   }
 }/*# sourceMappingURL=index.module.css.map */
