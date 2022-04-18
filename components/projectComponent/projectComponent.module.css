@@ -18,10 +18,6 @@
   padding: 50px;
   flex: 1;
 }
-.projectItem .simplebar h3 {
-  font-size: 3em;
-  margin-bottom: 50px;
-}
 .projectItem .projectImage {
   width: 100%;
   height: 100%;

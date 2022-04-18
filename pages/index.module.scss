@@ -1,3 +1,5 @@
+@import "./../styles/constants.scss";
+
 $fancyHeadingFontSize: 10rem;
 
 
@@ -5,7 +7,7 @@ $fancyHeadingFontSize: 10rem;
   font-size: $fancyHeadingFontSize;
   font-family: 'Playfair Display', serif;
   line-height: 0.9em;
-  opacity: 0.05;
+  opacity: $backgroundOpacity;
   user-select: none;
 }
 
@@ -101,10 +103,10 @@ $fancyHeadingFontSize: 10rem;
     width: $line-length;
     height: $line-width;
     position: absolute;
-    color: black;
+    color: rgba(0, 0, 0 ,1);
     background-color: rgba(0, 0, 0);
     font-size: $font-size;
-    opacity: 0.05;
+    opacity: $backgroundOpacity * 2;
     z-index: -1;
   }
 
@@ -119,15 +121,24 @@ $fancyHeadingFontSize: 10rem;
     text-align: right;
   }
 
-  .lineVertical {
+  $font-size: 80px;
+  $bannerWidth: calc($font-size + 2 * 10px);
+  $bannerOffset: 100% - $line-length;
+  .bannerVertical {
     top: $top + $line-width;
-    height: calc(100% - $top - 2 * $line-width);
-    $font-size: 80px;
+    height: fit-content;
+    padding: 20px 0;
     font-size: $font-size;
-    width: $font-size  + 2 * 10px;
-    right: 100% - $line-length;
+    width: $bannerWidth;
+    right: calc($bannerOffset + $line-width);
     color: white;
     text-align: center;
+  }
+  .lineVertical {
+    top: $top + $line-width;
+    right: $bannerOffset;
+    width: $line-width;
+    height: calc(100% - $top - $line-width * 2);
   }
 
   .headingAside { 
@@ -192,7 +203,6 @@ $fancyHeadingFontSize: 10rem;
 
     $line-length: 100%;
     $line-width: 5px;
-    $font-size: 30px;
   
     .line {
       width: $line-length;
@@ -200,12 +210,16 @@ $fancyHeadingFontSize: 10rem;
       position: absolute;
       color: black;
       background-color: rgba(0, 0, 0);
-      font-size: $font-size;
-      opacity: 0.05;
+      opacity: $backgroundOpacity;
       z-index: -1;
     }
 
+
     .lineVertical {
+      display: none;
+    }
+
+    .bannerVertical {
       color: white;
       $font-size: 150px;
       font-size: $font-size;
@@ -236,10 +250,28 @@ $fancyHeadingFontSize: 10rem;
 }
 
 
-.socialMediaSection .fancyHeading {
-  position: absolute;
-  right: $fancyHeadingFontSize;
-  top: 0;
-  transform-origin: top right;
-  transform: rotateZ(-90deg);
-}
+.socialMediaSection {
+  margin-top: 200px;
+  padding-top: 0;
+
+  > .fancyHeading {
+    position: absolute;
+    top: 0;
+    left: $fancyHeadingFontSize;
+    text-align: end;
+    
+    transform-origin: top left;
+    transform: rotateZ(90deg);
+  }
+
+  .chinese {
+    position: absolute;
+    background-color: black;
+    opacity: $backgroundOpacity * 2;
+    color: white;
+    padding: 0 10px;
+    top: 0;
+    right: 0;
+  }
+
+} 

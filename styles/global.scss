@@ -17,6 +17,7 @@
 .chinese {
   font-family: 'Noto Sans SC', sans-serif;
   margin-bottom: 0;
+  user-select: none;
 }
 .transparent {
   position: absolute;
@@ -35,7 +36,7 @@ main {
 }
 
 
-
+// typography
 h1 {
   font-size: 8rem;
   margin-bottom: 50px;
@@ -64,10 +65,22 @@ h2 {
 
 }
 
+h3 {
+  font-size: 3em;
+  margin-bottom: 50px;
+}
+
 p {
   font-size: 1.5rem;
   line-height: 1.5;
 }
+
+small {
+  font-size: 30px;
+}
+
+
+
 section {
   padding: 100px 200px;
   position: relative;

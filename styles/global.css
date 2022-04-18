@@ -14,6 +14,10 @@
 .chinese {
   font-family: "Noto Sans SC", sans-serif;
   margin-bottom: 0;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 .transparent {
@@ -56,9 +60,18 @@ h2 {
     font-size: 3em;
   }
 }
+h3 {
+  font-size: 3em;
+  margin-bottom: 50px;
+}
+
 p {
   font-size: 1.5rem;
   line-height: 1.5;
+}
+
+small {
+  font-size: 30px;
 }
 
 section {

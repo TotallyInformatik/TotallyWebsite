@@ -6,12 +6,17 @@ import { getFirestoreDataFromApiQuery, sortProjects } from "../lib/firebase";
 import ProgressComponent from "../components/progressComponent/progressComponent";
 
 import styles from "./index.module.css";
-import { PublicProjectsData } from "../lib/types";
+import { InstagramPostData, PublicProjectsData } from "../lib/types";
 import ProjectComponent from "../components/projectComponent/projectComponent";
+import SocialMediaComponent from "../components/socialMediaComponent/socialMediaComponent";
+import { Instagram } from "../lib/instagram";
 
-class Home extends React.Component<{ projectsData: PublicProjectsData }, {}> {
+class Home extends 
+  React.Component<{ 
+    projectsData: PublicProjectsData 
+  }, {}> {
 
-  constructor(props: { projectsData: PublicProjectsData }) {
+  constructor(props: { projectsData: PublicProjectsData, instagramData: InstagramPostData }) {
     super(props);
   }
 
@@ -46,8 +51,9 @@ class Home extends React.Component<{ projectsData: PublicProjectsData }, {}> {
         </section>
 
         <section className={styles.projectsSection}>
-          <small className={`${styles.line} ${styles.lineStart}`}>我的创作</small>
-          <h1 className={`${styles.line} ${styles.lineVertical}`}>我的创作</h1>
+          <small className={`${styles.line} ${styles.lineStart} chinese`}>我的创作</small>
+          <h1 className={`${styles.line} ${styles.bannerVertical} chinese`}>我的创作</h1>
+          <div className={`${styles.line} ${styles.lineVertical}`} />
           <aside className={styles.headingAside}>
             <h1 className={styles.fancyHeading}>My Work</h1>
           </aside>
@@ -70,13 +76,20 @@ class Home extends React.Component<{ projectsData: PublicProjectsData }, {}> {
 
         <section className={styles.socialMediaSection}>
           <h1 className={styles.fancyHeading}>Social Media</h1>
+          <h1 className={`${styles.chinese} chinese`}>网络媒体</h1>
+
           <h2>Follow Me</h2>
           <article>
             <p>My Social Media Accounts go into Detail About My Work.</p>
-            <p>Explanations, Code Details, Valuable Lessons learnt.</p>
+            <p>Explanations, Code Details, Valuable Lessons, etc.</p>
           </article>
 
-
+          <SocialMediaComponent 
+            className="instagram"
+            title="Instagram"
+            icon=""
+          >
+          </SocialMediaComponent>
 
         </section>
       </main>
@@ -95,10 +108,14 @@ export async function getStaticProps() {
   //* Just use the functions you've written, it will be exaclty as safe, since this runs on the server-side 
 
   const projectsData = await getFirestoreDataFromApiQuery(["public", "projects"]) as PublicProjectsData;
+  const instagramData = await Instagram.getMostRecentPosts() as InstagramPostData[];
+
+  console.log(instagramData);
 
   return {
     props: {
-      projectsData: projectsData
+      projectsData: projectsData,
+      instagramData: instagramData
     }
   };
   
