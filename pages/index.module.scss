@@ -6,6 +6,7 @@ $fancyHeadingFontSize: 10rem;
   font-family: 'Playfair Display', serif;
   line-height: 0.9em;
   opacity: 0.05;
+  user-select: none;
 }
 
 .landingSection {
@@ -27,6 +28,7 @@ $fancyHeadingFontSize: 10rem;
     opacity: 0.04;
 
     h1 {
+      font-size: 6rem;
       writing-mode: vertical-lr;
       height: fit-content;
     }
@@ -62,7 +64,6 @@ $fancyHeadingFontSize: 10rem;
 }
 
 @media screen and (max-width: 1300px) {
-
   .landingSection {
     flex-direction: column;
 
@@ -72,7 +73,11 @@ $fancyHeadingFontSize: 10rem;
     }
 
   }
-
+}
+@media screen and (max-width: 350px) {
+  .landingSection {
+    padding: 50px 10px;
+  }
 }
 
 
@@ -127,7 +132,7 @@ $fancyHeadingFontSize: 10rem;
 
   .headingAside { 
     
-    > h2 {
+    > .fancyHeading {
       z-index: 2;
       font-size: $fancyHeadingFontSize;
       position: sticky;
@@ -176,7 +181,7 @@ $fancyHeadingFontSize: 10rem;
       width: 1000px;
       height:auto;
 
-      h2 {
+      .fancyHeading {
         top: $top;
         position: absolute;
         text-align: left;
@@ -228,4 +233,13 @@ $fancyHeadingFontSize: 10rem;
 
   }
 
+}
+
+
+.socialMediaSection .fancyHeading {
+  position: absolute;
+  right: $fancyHeadingFontSize;
+  top: 0;
+  transform-origin: top right;
+  transform: rotateZ(-90deg);
 }

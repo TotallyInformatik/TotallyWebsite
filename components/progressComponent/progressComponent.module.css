@@ -16,4 +16,10 @@
 .progressComponent p {
   font-size: 3rem;
   opacity: 0.5;
+}
+
+@media screen and (max-width: 700px) {
+  .progressComponent {
+    display: none;
+  }
 }/*# sourceMappingURL=progressComponent.module.css.map */

@@ -3,6 +3,10 @@
   font-family: "Playfair Display", serif;
   line-height: 0.9em;
   opacity: 0.05;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 .landingSection {
@@ -22,6 +26,7 @@
   opacity: 0.04;
 }
 .landingSection .landingChinese h1 {
+  font-size: 6rem;
   -ms-writing-mode: tb-lr;
       writing-mode: vertical-lr;
   height: -webkit-fit-content;
@@ -60,6 +65,11 @@
     text-align: center;
   }
 }
+@media screen and (max-width: 350px) {
+  .landingSection {
+    padding: 50px 10px;
+  }
+}
 .projectsSection {
   position: relative;
   padding: 100px 0 0 5%;
@@ -96,7 +106,7 @@
   color: white;
   text-align: center;
 }
-.projectsSection .headingAside > h2 {
+.projectsSection .headingAside > .fancyHeading {
   z-index: 2;
   font-size: 10rem;
   position: -webkit-sticky;
@@ -132,7 +142,7 @@
     width: 1000px;
     height: auto;
   }
-  .projectsSection .headingAside h2 {
+  .projectsSection .headingAside .fancyHeading {
     top: 100px;
     position: absolute;
     text-align: left;
@@ -171,4 +181,11 @@
     text-align: center;
     margin-bottom: 100px;
   }
+}
+.socialMediaSection .fancyHeading {
+  position: absolute;
+  right: 10rem;
+  top: 0;
+  transform-origin: top right;
+  transform: rotateZ(-90deg);
 }/*# sourceMappingURL=index.module.css.map */

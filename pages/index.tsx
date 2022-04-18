@@ -8,7 +8,6 @@ import ProgressComponent from "../components/progressComponent/progressComponent
 import styles from "./index.module.css";
 import { PublicProjectsData } from "../lib/types";
 import ProjectComponent from "../components/projectComponent/projectComponent";
-import { Instagram } from "../lib/instagram";
 
 class Home extends React.Component<{ projectsData: PublicProjectsData }, {}> {
 
@@ -48,15 +47,15 @@ class Home extends React.Component<{ projectsData: PublicProjectsData }, {}> {
 
         <section className={styles.projectsSection}>
           <small className={`${styles.line} ${styles.lineStart}`}>我的创作</small>
-          <h2 className={`${styles.line} ${styles.lineVertical}`}>我的创作</h2>
+          <h1 className={`${styles.line} ${styles.lineVertical}`}>我的创作</h1>
           <aside className={styles.headingAside}>
-            <h2 className={styles.fancyHeading}>My Work</h2>
+            <h1 className={styles.fancyHeading}>My Work</h1>
           </aside>
           <section className={styles.projectListSection}>
             <article>
-              <h1>My Work</h1>
-              <p>Publicly available applications and websites.</p>
-              <p>Built with passion and care.</p>
+              <h2>Projects</h2>
+              <p>Publicly Available Applications and Websites.</p>
+              <p>Built with Passion and Care.</p>
             </article>
             {
               sortProjects(this.props.projectsData).map(
@@ -69,7 +68,15 @@ class Home extends React.Component<{ projectsData: PublicProjectsData }, {}> {
           <small className={`${styles.line} ${styles.lineEnd}`}>我的创作</small>
         </section>
 
-        <section>
+        <section className={styles.socialMediaSection}>
+          <h1 className={styles.fancyHeading}>Social Media</h1>
+          <h2>Follow Me</h2>
+          <article>
+            <p>My Social Media Accounts go into Detail About My Work.</p>
+            <p>Explanations, Code Details, Valuable Lessons learnt.</p>
+          </article>
+
+
 
         </section>
       </main>
@@ -88,10 +95,6 @@ export async function getStaticProps() {
   //* Just use the functions you've written, it will be exaclty as safe, since this runs on the server-side 
 
   const projectsData = await getFirestoreDataFromApiQuery(["public", "projects"]) as PublicProjectsData;
-  const instagramUserProfileData = await Instagram.getUserProfile();
-  const intstagramPostsData = await Instagram.getMostRecentPosts();
-
-  console.log(instagramUserProfileData);
 
   return {
     props: {
