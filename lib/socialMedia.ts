@@ -32,3 +32,21 @@ export namespace Instagram {
   }
 
 }
+
+export namespace Github {
+
+  export async function getUserProfile() {
+
+    const requestUrl =
+      "https://api.github.com/users/TotallyInformatik"
+
+    const response: Response = await fetch(requestUrl, {
+      method: "GET"
+    });
+
+    return response.json();
+
+  }
+
+}
+

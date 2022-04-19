@@ -8,8 +8,8 @@
   position: relative;
   display: grid;
   grid-template-areas: "heading heading" "description posts";
-  grid-template-columns: 200px -webkit-fit-content;
-  grid-template-columns: 200px fit-content;
+  grid-template-columns: 400px -webkit-fit-content;
+  grid-template-columns: 400px fit-content;
 }
 .socialSubSection .hr {
   position: absolute;
@@ -24,6 +24,11 @@
 }
 .socialSubSection .description {
   grid-area: description;
+  width: 400px;
+}
+.socialSubSection .description p, .socialSubSection .description b {
+  margin-bottom: 15px;
+  font-size: 1.4em;
 }
 .socialSubSection .postsSection {
   width: 100%;
@@ -44,6 +49,9 @@
   .socialSubSection {
     display: flex;
     flex-direction: column;
+  }
+  .socialSubSection .description {
+    width: 100%;
   }
   .socialSubSection .postsSection {
     margin-top: 100px;

@@ -4,13 +4,12 @@ import Head from 'next/head';
 import { getFirestoreDataFromApiQuery, sortProjects } from "../lib/firebase";
 
 import ProgressComponent from "../components/progressComponent/progressComponent";
-import { InstagramLogo } from "phosphor-react";
 
 import styles from "./index.module.css";
 import { InstagramPostData, InstagramProfileData, PublicLinksData, PublicProjectsData } from "../lib/types";
 import ProjectComponent from "../components/projectComponent/projectComponent";
 import SocialMediaComponent from "../components/socialMediaComponent/socialMediaComponent";
-import { Instagram } from "../lib/instagram";
+import { Instagram } from "../lib/socialMedia";
 import InstagramPostComponent from "../components/instagramPostComponent/instagramPostComponent";
 
 type HomeData = { 
@@ -50,7 +49,7 @@ class Home extends
 
           <article>
             <h1>Totally<br/>Informatik</h1>
-            <p>Rui Zhang - 16 - Male</p>
+            <p>Rui Zhang - 16 - Male - German</p>
             <p>Enthusiastic and Creative Student and Creator.</p>
             <p>Established and Leads {"\""}Annette-Entwickelt-Software{"\""}.</p>
           </article>
@@ -98,6 +97,7 @@ class Home extends
             profileInformation={
               <>
                 <b><a href={this.props.linksData.instagram}>{this.props.instagramProfileData.username}</a></b>
+                <p>16, Student | Passion: Math, Computer Science, Physics | Student prez at Annette Grammar | Leader of the Annette-Entwickelt-Software Group</p>
                 <p>{this.props.instagramProfileData.media_count} Posts</p>
               </>
             }

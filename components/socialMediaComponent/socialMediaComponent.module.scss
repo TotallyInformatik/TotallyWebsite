@@ -13,7 +13,7 @@
   grid-template-areas:
     "heading heading"
     "description posts";
-  $articleSectionWidth: 200px;
+  $articleSectionWidth: 400px;
   grid-template-columns: $articleSectionWidth fit-content;
 
   .hr {
@@ -29,7 +29,15 @@
     width: 100%; 
   }
 
-  .description { grid-area: description }
+  .description { 
+    grid-area: description;
+    width: $articleSectionWidth;
+
+    p, b {
+      margin-bottom: 15px;
+      font-size: 1.4em;
+    }
+  }
 
   .postsSection {
 
@@ -60,6 +68,10 @@
     display: flex;
     flex-direction: column;
   
+    .description {
+      width: 100%;
+    }
+
     .postsSection {
       margin-top: 100px;
       padding-left: 0;
