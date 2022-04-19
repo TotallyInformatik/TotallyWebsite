@@ -6,7 +6,7 @@ import { getFirestoreDataFromApiQuery, sortProjects } from "../lib/firebase";
 import ProgressComponent from "../components/progressComponent/progressComponent";
 
 import styles from "./index.module.css";
-import { InstagramPostData, InstagramProfileData, PublicProjectsData } from "../lib/types";
+import { InstagramPostData, InstagramProfileData, PublicLinksData, PublicProjectsData } from "../lib/types";
 import ProjectComponent from "../components/projectComponent/projectComponent";
 import SocialMediaComponent from "../components/socialMediaComponent/socialMediaComponent";
 import { Instagram } from "../lib/instagram";
@@ -14,6 +14,7 @@ import InstagramPostComponent from "../components/instagramPostComponent/instagr
 
 type HomeData = { 
   projectsData: PublicProjectsData,
+  linksData: PublicLinksData,
   instagramData: InstagramPostData[],
   instagramProfileData: InstagramProfileData
 }
@@ -90,14 +91,28 @@ class Home extends
           </article>
 
           <SocialMediaComponent 
-            className="instagram"
+            className={styles.instagram}
             title="Instagram"
+            socialMediaLink={this.props.linksData.instagram}
             icon=""
+            profileInformation={
+              <>
+                <b><a href={this.props.linksData.instagram}>{this.props.instagramProfileData.username}</a></b>
+                <p>{this.props.instagramProfileData.media_count} Posts</p>
+              </>
+            }
           >
-            <InstagramPostComponent 
-              postData={this.props.instagramData[0]}
-              profileData={this.props.instagramProfileData}
-            />
+            {
+              this.props.instagramData.map(
+                (value) => {
+                  return <InstagramPostComponent 
+                    key={value.id}
+                    postData={value}
+                    profileData={this.props.instagramProfileData}
+                  /> 
+                }
+              )
+            }
           </SocialMediaComponent>
 
         </section>
@@ -117,12 +132,15 @@ export async function getStaticProps() {
   //* Just use the functions you've written, it will be exaclty as safe, since this runs on the server-side 
 
   const projectsData = await getFirestoreDataFromApiQuery(["public", "projects"]) as PublicProjectsData;
+  const linksData = await getFirestoreDataFromApiQuery(["public", "links"]) as PublicLinksData;
+
   const instagramData = await Instagram.getMostRecentPosts() as InstagramPostData[];
   const instagramProfileData = await Instagram.getUserProfile() as InstagramProfileData;
 
   return {
     props: {
       projectsData: projectsData,
+      linksData: linksData,
       instagramData: instagramData,
       instagramProfileData: instagramProfileData
     }

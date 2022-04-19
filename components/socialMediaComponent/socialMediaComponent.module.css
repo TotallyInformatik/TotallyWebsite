@@ -1,3 +1,55 @@
 .socialSubSection {
-  padding: 100px 0;
+  margin-top: 100px;
+  padding: 0 0;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  width: 100%;
+  position: relative;
+  display: grid;
+  grid-template-areas: "heading heading" "description posts";
+  grid-template-columns: 200px -webkit-fit-content;
+  grid-template-columns: 200px fit-content;
+}
+.socialSubSection .hr {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  opacity: 2;
+}
+.socialSubSection .heading {
+  grid-area: heading;
+  width: 100%;
+}
+.socialSubSection .description {
+  grid-area: description;
+}
+.socialSubSection .postsSection {
+  width: 100%;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  grid-area: posts;
+  padding: 0;
+  padding-left: 100px;
+  display: flex;
+  justify-content: stretch;
+  align-items: flex-start;
+  gap: 50px;
+}
+
+@media screen and (max-width: 800px) {
+  .socialSubSection {
+    display: flex;
+    flex-direction: column;
+  }
+  .socialSubSection .postsSection {
+    margin-top: 100px;
+    padding-left: 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 100px;
+  }
 }/*# sourceMappingURL=socialMediaComponent.module.css.map */

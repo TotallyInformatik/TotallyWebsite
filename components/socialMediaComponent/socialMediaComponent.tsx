@@ -7,7 +7,9 @@ type SocialMediaPropType = {
   title: string,
   description?: string,
   children: ReactNode,
-  className: string
+  profileInformation?: ReactNode,
+  className: string,
+  socialMediaLink: string
 }
 
 class SocialMediaComponent extends 
@@ -19,13 +21,13 @@ class SocialMediaComponent extends
 
   render() {
     return <section className={`${this.props.className} ${styles.socialSubSection}`}>
-      <i style={{
-        backgroundImage: `url(${this.props.icon})`
-      }}></i>
       
-      <article>
-        <h3>{this.props.title}</h3>
+      <hr className={styles.hr} />
+      <h3 className={styles.heading}><a href={this.props.socialMediaLink}>{this.props.title}</a></h3>
+
+      <article className={styles.description}>
         <p>{this.props.description}</p>
+        {this.props.profileInformation}
       </article>
 
       <section className={styles.postsSection}>

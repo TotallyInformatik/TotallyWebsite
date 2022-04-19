@@ -24,7 +24,8 @@ export namespace Instagram {
     });
 
     const posts: [] = (await response.json()).data;
-    const mostRecentPosts = posts.slice(0, 5);
+    const postCount = 4;
+    const mostRecentPosts = posts.slice(0, postCount);
 
     return mostRecentPosts;
 

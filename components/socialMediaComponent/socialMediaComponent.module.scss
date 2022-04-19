@@ -1,9 +1,73 @@
-.socialSubSection {
-  padding: 100px 0;
+@import "./../../styles/constants";
 
-  .postsSection {
-    
+
+.socialSubSection {
+  margin-top: 100px;
+  padding: 0 0;
+  height: fit-content;
+  width: 100%;
+
+  position: relative;
+
+  display: grid;
+  grid-template-areas:
+    "heading heading"
+    "description posts";
+  $articleSectionWidth: 200px;
+  grid-template-columns: $articleSectionWidth fit-content;
+
+  .hr {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    opacity: 2;
   }
 
+  .heading { 
+    grid-area: heading;
+    width: 100%; 
+  }
+
+  .description { grid-area: description }
+
+  .postsSection {
+
+    width: 100%;
+    height: fit-content;
+
+    grid-area: posts;
+    padding: 0;
+    padding-left: 100px;
+    display: flex;
+
+    justify-content: stretch;
+    align-items: flex-start;
+
+    gap: 50px;
+  }
+
+
+}
+
+@media screen and (max-width: $mediaQuerySize1) {
+
+  .socialSubSection {
+
+    display: flex;
+    flex-direction: column;
+  
+    .postsSection {
+      margin-top: 100px;
+      padding-left: 0;
+  
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 100px;
+  
+    }
+
+  }
 
 }

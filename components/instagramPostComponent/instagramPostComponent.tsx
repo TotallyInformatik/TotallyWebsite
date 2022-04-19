@@ -33,6 +33,10 @@ class InstagramPostComponent extends
     const logoSize = 30;
     const postSize = 400;
 
+    let captionKey = 0;
+    const caption = this.props.postData.caption;
+    const captionList = caption.split("\n");
+
     return <div 
       className={styles.instagramPost} 
     >
@@ -66,10 +70,17 @@ class InstagramPostComponent extends
               src="/images/logo.png"
             />
           </div>
-          <p>
-            <b>{this.props.profileData.username}</b>
-            {" " + this.props.postData.caption}
-          </p>
+          <article>
+            {
+              captionList.map((value: string) => {
+                captionKey++;
+                return <p key={captionKey}>
+                  {captionKey == 1 ? <b>{this.props.profileData.username} </b> : null}
+                  {value}
+                </p>;
+              })
+            }
+          </article>
         </main>
       </section>
     </div>

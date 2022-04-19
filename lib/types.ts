@@ -10,6 +10,13 @@ export type PublicProjectsData = {
   [key: string]: PublicProjectData
 }
 
+export type PublicLinksData = {
+  instagram: string,
+  youtube: string,
+  github: string,
+  mail: string
+}
+
 
 export type InstagramPostData = {
   media_url: string,

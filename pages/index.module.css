@@ -213,4 +213,36 @@
   padding: 0 10px;
   top: 0;
   right: 0;
+}
+
+@media screen and (max-width: 1250px) {
+  .socialMediaSection .chinese {
+    opacity: 0.05;
+  }
+}
+@media screen and (max-width: 1000px) {
+  .socialMediaSection {
+    margin-top: 0px;
+    padding-top: 200px;
+  }
+  .socialMediaSection .fancyHeading {
+    top: 0;
+    left: 0;
+    text-align: start;
+    width: 100000px;
+    word-wrap: normal;
+    word-break: keep-all;
+    -webkit-hyphens: initial;
+        -ms-hyphens: initial;
+            hyphens: initial;
+    transform: rotateZ(0deg);
+  }
+  .socialMediaSection .chinese {
+    top: 10rem;
+  }
+}
+@media screen and (max-width: 800px) {
+  .socialMediaSection > article, .socialMediaSection > h2 {
+    text-align: center;
+  }
 }/*# sourceMappingURL=index.module.css.map */

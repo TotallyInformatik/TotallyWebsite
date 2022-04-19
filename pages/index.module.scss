@@ -249,7 +249,6 @@ $fancyHeadingFontSize: 10rem;
 
 }
 
-
 .socialMediaSection {
   margin-top: 200px;
   padding-top: 0;
@@ -264,6 +263,7 @@ $fancyHeadingFontSize: 10rem;
     transform: rotateZ(90deg);
   }
 
+
   .chinese {
     position: absolute;
     background-color: black;
@@ -272,6 +272,44 @@ $fancyHeadingFontSize: 10rem;
     padding: 0 10px;
     top: 0;
     right: 0;
+  }
+
+} 
+
+@media screen and (max-width: 1250px) {
+  .socialMediaSection .chinese {
+    opacity: $backgroundOpacity;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .socialMediaSection {
+    margin-top: 0px;
+    padding-top: 200px;
+
+    .fancyHeading {
+      top: 0;
+      left: 0;
+      text-align: start;
+      
+      width: 100000px;
+      word-wrap: normal;
+      word-break:keep-all;
+      hyphens: initial;
+
+      transform: rotateZ(0deg);
+    }
+
+    .chinese {
+      top: $fancyHeadingFontSize;
+    }
+
+  }
+}
+
+@media screen and (max-width: $mediaQuerySize1) {
+  .socialMediaSection > article, .socialMediaSection > h2 {
+    text-align: center;
   }
 
 } 
