@@ -1,14 +1,12 @@
-import React, { ReactElement, ReactNode } from "react";
+import React, { ReactElement, ReactNode, ReactSVGElement } from "react";
 
 import styles from "./socialMediaComponent.module.css";
 
 type SocialMediaPropType = { 
-  icon: string, 
   title: string,
-  description?: string,
   children: ReactNode,
   profileInformation?: ReactNode,
-  className: string,
+  className?: string,
   socialMediaLink: string
 }
 
@@ -26,7 +24,6 @@ class SocialMediaComponent extends
       <h3 className={styles.heading}><a href={this.props.socialMediaLink}>{this.props.title}</a></h3>
 
       <article className={styles.description}>
-        <p>{this.props.description}</p>
         {this.props.profileInformation}
       </article>
 

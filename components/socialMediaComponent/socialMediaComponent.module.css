@@ -1,5 +1,5 @@
 .socialSubSection {
-  margin-top: 100px;
+  margin-top: 300px;
   padding: 0 0;
   height: -webkit-fit-content;
   height: -moz-fit-content;
@@ -36,7 +36,8 @@
   display: flex;
   justify-content: stretch;
   align-items: flex-start;
-  gap: 50px;
+  gap: 100px;
+  position: relative;
 }
 
 @media screen and (max-width: 800px) {

@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
-import SimpleBar from "simplebar-react";
 import { InstagramPostData, InstagramProfileData } from "../../lib/types";
+import { DotsThree } from "phosphor-react";
 
 import styles from "./instagramPostComponent.module.css";
 
@@ -53,14 +53,17 @@ class InstagramPostComponent extends
       </section>
       <section className={styles.captionSection}>
         <header>
-          <div className={styles.profileIcon}>
-            <Image  
-              width={logoSize}
-              height={logoSize}
-              src="/images/logo.png"
-            />
+          <div className={styles.headerContainer}>
+            <div className={styles.profileIcon}>
+              <Image  
+                width={logoSize}
+                height={logoSize}
+                src="/images/logo.png"
+              />
+            </div>
+            <b>{this.props.profileData.username}</b>
           </div>
-          <b>{this.props.profileData.username}</b>
+          <DotsThree size={30} color="#1f1f1f" className={styles.dots} />
         </header>
         <main>
           <div className={styles.profileIcon}>

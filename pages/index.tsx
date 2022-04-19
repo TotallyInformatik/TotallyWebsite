@@ -4,6 +4,7 @@ import Head from 'next/head';
 import { getFirestoreDataFromApiQuery, sortProjects } from "../lib/firebase";
 
 import ProgressComponent from "../components/progressComponent/progressComponent";
+import { InstagramLogo } from "phosphor-react";
 
 import styles from "./index.module.css";
 import { InstagramPostData, InstagramProfileData, PublicLinksData, PublicProjectsData } from "../lib/types";
@@ -94,7 +95,6 @@ class Home extends
             className={styles.instagram}
             title="Instagram"
             socialMediaLink={this.props.linksData.instagram}
-            icon=""
             profileInformation={
               <>
                 <b><a href={this.props.linksData.instagram}>{this.props.instagramProfileData.username}</a></b>
@@ -112,6 +112,21 @@ class Home extends
                   /> 
                 }
               )
+            }
+          </SocialMediaComponent>
+
+          <SocialMediaComponent 
+            className={styles.github}
+            title="Github"
+            socialMediaLink={this.props.linksData.github}
+            profileInformation={
+              <>
+                <b><a href={this.props.linksData.instagram}>Github PLACEHOLDER</a></b>
+                <p>{this.props.instagramProfileData.media_count} Posts</p>
+              </>
+            }
+          >
+            {
             }
           </SocialMediaComponent>
 
