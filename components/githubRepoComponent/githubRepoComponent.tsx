@@ -9,9 +9,11 @@ type GithubRepoComponentProp = {
   description: string,
   language: string,
   updated_at: string,
-  html_url: string
+  html_url: string,
+  now: number 
 }
-
+// * now property is the current time from Date.now()
+// * is used to calculate updated_at uniformly
 
 class GithubRepoComponent extends 
   React.Component<GithubRepoComponentProp> {
@@ -41,7 +43,11 @@ class GithubRepoComponent extends
   configureUpdatedAt() {
 
 
+
     this.updated_atDisplayString = "hello";
+    
+    Date.parse(this.props.updated_at);
+
 
   }
 
