@@ -66,7 +66,7 @@ class Home extends
           <article>
             <h1>Totally<br/>Informatik</h1>
             <p>Rui Zhang - 16 - Male - German</p>
-            <p>Enthusiastic and Creative Student and Creator.</p>
+            <p>Enthusiastic and Creative Student, Creator and Programmer.</p>
             <p>Established and Leads {"\""}Annette-Entwickelt-Software{"\""}.</p>
           </article>
           <img src="/images/logo.png" alt="logo / profile pic"/>

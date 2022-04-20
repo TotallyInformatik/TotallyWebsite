@@ -7,7 +7,6 @@ import styles from "./projectComponent.module.css";
 
 import SimpleBar from "simplebar-react";
 import "simplebar/dist/simplebar.min.css";
-import { runTransaction } from "firebase/firestore";
 
 class ProjectComponent extends React.Component<{ data: PublicProjectData }, { imageUrl?: string }> {
 
@@ -48,7 +47,11 @@ class ProjectComponent extends React.Component<{ data: PublicProjectData }, { im
   }
 
   render() {
-    return <section key={this.props.data.title} className={styles.projectItem} onClick={() => this.redirectToProject()}>
+    return <section 
+      key={this.props.data.title} 
+      className={styles.projectItem} 
+      onClick={() => this.redirectToProject()}
+    >
       {
         this.state.imageUrl != undefined ?
           <div className={styles.projectImage}>
