@@ -35,6 +35,48 @@ main {
   min-width: 100%;
 }
 
+.fancyHeading {
+  font-size: 10rem;
+  font-family: "Playfair Display", serif;
+  line-height: 0.9em;
+  opacity: 0.05;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.standardHeading {
+  z-index: 4;
+  position: relative;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+.standardHeading::after, .standardHeading::before {
+  position: absolute;
+  opacity: 0;
+  transition: opacity 0.2s ease, left 0.2s ease, right 0.2s ease;
+}
+.standardHeading::before {
+  content: "<";
+  left: 0;
+  top: 0;
+}
+.standardHeading::after {
+  content: ">";
+  bottom: 0;
+  right: 0;
+}
+.standardHeading:hover::before, .standardHeading:focus::before {
+  opacity: 1;
+  left: -0.5em;
+}
+.standardHeading:hover::after, .standardHeading:focus::after {
+  opacity: 1;
+  right: -0.5em;
+}
+
 h1 {
   font-size: 8rem;
   margin-bottom: 50px;

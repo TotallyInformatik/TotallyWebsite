@@ -46,3 +46,28 @@ export type GithubRepoData = {
   language: string,
   updated_at: string
 }
+
+export type YouTubeProfileData = {
+  id: string,
+  statistics: {
+    videoCount: string
+  },
+  brandingSettings: {
+    channel: {
+      title: string,
+      description: string
+    }
+  }
+}
+
+export type YouTubePostData = {
+  id: {
+    kind: string,
+    videoId: string
+  },
+  snippet: {
+    publishedAt: string,
+    title: string,
+    description: string
+  }
+}

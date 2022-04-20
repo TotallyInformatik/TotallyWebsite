@@ -4,57 +4,39 @@
   padding: 40px 0;
   border-bottom: solid 1px rgba(0, 0, 0, 0.2);
 }
-
 .githubRepoComponent * {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
-
 .githubRepoComponent section {
   padding: 0;
 }
-
 .githubRepoComponent .descriptionSection {
   margin-bottom: 15px;
 }
-
 .githubRepoComponent .descriptionSection b {
   font-weight: 600;
   font-size: 20px;
   line-height: 30px;
 }
-
 .githubRepoComponent .descriptionSection p {
   font-size: 14px;
 }
-
 .githubRepoComponent .metaSection {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
   gap: 20px;
 }
-
 .githubRepoComponent .metaSection small {
   font-size: 12px;
 }
-
 .githubRepoComponent .metaSection .programmingLanguage {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
   gap: 5px;
 }
-
 .githubRepoComponent .metaSection .programmingLanguage .languageColor {
   width: 14px;
   height: 14px;
   border-radius: 50%;
   border: solid 0.5px whitesmoke;
-}
-/*# sourceMappingURL=githubRepoComponent.module.css.map */
+}/*# sourceMappingURL=githubRepoComponent.module.css.map */

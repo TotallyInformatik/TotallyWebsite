@@ -27,6 +27,7 @@ class SocialMediaComponent extends
         {this.props.profileInformation}
       </article>
 
+      <h2 className={`fancyHeading ${styles.fancyHeading}`}>{this.props.title}</h2>
       <section className={styles.postsSection}>
         {this.props.children}
       </section>

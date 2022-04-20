@@ -12,7 +12,6 @@ type GithubRepoComponentProp = {
   language: string,
   updated_at: string,
   html_url: string,
-  now: number 
 }
 // * now property is the current time from Date.now()
 // * is used to calculate updated_at uniformly

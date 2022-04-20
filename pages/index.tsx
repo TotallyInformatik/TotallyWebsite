@@ -8,9 +8,11 @@ import {
   PublicLinksData, 
   PublicProjectsData, 
   GithubProfileData, 
-  GithubRepoData 
+  GithubRepoData, 
+  YouTubeProfileData,
+  YouTubePostData
 } from "../lib/types";
-import { Github, Instagram } from "../lib/socialMedia";
+import { Github, Instagram, YouTube } from "../lib/socialMedia";
 
 import styles from "./index.module.css";
 
@@ -20,7 +22,7 @@ import InstagramPostComponent from "../components/instagramPostComponent/instagr
 import ProgressComponent from "../components/progressComponent/progressComponent";
 import GithubRepoComponent from "../components/githubRepoComponent/githubRepoComponent";
 import SimpleBar from "simplebar-react";
-import Image from "next/image";
+
 
 type HomeData = { 
   projectsData: PublicProjectsData,
@@ -28,7 +30,9 @@ type HomeData = {
   instagramData: InstagramPostData[],
   instagramProfileData: InstagramProfileData,
   githubProfileData: GithubProfileData,
-  githubRepoData: GithubRepoData[]
+  githubRepoData: GithubRepoData[],
+  youtubeProfileData: YouTubeProfileData,
+  youtubePostsData: YouTubePostData[]
 }
 
 class Home extends 
@@ -44,8 +48,6 @@ class Home extends
 
     // TODO: add icons to self-introduction
 
-    const now = Date.now();
-
     return <>
       <Head>
         <title>TotallyInformatik</title>
@@ -55,7 +57,7 @@ class Home extends
         <section className={styles.landingSection}>
 
           <div className={`${styles.landingName} transparent`}>
-            <h1 className={styles.fancyHeading}>TotallyInformatik</h1>
+            <h1 className={`fancyHeading ${styles.fancyHeading} ${styles.transitionHeading}`}>TotallyInformatik</h1>
           </div>
           <div className={`${styles.landingChinese} transparent`}>
             <h1 className="chinese">目前正在编程</h1>
@@ -64,7 +66,7 @@ class Home extends
           </div>
 
           <article>
-            <h1>Totally<br/>Informatik</h1>
+            <h1 className={`${styles.priorityHeading} standardHeading`}>Totally<br/>Informatik</h1>
             <p>Rui Zhang - 16 - Male - German</p>
             <p>Enthusiastic and Creative Student, Creator and Programmer.</p>
             <p>Established and Leads {"\""}Annette-Entwickelt-Software{"\""}.</p>
@@ -81,11 +83,11 @@ class Home extends
           </h1>
           <div className={`${styles.line} ${styles.lineVertical}`} />
           <aside className={styles.headingAside}>
-            <h1 className={styles.fancyHeading}>My Work</h1>
+            <h1 className={`fancyHeading ${styles.fancyHeading} ${styles.transitionHeading}`}>My Work</h1>
           </aside>
           <section className={styles.projectListSection}>
             <article>
-              <h2>Projects</h2>
+              <h2 className="standardHeading">Projects</h2>
               <p>Publicly Available Applications and Websites.</p>
               <p>Built with Passion and Care.</p>
             </article>
@@ -101,10 +103,10 @@ class Home extends
         </section>
 
         <section className={styles.socialMediaSection}>
-          <h1 className={styles.fancyHeading}>Social Media</h1>
+          <h1 className={`fancyHeading ${styles.fancyHeading} ${styles.transitionHeading}`}>Social Media</h1>
           <h1 className={`${styles.chinese} chinese`}>网络媒体</h1>
 
-          <h2>Follow Me</h2>
+          <h2 className="standardHeading">Follow Me</h2>
           <article>
             <p>My Social Media Accounts go into Detail About My Work.</p>
             <p>Explanations, Code Details, Valuable Lessons, etc.</p>
@@ -137,7 +139,6 @@ class Home extends
                       language={value.language}
                       updated_at={value.updated_at}
                       html_url={value.html_url}
-                      now={now}
                     />
                   }
                 )
@@ -170,7 +171,59 @@ class Home extends
             }
           </SocialMediaComponent>
 
+          <SocialMediaComponent
+            className={styles.youtube}
+            title="YouTube"
+            socialMediaLink={this.props.linksData.youtube}
+            profileInformation={
+              <>
+                <b><a href={this.props.linksData.youtube}>
+                {this.props.youtubeProfileData.brandingSettings.channel.title}
+                </a></b>
+                <p>
+                  {this.props.youtubeProfileData.brandingSettings.channel.description}
+                </p>
+                <p>
+                  {this.props.youtubeProfileData.statistics.videoCount} Videos
+                </p>
+              </>
+            }
+          >
+            {
+              this.props.youtubePostsData.map((value) => {
+                console.log(value.id.videoId);
+                return <iframe 
+                  key={value.id.videoId}
+                  width="560" 
+                  height="315" 
+                  src={`https://www.youtube.com/embed/${value.id.videoId}?`}  
+                  title="YouTube video player" 
+                  frameBorder="0" 
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                  allowFullScreen>
+                </iframe>;
+              })
+            }
+          </SocialMediaComponent>
+
         </section>
+
+        <section>
+          <h1 className="fancyHeading">Contact</h1>
+          <h1 className="chinese">联系</h1>
+          <h2>Have a Project?</h2>
+          <p>Let me handle it.</p>
+          <ul>
+            <li>No Rules</li>
+            <li>No Licenses</li>
+            <li>No Payment</li>
+            <li>Just what you want</li>
+          </ul>
+          <form action="POST">
+            
+          </form>
+        </section>
+
       </main>
     </>;
   }
@@ -192,10 +245,13 @@ export async function getStaticProps() {
   const instagramData = await Instagram.getMostRecentPosts() as InstagramPostData[];
   const instagramProfileData = await Instagram.getUserProfile() as InstagramProfileData;
 
-  
-
   const githubProfileData = await Github.getUserProfile() as GithubProfileData;
   const githubRepoData = await Github.getRepositories() as GithubRepoData[];
+
+  const youtubeProfileData = (await YouTube.getUserProfile()).items[0] as YouTubeProfileData;
+  const youtubePostsData = (await YouTube.getMostRecentPosts()).items as YouTubePostData[];
+
+  console.log(youtubePostsData);
 
   return {
     props: {
@@ -204,7 +260,9 @@ export async function getStaticProps() {
       instagramData: instagramData,
       instagramProfileData: instagramProfileData,
       githubProfileData: githubProfileData,
-      githubRepoData: githubRepoData
+      githubRepoData: githubRepoData,
+      youtubeProfileData: youtubeProfileData,
+      youtubePostsData: youtubePostsData
     }
   };
   

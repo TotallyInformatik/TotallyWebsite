@@ -30,6 +30,12 @@
     width: 100%; 
   }
 
+  .fancyHeading {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+
   .description { 
     grid-area: description;
     width: $articleSectionWidth;

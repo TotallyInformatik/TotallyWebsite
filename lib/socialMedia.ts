@@ -1,4 +1,5 @@
 import { Octokit } from "@octokit/core";
+import { google } from "googleapis";
 
 export namespace Instagram {
 
@@ -65,3 +66,32 @@ export namespace Github {
 
 }
 
+export namespace YouTube {
+
+  export async function getMostRecentPosts() {
+
+    const res = await fetch(
+      `https://www.googleapis.com/youtube/v3/search?key=${process.env.SECRET_YOUTUBE_API_KEY}&channelId=UCrY2gIg_7vrlKUp9Cim6LBA&part=snippet,id&order=date&maxResults=4`,
+      {
+        method: "GET"
+      }
+    )
+
+    return res.json();
+
+  }
+
+  export async function getUserProfile() {
+
+    const res = await fetch(
+      `https://www.googleapis.com/youtube/v3/channels?part=statistics,brandingSettings&id=UCrY2gIg_7vrlKUp9Cim6LBA&key=${process.env.SECRET_YOUTUBE_API_KEY}`,
+      {
+        method: "GET"
+      }
+    )
+
+    return res.json();
+
+  }
+
+}

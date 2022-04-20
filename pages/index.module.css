@@ -1,12 +1,8 @@
-.fancyHeading {
-  font-size: 10rem;
-  font-family: "Playfair Display", serif;
-  line-height: 0.9em;
-  opacity: 0.05;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
+.transitionHeading {
+  transition: opacity 0.2s ease;
+}
+.transitionHeading:hover, .transitionHeading:focus {
+  opacity: 0.5;
 }
 
 .landingSection {
@@ -63,6 +59,12 @@
   .landingSection article {
     width: 100%;
     text-align: center;
+  }
+  .landingSection article h1 {
+    text-align: left;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
   }
 }
 @media screen and (max-width: 350px) {
@@ -192,6 +194,11 @@
     text-align: center;
     margin-bottom: 100px;
   }
+  .projectsSection .projectListSection > article h2 {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+  }
 }
 .socialMediaSection {
   margin-top: 300px;
@@ -249,6 +256,10 @@
   flex-direction: column;
 }
 
+.youtube iframe {
+  box-shadow: 0 50px 150px rgba(0, 0, 0, 0.15);
+}
+
 @media screen and (max-width: 900px) {
   .socialMediaSection {
     padding: 100px 5%;
@@ -256,6 +267,9 @@
 
   .socialMediaSection > article, .socialMediaSection > h2 {
     text-align: center;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
   }
 
   .github .simplebar {
