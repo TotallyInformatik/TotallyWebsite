@@ -20,6 +20,7 @@ import InstagramPostComponent from "../components/instagramPostComponent/instagr
 import ProgressComponent from "../components/progressComponent/progressComponent";
 import GithubRepoComponent from "../components/githubRepoComponent/githubRepoComponent";
 import SimpleBar from "simplebar-react";
+import Image from "next/image";
 
 type HomeData = { 
   projectsData: PublicProjectsData,
@@ -58,6 +59,9 @@ class Home extends
       </Head>
       <ProgressComponent />
       <main> 
+        <img src={this.props.instagramData[0].media_url}></img>
+        <Image src={this.props.instagramData[0].media_url} width="500" height="500" />
+
         <div>
           {
             this.props.instagramData.map((value) => {
