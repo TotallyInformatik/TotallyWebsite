@@ -63,19 +63,5 @@ export namespace Github {
 
   }
 
-  export async function getColorFromGithubLanguage(language: string) {
-
-    fs.readFile("./githubColors.json", (err, data) => {
-
-      if (err) throw err;
-      
-      const colorsData = data.toJSON();
-      console.log(colorsData.data);
-
-    });
-
-
-  }
-
 }
 
