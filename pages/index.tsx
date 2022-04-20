@@ -128,6 +128,7 @@ class Home extends
                 this.props.githubRepoData.map(
                   (value) => {
                     return <GithubRepoComponent 
+                      key={value.name}
                       title={value.name}
                       description={value.description}
                       language={value.language}
