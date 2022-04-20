@@ -249,7 +249,7 @@
   flex-direction: column;
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 900px) {
   .socialMediaSection {
     padding: 100px 5%;
   }

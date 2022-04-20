@@ -41,9 +41,10 @@ $postSize: 400px;
     align-items: center;
     justify-content: center;
 
-    span {
+    > img {
       display: block;
-      width: 100%;
+      width: inherit;
+      object-fit: contain;
     }
 
     border-bottom: $border;

@@ -45,13 +45,6 @@ class Home extends
     // TODO: add icons to self-introduction
 
     const now = Date.now();
-    
-    console.log("testing environment variables: " + process.env.SECRET_GITHUB_API_TOKEN);
-    
-    console.log("testing instagram images: ");
-    for (let instagramImage of this.props.instagramData) {
-      console.log(instagramImage.media_url);
-    }
 
     return <>
       <Head>
@@ -59,16 +52,6 @@ class Home extends
       </Head>
       <ProgressComponent />
       <main> 
-        <img src={this.props.instagramData[0].media_url}></img>
-        <Image src={this.props.instagramData[0].media_url} width="500" height="500" />
-
-        <div>
-          {
-            this.props.instagramData.map((value) => {
-              return <p key={value.id}>{value.media_url}</p>;
-            })
-          }
-        </div>
         <section className={styles.landingSection}>
 
           <div className={`${styles.landingName} transparent`}>

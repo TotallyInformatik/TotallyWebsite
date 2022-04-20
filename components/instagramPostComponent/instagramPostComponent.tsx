@@ -44,9 +44,8 @@ class InstagramPostComponent extends
         className={styles.mediaSection} 
         onClick={() => this.redirect()}
       >
-        <Image
+        <img
           src={this.props.postData.media_url}
-          objectFit="contain"
           width={postSize}
           height={postSize}
         />
