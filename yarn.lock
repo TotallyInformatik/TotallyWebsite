@@ -1909,6 +1909,11 @@
   dependencies:
     "webidl-conversions" "^5.0.0"
 
+"duration-js@^4.0.0":
+  "integrity" "sha1-q5FXWk8aawlgNGhc/G6prKmc1j8="
+  "resolved" "https://registry.npmjs.org/duration-js/-/duration-js-4.0.0.tgz"
+  "version" "4.0.0"
+
 "electron-to-chromium@^1.4.84":
   "integrity" "sha512-/s3+fwhKf1YK4k7btOImOzCQLpUjS6MaPf0ODTNuT4eTM1Bg4itBpLkydhOzJmpmH6Z9eXFyuuK5czsmzRzwtw=="
   "resolved" "https://registry.npmjs.org/electron-to-chromium/-/electron-to-chromium-1.4.111.tgz"
