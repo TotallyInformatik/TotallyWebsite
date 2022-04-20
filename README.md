@@ -1,5 +1,5 @@
 
-# TotallyInformatik's Linktree
+# TotallyInformatik's Website
 
 My first project with Next.js
 
