@@ -61,7 +61,7 @@ class Home extends
         <div>
           {
             this.props.instagramData.map((value) => {
-              return <p>{value.media_url}</p>;
+              return <p key={value.id}>{value.media_url}</p>;
             })
           }
         </div>
