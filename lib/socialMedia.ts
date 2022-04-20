@@ -1,3 +1,4 @@
+import { Octokit } from "@octokit/core";
 
 export namespace Instagram {
 
@@ -37,14 +38,42 @@ export namespace Github {
 
   export async function getUserProfile() {
 
-    const requestUrl =
-      "https://api.github.com/users/TotallyInformatik"
+    const octokit = new Octokit({ auth: process.env.SECRET_GITHUB_API_TOKEN });
 
-    const response: Response = await fetch(requestUrl, {
-      method: "GET"
+    const response = await octokit.request("GET /user", {
+      accept: "application/vnd.github.v3+json"
     });
 
-    return response.json();
+    return response.data;
+
+  }
+
+  export async function getRepositories() {
+
+    const octokit = new Octokit({ auth: process.env.SECRET_GITHUB_API_TOKEN });
+    
+    const response = await octokit.request("GET /user/repos", {
+      accept: "application/vnd.github.v3+json",
+      visibility: "public",
+      affiliation: "owner",
+      sort: "updated"
+    });
+
+    return response.data;
+
+  }
+
+  export async function getColorFromGithubLanguage(language: string) {
+
+    fs.readFile("./githubColors.json", (err, data) => {
+
+      if (err) throw err;
+      
+      const colorsData = data.toJSON();
+      console.log(colorsData.data);
+
+    });
+
 
   }
 

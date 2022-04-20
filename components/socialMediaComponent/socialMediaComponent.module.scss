@@ -14,7 +14,7 @@
     "heading heading"
     "description posts";
   $articleSectionWidth: 400px;
-  grid-template-columns: $articleSectionWidth fit-content;
+  grid-template-columns: $articleSectionWidth;
 
   .hr {
     position: absolute;

@@ -8,8 +8,7 @@
   position: relative;
   display: grid;
   grid-template-areas: "heading heading" "description posts";
-  grid-template-columns: 400px -webkit-fit-content;
-  grid-template-columns: 400px fit-content;
+  grid-template-columns: 400px;
 }
 .socialSubSection .hr {
   position: absolute;

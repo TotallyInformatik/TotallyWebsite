@@ -196,6 +196,7 @@
 .socialMediaSection {
   margin-top: 300px;
   padding-top: 0;
+  padding-right: 0;
 }
 .socialMediaSection > .fancyHeading {
   position: absolute;
@@ -241,8 +242,26 @@
     top: 10rem;
   }
 }
+.github .simplebar {
+  display: flex;
+  width: 80%;
+  height: 500px;
+  flex-direction: column;
+}
+
 @media screen and (max-width: 800px) {
+  .socialMediaSection {
+    padding: 100px 5%;
+  }
+
   .socialMediaSection > article, .socialMediaSection > h2 {
     text-align: center;
+  }
+
+  .github .simplebar {
+    display: flex;
+    width: 100%;
+    height: 500px;
+    flex-direction: column;
   }
 }/*# sourceMappingURL=index.module.css.map */

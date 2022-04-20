@@ -49,7 +49,7 @@ class ProjectComponent extends React.Component<{ data: PublicProjectData }, { im
             />
           </div> : null
       }
-      <SimpleBar autoHide={false} className={styles.simplebar}>
+      <SimpleBar autoHide={true} className={styles.simplebar}>
         {
           this.props.data.date != undefined ? 
             <time>{this.props.data.date}</time> : undefined

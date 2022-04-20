@@ -2,21 +2,32 @@ import React from "react";
 import Head from 'next/head';
 
 import { getFirestoreDataFromApiQuery, sortProjects } from "../lib/firebase";
-
-import ProgressComponent from "../components/progressComponent/progressComponent";
+import { 
+  InstagramPostData, 
+  InstagramProfileData, 
+  PublicLinksData, 
+  PublicProjectsData, 
+  GithubProfileData, 
+  GithubRepoData 
+} from "../lib/types";
+import { Github, Instagram } from "../lib/socialMedia";
 
 import styles from "./index.module.css";
-import { InstagramPostData, InstagramProfileData, PublicLinksData, PublicProjectsData } from "../lib/types";
+
 import ProjectComponent from "../components/projectComponent/projectComponent";
 import SocialMediaComponent from "../components/socialMediaComponent/socialMediaComponent";
-import { Instagram } from "../lib/socialMedia";
 import InstagramPostComponent from "../components/instagramPostComponent/instagramPostComponent";
+import ProgressComponent from "../components/progressComponent/progressComponent";
+import GithubRepoComponent from "../components/githubRepoComponent/githubRepoComponent";
+import SimpleBar from "simplebar-react";
 
 type HomeData = { 
   projectsData: PublicProjectsData,
   linksData: PublicLinksData,
   instagramData: InstagramPostData[],
-  instagramProfileData: InstagramProfileData
+  instagramProfileData: InstagramProfileData,
+  githubProfileData: GithubProfileData,
+  githubRepoData: GithubRepoData[]
 }
 
 class Home extends 
@@ -29,6 +40,8 @@ class Home extends
   render() {
     //** This following line might work in development, but in production, secrets are only available to the node.js server */
     //console.log("testing environment variables: " + process.env.SECRET_API_KEY);
+
+    // TODO: add icons to self-introduction
 
     return <>
       <Head>
@@ -57,8 +70,12 @@ class Home extends
         </section>
 
         <section className={styles.projectsSection}>
-          <small className={`${styles.line} ${styles.lineStart} chinese`}>我的创作</small>
-          <h1 className={`${styles.line} ${styles.bannerVertical} chinese`}>我的创作</h1>
+          <small className={`${styles.line} ${styles.lineStart} chinese`}>
+            我的创作
+          </small>
+          <h1 className={`${styles.line} ${styles.bannerVertical} chinese`}>
+            我的创作
+          </h1>
           <div className={`${styles.line} ${styles.lineVertical}`} />
           <aside className={styles.headingAside}>
             <h1 className={styles.fancyHeading}>My Work</h1>
@@ -91,6 +108,39 @@ class Home extends
           </article>
 
           <SocialMediaComponent 
+            className={styles.github}
+            title="Github"
+            socialMediaLink={this.props.githubProfileData.html_url}
+            profileInformation={
+              <>
+                <b>
+                  <a href={this.props.githubProfileData.html_url}>
+                    {this.props.githubProfileData.login}
+                  </a>
+                </b>
+                <p>{this.props.githubProfileData.bio}</p>
+                <p>{this.props.githubProfileData.public_repos} Public Repos</p>
+              </>
+            }
+          >
+            <SimpleBar autoHide={true} className={styles.simplebar} >
+              {
+                this.props.githubRepoData.map(
+                  (value) => {
+                    return <GithubRepoComponent 
+                      title={value.name}
+                      description={value.description}
+                      language={value.language}
+                      updated_at={value.updated_at}
+                      html_url={value.html_url}
+                    />
+                  }
+                )
+              }
+            </SimpleBar>
+          </SocialMediaComponent>
+
+          <SocialMediaComponent 
             className={styles.instagram}
             title="Instagram"
             socialMediaLink={this.props.linksData.instagram}
@@ -112,21 +162,6 @@ class Home extends
                   /> 
                 }
               )
-            }
-          </SocialMediaComponent>
-
-          <SocialMediaComponent 
-            className={styles.github}
-            title="Github"
-            socialMediaLink={this.props.linksData.github}
-            profileInformation={
-              <>
-                <b><a href={this.props.linksData.instagram}>Github PLACEHOLDER</a></b>
-                <p>{this.props.instagramProfileData.media_count} Posts</p>
-              </>
-            }
-          >
-            {
             }
           </SocialMediaComponent>
 
@@ -152,12 +187,20 @@ export async function getStaticProps() {
   const instagramData = await Instagram.getMostRecentPosts() as InstagramPostData[];
   const instagramProfileData = await Instagram.getUserProfile() as InstagramProfileData;
 
+  const githubProfileData = await Github.getUserProfile() as GithubProfileData;
+  const githubRepoData = await Github.getRepositories() as GithubRepoData[];
+
+  console.log(githubProfileData);
+  console.log(githubProfileData);
+
   return {
     props: {
       projectsData: projectsData,
       linksData: linksData,
       instagramData: instagramData,
-      instagramProfileData: instagramProfileData
+      instagramProfileData: instagramProfileData,
+      githubProfileData: githubProfileData,
+      githubRepoData: githubRepoData
     }
   };
   

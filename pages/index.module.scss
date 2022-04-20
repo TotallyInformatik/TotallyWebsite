@@ -252,6 +252,7 @@ $fancyHeadingFontSize: 10rem;
 .socialMediaSection {
   margin-top: 300px;
   padding-top: 0;
+  padding-right: 0;
 
   > .fancyHeading {
     position: absolute;
@@ -307,12 +308,30 @@ $fancyHeadingFontSize: 10rem;
   }
 }
 
+.instagram {
+}
+.github .simplebar {
+  display: flex;
+  width: 80%;
+  height: 500px;
+  flex-direction: column;
+}
+
 @media screen and (max-width: $mediaQuerySize1) {
+  
+  .socialMediaSection {
+    padding: 100px 5%;
+  }
+
   .socialMediaSection > article, .socialMediaSection > h2 {
     text-align: center;
   }
 
-} 
+  .github .simplebar {
+    display: flex;
+    width: 100%;
+    height: 500px;
+    flex-direction: column;
+  }
 
-.instagram {
-}
+} 
