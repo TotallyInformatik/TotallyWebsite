@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700;900&family=Playfair+Display:wght@800&family=Poppins:wght@300&family=Roboto:wght@100;300;400;500;700;900&display=swap');
-
+@import "./constants";
 
 * {
   box-sizing: border-box;
@@ -17,6 +17,7 @@
 .chinese {
   font-family: 'Noto Sans SC', sans-serif;
   margin-bottom: 0;
+  user-select: none;
 }
 .transparent {
   position: absolute;
@@ -35,41 +36,98 @@ main {
 }
 
 
-
+// typography
 h1 {
+  font-size: 8rem;
+  margin-bottom: 50px;
+}
+@media screen and (max-width: 700px) { 
+  h1 {
+    font-size: 4rem;
+  }
+}
+@media screen and (max-width: 400px) { 
+  h1 {
+    font-size: 3rem;
+  }
+}
+
+h2 {
   font-size: 6rem;
   margin-bottom: 50px;
 }
-@media screen and (max-width: 600px) { 
-
-
-  h1 {
+@media screen and (max-width: 700px) { 
+  h2 {
     font-size: 3em;
   }
-
 }
-h2 {
-  font-size: 3.5rem;
+
+h3 {
+  font-size: 3em;
   margin-bottom: 50px;
 }
+@media screen and (max-width: 700px) { 
+  h3 {
+    font-size: 2em;
+  }
+}
 
-p {
+p, b {
   font-size: 1.5rem;
   line-height: 1.5;
 }
+@media screen and (max-width: 600px) { 
+  p, b {
+    font-size: 1.2em;
+  }
+}
+
+small {
+  font-size: 30px;
+}
+
+a {
+  cursor: pointer;
+  color: black;
+  text-decoration: none;
+  position: relative;
+
+  &:hover, &:focus {
+    &::after {
+      right: -1em;
+      opacity: 1;
+    }
+  }
+
+  &::after {
+    content: "#";
+    color: rgba(0, 0, 0, $backgroundOpacity * 4);
+    position: absolute;
+    top: 0;
+
+    transition: right 0.2s ease, opacity 0.2s ease;
+    right: 0;
+    opacity: 0;
+  }
+}
+
+hr {
+  height: 5px;
+  background-color:rgba(0, 0, 0, $backgroundOpacity * 2);
+  border: none;
+}
+
 section {
   padding: 100px 200px;
+  position: relative;
 }
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 1000px) {
   section {
     padding: 100px 50px;
   }
 }
-@media screen and (max-width: 600px) { 
-
-
-  p {
-    font-size: 1.2em;
+@media screen and (max-width: 700px) {
+  section {
+    padding: 100px 5%;
   }
-
 }

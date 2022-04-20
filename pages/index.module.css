@@ -3,6 +3,10 @@
   font-family: "Playfair Display", serif;
   line-height: 0.9em;
   opacity: 0.05;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 .landingSection {
@@ -22,6 +26,7 @@
   opacity: 0.04;
 }
 .landingSection .landingChinese h1 {
+  font-size: 6rem;
   -ms-writing-mode: tb-lr;
       writing-mode: vertical-lr;
   height: -webkit-fit-content;
@@ -60,6 +65,11 @@
     text-align: center;
   }
 }
+@media screen and (max-width: 350px) {
+  .landingSection {
+    padding: 50px 10px;
+  }
+}
 .projectsSection {
   position: relative;
   padding: 100px 0 0 5%;
@@ -72,10 +82,10 @@
   width: 80%;
   height: 5px;
   position: absolute;
-  color: black;
+  color: rgb(0, 0, 0);
   background-color: rgb(0, 0, 0);
   font-size: 30px;
-  opacity: 0.05;
+  opacity: 0.1;
   z-index: -1;
 }
 .projectsSection .lineStart {
@@ -87,16 +97,25 @@
   bottom: 0;
   text-align: right;
 }
-.projectsSection .lineVertical {
+.projectsSection .bannerVertical {
   top: 55px;
-  height: calc(100% - 50px - 10px);
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  padding: 20px 0;
   font-size: 80px;
   width: 100px;
-  right: 20%;
+  right: calc(20% + 5px);
   color: white;
   text-align: center;
 }
-.projectsSection .headingAside > h2 {
+.projectsSection .lineVertical {
+  top: 55px;
+  right: 20%;
+  width: 5px;
+  height: calc(100% - 50px - 10px);
+}
+.projectsSection .headingAside > .fancyHeading {
   z-index: 2;
   font-size: 10rem;
   position: -webkit-sticky;
@@ -132,7 +151,7 @@
     width: 1000px;
     height: auto;
   }
-  .projectsSection .headingAside h2 {
+  .projectsSection .headingAside .fancyHeading {
     top: 100px;
     position: absolute;
     text-align: left;
@@ -144,11 +163,13 @@
     position: absolute;
     color: black;
     background-color: rgb(0, 0, 0);
-    font-size: 30px;
     opacity: 0.05;
     z-index: -1;
   }
   .projectsSection .lineVertical {
+    display: none;
+  }
+  .projectsSection .bannerVertical {
     color: white;
     font-size: 150px;
     position: absolute;
@@ -170,5 +191,77 @@
   .projectsSection .projectListSection > article {
     text-align: center;
     margin-bottom: 100px;
+  }
+}
+.socialMediaSection {
+  margin-top: 300px;
+  padding-top: 0;
+  padding-right: 0;
+}
+.socialMediaSection > .fancyHeading {
+  position: absolute;
+  top: 0;
+  left: 10rem;
+  text-align: end;
+  transform-origin: top left;
+  transform: rotateZ(90deg);
+}
+.socialMediaSection .chinese {
+  position: absolute;
+  background-color: black;
+  opacity: 0.1;
+  color: white;
+  padding: 0 10px;
+  top: 0;
+  right: 0;
+}
+
+@media screen and (max-width: 1250px) {
+  .socialMediaSection .chinese {
+    opacity: 0.05;
+  }
+}
+@media screen and (max-width: 1000px) {
+  .socialMediaSection {
+    margin-top: 0px;
+    padding-top: 200px;
+  }
+  .socialMediaSection .fancyHeading {
+    top: 0;
+    left: 0;
+    text-align: start;
+    width: 100000px;
+    word-wrap: normal;
+    word-break: keep-all;
+    -webkit-hyphens: initial;
+        -ms-hyphens: initial;
+            hyphens: initial;
+    transform: rotateZ(0deg);
+  }
+  .socialMediaSection .chinese {
+    top: 10rem;
+  }
+}
+.github .simplebar {
+  display: flex;
+  width: 80%;
+  height: 500px;
+  flex-direction: column;
+}
+
+@media screen and (max-width: 800px) {
+  .socialMediaSection {
+    padding: 100px 5%;
+  }
+
+  .socialMediaSection > article, .socialMediaSection > h2 {
+    text-align: center;
+  }
+
+  .github .simplebar {
+    display: flex;
+    width: 100%;
+    height: 500px;
+    flex-direction: column;
   }
 }/*# sourceMappingURL=index.module.css.map */

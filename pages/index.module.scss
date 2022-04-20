@@ -1,3 +1,5 @@
+@import "./../styles/constants.scss";
+
 $fancyHeadingFontSize: 10rem;
 
 
@@ -5,7 +7,8 @@ $fancyHeadingFontSize: 10rem;
   font-size: $fancyHeadingFontSize;
   font-family: 'Playfair Display', serif;
   line-height: 0.9em;
-  opacity: 0.05;
+  opacity: $backgroundOpacity;
+  user-select: none;
 }
 
 .landingSection {
@@ -27,6 +30,7 @@ $fancyHeadingFontSize: 10rem;
     opacity: 0.04;
 
     h1 {
+      font-size: 6rem;
       writing-mode: vertical-lr;
       height: fit-content;
     }
@@ -45,7 +49,7 @@ $fancyHeadingFontSize: 10rem;
     height: $size;
     border-radius: 20%;
     background-color: white;
-    box-shadow: 0 $offset 200px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 $offset 200px $softShadowColor;
   }
 
   article h1 {
@@ -62,7 +66,6 @@ $fancyHeadingFontSize: 10rem;
 }
 
 @media screen and (max-width: 1300px) {
-
   .landingSection {
     flex-direction: column;
 
@@ -72,7 +75,11 @@ $fancyHeadingFontSize: 10rem;
     }
 
   }
-
+}
+@media screen and (max-width: 350px) {
+  .landingSection {
+    padding: 50px 10px;
+  }
 }
 
 
@@ -96,10 +103,10 @@ $fancyHeadingFontSize: 10rem;
     width: $line-length;
     height: $line-width;
     position: absolute;
-    color: black;
+    color: rgba(0, 0, 0 ,1);
     background-color: rgba(0, 0, 0);
     font-size: $font-size;
-    opacity: 0.05;
+    opacity: $backgroundOpacity * 2;
     z-index: -1;
   }
 
@@ -114,20 +121,29 @@ $fancyHeadingFontSize: 10rem;
     text-align: right;
   }
 
-  .lineVertical {
+  $font-size: 80px;
+  $bannerWidth: calc($font-size + 2 * 10px);
+  $bannerOffset: 100% - $line-length;
+  .bannerVertical {
     top: $top + $line-width;
-    height: calc(100% - $top - 2 * $line-width);
-    $font-size: 80px;
+    height: fit-content;
+    padding: 20px 0;
     font-size: $font-size;
-    width: $font-size  + 2 * 10px;
-    right: 100% - $line-length;
+    width: $bannerWidth;
+    right: calc($bannerOffset + $line-width);
     color: white;
     text-align: center;
+  }
+  .lineVertical {
+    top: $top + $line-width;
+    right: $bannerOffset;
+    width: $line-width;
+    height: calc(100% - $top - $line-width * 2);
   }
 
   .headingAside { 
     
-    > h2 {
+    > .fancyHeading {
       z-index: 2;
       font-size: $fancyHeadingFontSize;
       position: sticky;
@@ -176,7 +192,7 @@ $fancyHeadingFontSize: 10rem;
       width: 1000px;
       height:auto;
 
-      h2 {
+      .fancyHeading {
         top: $top;
         position: absolute;
         text-align: left;
@@ -187,7 +203,6 @@ $fancyHeadingFontSize: 10rem;
 
     $line-length: 100%;
     $line-width: 5px;
-    $font-size: 30px;
   
     .line {
       width: $line-length;
@@ -195,12 +210,16 @@ $fancyHeadingFontSize: 10rem;
       position: absolute;
       color: black;
       background-color: rgba(0, 0, 0);
-      font-size: $font-size;
-      opacity: 0.05;
+      opacity: $backgroundOpacity;
       z-index: -1;
     }
 
+
     .lineVertical {
+      display: none;
+    }
+
+    .bannerVertical {
       color: white;
       $font-size: 150px;
       font-size: $font-size;
@@ -229,3 +248,90 @@ $fancyHeadingFontSize: 10rem;
   }
 
 }
+
+.socialMediaSection {
+  margin-top: 300px;
+  padding-top: 0;
+  padding-right: 0;
+
+  > .fancyHeading {
+    position: absolute;
+    top: 0;
+    left: $fancyHeadingFontSize;
+    text-align: end;
+    
+    transform-origin: top left;
+    transform: rotateZ(90deg);
+  }
+
+
+  .chinese {
+    position: absolute;
+    background-color: black;
+    opacity: $backgroundOpacity * 2;
+    color: white;
+    padding: 0 10px;
+    top: 0;
+    right: 0;
+  }
+
+} 
+
+@media screen and (max-width: 1250px) {
+  .socialMediaSection .chinese {
+    opacity: $backgroundOpacity;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .socialMediaSection {
+    margin-top: 0px;
+    padding-top: 200px;
+
+    .fancyHeading {
+      top: 0;
+      left: 0;
+      text-align: start;
+      
+      width: 100000px;
+      word-wrap: normal;
+      word-break:keep-all;
+      hyphens: initial;
+
+      transform: rotateZ(0deg);
+    }
+
+    .chinese {
+      top: $fancyHeadingFontSize;
+    }
+
+  }
+}
+
+.instagram {
+}
+.github .simplebar {
+  display: flex;
+  width: 80%;
+  height: 500px;
+  flex-direction: column;
+}
+
+@media screen and (max-width: $mediaQuerySize1) {
+  
+  .socialMediaSection {
+    padding: 100px 5%;
+  }
+
+  .socialMediaSection > article, .socialMediaSection > h2 {
+    text-align: center;
+  }
+
+  .github .simplebar {
+    display: flex;
+    width: 100%;
+    height: 500px;
+    flex-direction: column;
+  }
+
+} 

@@ -10,8 +10,10 @@
     "test": "jest"
   },
   "dependencies": {
+    "@octokit/core": "^3.6.0",
     "firebase": "^9.6.10",
     "next": "12.1.5",
+    "phosphor-react": "^1.4.1",
     "react": "^18.0.0",
     "react-dom": "18.0.0",
     "simplebar-react": "^2.3.6"

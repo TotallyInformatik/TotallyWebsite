@@ -2,23 +2,46 @@ import React from "react";
 import Head from 'next/head';
 
 import { getFirestoreDataFromApiQuery, sortProjects } from "../lib/firebase";
-
-import ProgressComponent from "../components/progressComponent/progressComponent";
+import { 
+  InstagramPostData, 
+  InstagramProfileData, 
+  PublicLinksData, 
+  PublicProjectsData, 
+  GithubProfileData, 
+  GithubRepoData 
+} from "../lib/types";
+import { Github, Instagram } from "../lib/socialMedia";
 
 import styles from "./index.module.css";
-import { PublicProjectsData } from "../lib/types";
+
 import ProjectComponent from "../components/projectComponent/projectComponent";
-import { Instagram } from "../lib/instagram";
+import SocialMediaComponent from "../components/socialMediaComponent/socialMediaComponent";
+import InstagramPostComponent from "../components/instagramPostComponent/instagramPostComponent";
+import ProgressComponent from "../components/progressComponent/progressComponent";
+import GithubRepoComponent from "../components/githubRepoComponent/githubRepoComponent";
+import SimpleBar from "simplebar-react";
 
-class Home extends React.Component<{ projectsData: PublicProjectsData }, {}> {
+type HomeData = { 
+  projectsData: PublicProjectsData,
+  linksData: PublicLinksData,
+  instagramData: InstagramPostData[],
+  instagramProfileData: InstagramProfileData,
+  githubProfileData: GithubProfileData,
+  githubRepoData: GithubRepoData[]
+}
 
-  constructor(props: { projectsData: PublicProjectsData }) {
+class Home extends 
+  React.Component<HomeData, {}> {
+
+  constructor(props: HomeData) {
     super(props);
   }
 
   render() {
     //** This following line might work in development, but in production, secrets are only available to the node.js server */
     //console.log("testing environment variables: " + process.env.SECRET_API_KEY);
+
+    // TODO: add icons to self-introduction
 
     return <>
       <Head>
@@ -39,7 +62,7 @@ class Home extends React.Component<{ projectsData: PublicProjectsData }, {}> {
 
           <article>
             <h1>Totally<br/>Informatik</h1>
-            <p>Rui Zhang - 16 - Male</p>
+            <p>Rui Zhang - 16 - Male - German</p>
             <p>Enthusiastic and Creative Student and Creator.</p>
             <p>Established and Leads {"\""}Annette-Entwickelt-Software{"\""}.</p>
           </article>
@@ -47,16 +70,21 @@ class Home extends React.Component<{ projectsData: PublicProjectsData }, {}> {
         </section>
 
         <section className={styles.projectsSection}>
-          <small className={`${styles.line} ${styles.lineStart}`}>我的创作</small>
-          <h2 className={`${styles.line} ${styles.lineVertical}`}>我的创作</h2>
+          <small className={`${styles.line} ${styles.lineStart} chinese`}>
+            我的创作
+          </small>
+          <h1 className={`${styles.line} ${styles.bannerVertical} chinese`}>
+            我的创作
+          </h1>
+          <div className={`${styles.line} ${styles.lineVertical}`} />
           <aside className={styles.headingAside}>
-            <h2 className={styles.fancyHeading}>My Work</h2>
+            <h1 className={styles.fancyHeading}>My Work</h1>
           </aside>
           <section className={styles.projectListSection}>
             <article>
-              <h1>My Work</h1>
-              <p>Publicly available applications and websites.</p>
-              <p>Built with passion and care.</p>
+              <h2>Projects</h2>
+              <p>Publicly Available Applications and Websites.</p>
+              <p>Built with Passion and Care.</p>
             </article>
             {
               sortProjects(this.props.projectsData).map(
@@ -69,7 +97,73 @@ class Home extends React.Component<{ projectsData: PublicProjectsData }, {}> {
           <small className={`${styles.line} ${styles.lineEnd}`}>我的创作</small>
         </section>
 
-        <section>
+        <section className={styles.socialMediaSection}>
+          <h1 className={styles.fancyHeading}>Social Media</h1>
+          <h1 className={`${styles.chinese} chinese`}>网络媒体</h1>
+
+          <h2>Follow Me</h2>
+          <article>
+            <p>My Social Media Accounts go into Detail About My Work.</p>
+            <p>Explanations, Code Details, Valuable Lessons, etc.</p>
+          </article>
+
+          <SocialMediaComponent 
+            className={styles.github}
+            title="Github"
+            socialMediaLink={this.props.githubProfileData.html_url}
+            profileInformation={
+              <>
+                <b>
+                  <a href={this.props.githubProfileData.html_url}>
+                    {this.props.githubProfileData.login}
+                  </a>
+                </b>
+                <p>{this.props.githubProfileData.bio}</p>
+                <p>{this.props.githubProfileData.public_repos} Public Repos</p>
+              </>
+            }
+          >
+            <SimpleBar autoHide={true} className={styles.simplebar} >
+              {
+                this.props.githubRepoData.map(
+                  (value) => {
+                    return <GithubRepoComponent 
+                      title={value.name}
+                      description={value.description}
+                      language={value.language}
+                      updated_at={value.updated_at}
+                      html_url={value.html_url}
+                    />
+                  }
+                )
+              }
+            </SimpleBar>
+          </SocialMediaComponent>
+
+          <SocialMediaComponent 
+            className={styles.instagram}
+            title="Instagram"
+            socialMediaLink={this.props.linksData.instagram}
+            profileInformation={
+              <>
+                <b><a href={this.props.linksData.instagram}>{this.props.instagramProfileData.username}</a></b>
+                <p>16, Student | Passion: Math, Computer Science, Physics | Student prez at Annette Grammar | Leader of the Annette-Entwickelt-Software Group</p>
+                <p>{this.props.instagramProfileData.media_count} Posts</p>
+              </>
+            }
+          >
+            {
+              this.props.instagramData.map(
+                (value) => {
+                  return <InstagramPostComponent 
+                    key={value.id}
+                    postData={value}
+                    profileData={this.props.instagramProfileData}
+                  /> 
+                }
+              )
+            }
+          </SocialMediaComponent>
 
         </section>
       </main>
@@ -88,14 +182,25 @@ export async function getStaticProps() {
   //* Just use the functions you've written, it will be exaclty as safe, since this runs on the server-side 
 
   const projectsData = await getFirestoreDataFromApiQuery(["public", "projects"]) as PublicProjectsData;
-  const instagramUserProfileData = await Instagram.getUserProfile();
-  const intstagramPostsData = await Instagram.getMostRecentPosts();
+  const linksData = await getFirestoreDataFromApiQuery(["public", "links"]) as PublicLinksData;
 
-  console.log(instagramUserProfileData);
+  const instagramData = await Instagram.getMostRecentPosts() as InstagramPostData[];
+  const instagramProfileData = await Instagram.getUserProfile() as InstagramProfileData;
+
+  const githubProfileData = await Github.getUserProfile() as GithubProfileData;
+  const githubRepoData = await Github.getRepositories() as GithubRepoData[];
+
+  console.log(githubProfileData);
+  console.log(githubProfileData);
 
   return {
     props: {
-      projectsData: projectsData
+      projectsData: projectsData,
+      linksData: linksData,
+      instagramData: instagramData,
+      instagramProfileData: instagramProfileData,
+      githubProfileData: githubProfileData,
+      githubRepoData: githubRepoData
     }
   };
   
