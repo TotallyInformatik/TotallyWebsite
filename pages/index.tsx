@@ -43,6 +43,8 @@ class Home extends
 
     // TODO: add icons to self-introduction
 
+    const now = Date.now();
+
     return <>
       <Head>
         <title>TotallyInformatik</title>
@@ -134,6 +136,7 @@ class Home extends
                       language={value.language}
                       updated_at={value.updated_at}
                       html_url={value.html_url}
+                      now={now}
                     />
                   }
                 )
