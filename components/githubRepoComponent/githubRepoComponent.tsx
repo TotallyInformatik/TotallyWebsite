@@ -16,13 +16,16 @@ type GithubRepoComponentProp = {
 class GithubRepoComponent extends 
   React.Component<GithubRepoComponentProp> {
 
+  private updated_atDisplayString: string = "";
+
   constructor(props: GithubRepoComponentProp) {
     super(props);
+    this.configureUpdatedAt();
   }
 
   /**
-   * configures the date that is displayed at the bottom of a 
-   * github repository
+   * * configures the date that is displayed at the bottom of a 
+   * * github repository
    * 
    * assumption:
    * There are multiple types of dates and corresponding thresholds
@@ -36,6 +39,9 @@ class GithubRepoComponent extends
    * 
    */
   configureUpdatedAt() {
+
+
+    this.updated_atDisplayString = "hello";
 
   }
 
