@@ -7,8 +7,11 @@ import styles from "./projectComponent.module.css";
 
 import SimpleBar from "simplebar-react";
 import "simplebar/dist/simplebar.min.css";
+import { runTransaction } from "firebase/firestore";
 
 class ProjectComponent extends React.Component<{ data: PublicProjectData }, { imageUrl?: string }> {
+
+  private displayedDate: string = "";
 
   constructor(props: { data: PublicProjectData }) {
     super(props);
@@ -19,6 +22,8 @@ class ProjectComponent extends React.Component<{ data: PublicProjectData }, { im
 
     this.redirectToProject = this.redirectToProject.bind(this);
 
+    this.configureDisplayedDate();
+
   }
 
   async getImageUrl() {
@@ -27,6 +32,15 @@ class ProjectComponent extends React.Component<{ data: PublicProjectData }, { im
         imageUrl: await getFirebaseImageFromQuery(this.props.data.imageFile)
       });
     }
+  }
+
+  configureDisplayedDate() {
+    if (this.props.data.date == undefined) return;
+
+    const dateList = this.props.data.date.split(".");
+    const date = new Date(parseInt(dateList[2]), parseInt(dateList[1]), parseInt(dateList[0]));
+    this.displayedDate = date.toDateString().split(" ").slice(1).join(" ");
+
   }
 
   redirectToProject() {
@@ -52,7 +66,7 @@ class ProjectComponent extends React.Component<{ data: PublicProjectData }, { im
       <SimpleBar autoHide={true} className={styles.simplebar}>
         {
           this.props.data.date != undefined ? 
-            <time>{this.props.data.date}</time> : undefined
+            <time>{this.displayedDate}</time> : undefined
         }
         <h3>{this.props.data.title}</h3>
         <p>{this.props.data.description}</p>

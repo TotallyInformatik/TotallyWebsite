@@ -1,5 +1,7 @@
 import React from "react";
 
+const Duration = require("duration-js");
+
 import styles from "./githubRepoComponent.module.css";
 import { githubLanguageColorData } from "../../lib/githubColors";
 
@@ -41,14 +43,8 @@ class GithubRepoComponent extends
    * 
    */
   configureUpdatedAt() {
-
-
-
-    this.updated_atDisplayString = "hello";
-    
-    Date.parse(this.props.updated_at);
-
-
+    const date = new Date(this.props.updated_at).toDateString();
+    this.updated_atDisplayString = date.split(" ").slice(1).join(" ");
   }
 
   render() {
@@ -65,7 +61,7 @@ class GithubRepoComponent extends
           }} />
           <small>{this.props.language}</small>
         </div>
-        <small>Updated on {this.props.updated_at}</small>
+        <small>Updated on {this.updated_atDisplayString}</small>
       </section>
     </div>
     
