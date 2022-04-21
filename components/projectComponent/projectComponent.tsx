@@ -49,8 +49,9 @@ class ProjectComponent extends React.Component<{ data: PublicProjectData }, { im
   render() {
     return <section 
       key={this.props.data.title} 
-      className={styles.projectItem} 
+      className={`${styles.projectItem}`} 
       onClick={() => this.redirectToProject()}
+      data-scroll
     >
       {
         this.state.imageUrl != undefined ?

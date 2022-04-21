@@ -24,6 +24,14 @@
   color: black;
   z-index: -1;
 }
+.transitionHeading {
+  transition: opacity 0.2s ease;
+
+  &:hover, &:focus {
+    opacity: 0.5;
+  }
+}
+
 
 #__next, body, html {
   width: 100%;
@@ -120,14 +128,23 @@ h3 {
   }
 }
 
-p, b {
+p, b, li {
   font-size: 1.5rem;
   line-height: 1.5;
 }
 @media screen and (max-width: 600px) { 
-  p, b {
+  p, b, li {
     font-size: 1.2em;
   }
+}
+
+label {
+  font-size: 1.4em;
+  font-weight: 500;
+}
+
+ul {
+  padding-left: 30px;
 }
 
 small {
@@ -159,6 +176,48 @@ a {
   }
 }
 
+/// misc elements
+
+
+
+input, textarea {
+  font-size: 1.2rem;
+  border: none;
+  border-radius: none;
+  font-family: Roboto;
+  border-bottom: solid 2px rgba(0, 0, 0, $backgroundOpacity * 2);
+  position: relative;
+
+  &::placeholder {
+    position: absolute;
+    top: 0%;
+    opacity: 1;
+    transition: top 0.2s ease, opacity 0.2s ease;
+  }
+
+  &:focus {
+    outline: none;
+
+    &::placeholder {
+      top: -50px;
+    }
+
+  }
+
+}
+
+textarea {
+  border-right: solid 2px rgba(0, 0, 0, $backgroundOpacity * 2);
+  margin-top: 20px;
+  resize: none;
+  height: 300px;
+
+  overflow: hidden;
+  ::-webkit-scrollbar {
+  }
+
+}
+
 hr {
   height: 5px;
   background-color:rgba(0, 0, 0, $backgroundOpacity * 2);
@@ -178,4 +237,19 @@ section {
   section {
     padding: 100px 5%;
   }
+}
+
+// scroll-out animations:
+[data-scroll] {
+  transition: 
+    opacity 1s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+    transform 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+[data-scroll="in"] {
+  transform: translateX(0);
+  opacity: 1;
+}
+[data-scroll="out"] {
+  transform: translateX(200px);
+  opacity: 0;
 }

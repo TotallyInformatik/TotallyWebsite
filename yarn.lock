@@ -4163,6 +4163,11 @@
   "resolved" "https://registry.npmjs.org/regexpp/-/regexpp-3.2.0.tgz"
   "version" "3.2.0"
 
+"rellax@^1.12.1":
+  "integrity" "sha512-XBIi0CDpW5FLTujYjYBn1CIbK2CJL6TsAg/w409KghP2LucjjzBjsujXDAjyBLWgsfupfUcL5WzdnIPcGfK7XA=="
+  "resolved" "https://registry.npmjs.org/rellax/-/rellax-1.12.1.tgz"
+  "version" "1.12.1"
+
 "require-directory@^2.1.1":
   "integrity" "sha1-jGStX9MNqxyXbiNE/+f3kqam30I="
   "resolved" "https://registry.npmjs.org/require-directory/-/require-directory-2.1.1.tgz"
@@ -4249,6 +4254,11 @@
   "version" "0.21.0"
   dependencies:
     "loose-envify" "^1.1.0"
+
+"scroll-out@^2.2.12":
+  "integrity" "sha512-BPWQJat8mmcjQCq+l4DsibBopkmQQb5ngPJ6T9XRxRl86/LJo7V+0d3Sjd9fxzIJkZmkjoGxEAam+Urvem8VRw=="
+  "resolved" "https://registry.npmjs.org/scroll-out/-/scroll-out-2.2.12.tgz"
+  "version" "2.2.12"
 
 "selenium-webdriver@^4.0.0-beta.2", "selenium-webdriver@4.0.0-rc-1":
   "integrity" "sha512-bcrwFPRax8fifRP60p7xkWDGSJJoMkPAzufMlk5K2NyLPht/YZzR2WcIk1+3gR8VOCLlst1P2PI+MXACaFzpIw=="

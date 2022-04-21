@@ -4,6 +4,7 @@ import { InstagramPostData, InstagramProfileData } from "../../lib/types";
 import { DotsThree } from "phosphor-react";
 
 import styles from "./instagramPostComponent.module.css";
+import Home from "../../pages";
 
 /**
  * OEmbed is not available for plebs like me.
@@ -38,7 +39,9 @@ class InstagramPostComponent extends
     const captionList = caption.split("\n");
 
     return <div 
-      className={styles.instagramPost} 
+      className={`${Home.verticalRellaxString} ${styles.instagramPost}`} 
+      data-rellax-speed="3"
+      data-rellax-percentage="0.5"
     >
       <section 
         className={styles.mediaSection} 

@@ -1,5 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Head from 'next/head';
+
+const Rellax = require("rellax");
+const ScrollOut = require("scroll-out");
 
 import { getFirestoreDataFromApiQuery, sortProjects } from "../lib/firebase";
 import { 
@@ -23,7 +26,6 @@ import ProgressComponent from "../components/progressComponent/progressComponent
 import GithubRepoComponent from "../components/githubRepoComponent/githubRepoComponent";
 import SimpleBar from "simplebar-react";
 
-
 type HomeData = { 
   projectsData: PublicProjectsData,
   linksData: PublicLinksData,
@@ -38,9 +40,32 @@ type HomeData = {
 class Home extends 
   React.Component<HomeData, {}> {
 
+  private rellax: any;
+  private scrollout: any;
+  static verticalRellaxString: string = "rellax";
+  
+
   constructor(props: HomeData) {
     super(props);
   }
+
+  componentDidMount() {
+    this.rellax = new Rellax(`.${Home.verticalRellaxString}`);
+    this.scrollout = new ScrollOut({
+      once: true
+    });
+  }
+
+  componentWillUnmount() {
+    this.rellax.destroy();
+    this.scrollout.teardown();
+  }
+
+  componentDidUpdate() {
+    this.rellax.refresh();
+    this.scrollout.update();
+  }
+
 
   render() {
     //** This following line might work in development, but in production, secrets are only available to the node.js server */
@@ -56,10 +81,16 @@ class Home extends
       <main> 
         <section className={styles.landingSection}>
 
-          <div className={`${styles.landingName} transparent`}>
-            <h1 className={`fancyHeading ${styles.fancyHeading} ${styles.transitionHeading}`}>TotallyInformatik</h1>
+          <div 
+            className={`${styles.landingName} transparent ${Home.verticalRellaxString}`} 
+            data-rellax-speed="-5"
+          >
+            <h1 className={`fancyHeading ${styles.fancyHeading} transitionHeading`}>TotallyInformatik</h1>
           </div>
-          <div className={`${styles.landingChinese} transparent`}>
+          <div 
+            className={`${styles.landingChinese} transparent ${Home.verticalRellaxString}`} 
+            data-rellax-speed="-7"
+          >
             <h1 className="chinese">目前正在编程</h1>
             <h1 className="chinese">目前正在学习</h1>
             <h1 className="chinese">目前正在改善</h1>
@@ -71,19 +102,25 @@ class Home extends
             <p>Enthusiastic and Creative Student, Creator and Programmer.</p>
             <p>Established and Leads {"\""}Annette-Entwickelt-Software{"\""}.</p>
           </article>
-          <img src="/images/logo.png" alt="logo / profile pic"/>
+          <img 
+            className={Home.verticalRellaxString} data-rellax-speed="-2"
+            src="/images/logo.png" alt="logo / profile pic"
+          />
         </section>
 
         <section className={styles.projectsSection}>
           <small className={`${styles.line} ${styles.lineStart} chinese`}>
             我的创作
           </small>
-          <h1 className={`${styles.line} ${styles.bannerVertical} chinese`}>
+          <h1 
+            className={`${styles.line} ${styles.bannerVertical} chinese ${Home.verticalRellaxString}`}
+            data-rellax-speed="-2"
+          >
             我的创作
           </h1>
           <div className={`${styles.line} ${styles.lineVertical}`} />
           <aside className={styles.headingAside}>
-            <h1 className={`fancyHeading ${styles.fancyHeading} ${styles.transitionHeading}`}>My Work</h1>
+            <h1 className={`fancyHeading ${styles.fancyHeading} transitionHeading`}>My Work</h1>
           </aside>
           <section className={styles.projectListSection}>
             <article>
@@ -103,8 +140,14 @@ class Home extends
         </section>
 
         <section className={styles.socialMediaSection}>
-          <h1 className={`fancyHeading ${styles.fancyHeading} ${styles.transitionHeading}`}>Social Media</h1>
-          <h1 className={`${styles.chinese} chinese`}>网络媒体</h1>
+          <h1 
+            className={`fancyHeading ${styles.fancyHeading} transitionHeading ${Home.verticalRellaxString}`}
+            data-rellax-speed="-10" data-rellax-percentage="0.1"
+          >Online Social Media</h1>
+          <h1 
+            className={`${styles.chinese} chinese ${Home.verticalRellaxString}`}
+            data-rellax-speed="-2" data-rellax-percentage="0.5"
+          >网络媒体</h1>
 
           <h2 className="standardHeading">Follow Me</h2>
           <article>
@@ -191,8 +234,10 @@ class Home extends
           >
             {
               this.props.youtubePostsData.map((value) => {
-                console.log(value.id.videoId);
                 return <iframe 
+                  className={Home.verticalRellaxString}
+                  data-rellax-speed="3"
+                  data-rellax-percentage="0.5"
                   key={value.id.videoId}
                   width="560" 
                   height="315" 
@@ -208,19 +253,40 @@ class Home extends
 
         </section>
 
-        <section>
-          <h1 className="fancyHeading">Contact</h1>
+        <section className={styles.contactSection}>
+
+          <section 
+            className={`${styles.fancySection} ${Home.verticalRellaxString}`}
+            data-rellax-speed="-4"
+            data-rellax-percentage="0.5"
+          >
+            <h1 className={`fancyHeading transitionHeading ${styles.fancyHeading}`}>Con</h1>
+            <h1 className={`fancyHeading transitionHeading ${styles.fancyHeading}`}>tact</h1>
+            <h1 className={`fancyHeading transitionHeading ${styles.fancyHeading}`}>Form</h1>
+          </section>
           <h1 className="chinese">联系</h1>
-          <h2>Have a Project?</h2>
-          <p>Let me handle it.</p>
-          <ul>
-            <li>No Rules</li>
-            <li>No Licenses</li>
-            <li>No Payment</li>
-            <li>Just what you want</li>
-          </ul>
-          <form action="POST">
-            
+          <small className={`chinese ${styles.line}`}>联系</small>
+
+          <aside 
+            className={`${Home.verticalRellaxString}`}
+            data-rellax-speed="-10"
+            data-rellax-percentage="0.2"
+          >
+            <h2 className="standardHeading">Have a Project / Idea?</h2>
+            <b>Let me handle it.</b>
+            <ul>
+              <li>No Rules</li>
+              <li>No Licenses</li>
+              <li>No Payment</li>
+              <li>Just what you want</li>
+            </ul>
+          </aside>
+          <form action="POST" className={styles.form}>
+            <input name="name" placeholder="Full Name" type="text"></input>
+            <input name="email" placeholder="Email Adress" type="email"></input>
+            <input name="tel" placeholder="Mobile Number" type="tel"></input>
+            <textarea name="self-description" placeholder="Details About Yourself"></textarea>
+            <textarea name="project-description" placeholder="Project / Idea Description:"></textarea>
           </form>
         </section>
 
@@ -250,8 +316,6 @@ export async function getStaticProps() {
 
   const youtubeProfileData = (await YouTube.getUserProfile()).items[0] as YouTubeProfileData;
   const youtubePostsData = (await YouTube.getMostRecentPosts()).items as YouTubePostData[];
-
-  console.log(youtubePostsData);
 
   return {
     props: {
