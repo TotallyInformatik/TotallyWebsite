@@ -22,12 +22,19 @@
     left: 0;
     width: 100vw;
     opacity: 2;
+    height: 3px;
   }
 
   .heading { 
     margin-top: 50px;
     grid-area: heading;
     width: 100%; 
+  }
+
+  .fancyHeading {
+    position: absolute;
+    top: 0;
+    right: 0;
   }
 
   .description { 

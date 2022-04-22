@@ -1,15 +1,7 @@
 @import "./../styles/constants.scss";
 
-$fancyHeadingFontSize: 10rem;
 
-
-.fancyHeading {
-  font-size: $fancyHeadingFontSize;
-  font-family: 'Playfair Display', serif;
-  line-height: 0.9em;
-  opacity: $backgroundOpacity;
-  user-select: none;
-}
+.priorityHeading {}
 
 .landingSection {
 
@@ -25,9 +17,12 @@ $fancyHeadingFontSize: 10rem;
   .landingChinese {
     display: flex;
     top: $fancyHeadingFontSize;
-    left: 100px;
+    left: 0;
     height: 600px;
     opacity: 0.04;
+    background-color: black;
+    color: white;
+    padding: 10px 0;
 
     h1 {
       font-size: 6rem;
@@ -38,6 +33,7 @@ $fancyHeadingFontSize: 10rem;
   }
 
   .landingName {
+    z-index: 100;
     top: 0;
     right: 0;
   }
@@ -50,6 +46,10 @@ $fancyHeadingFontSize: 10rem;
     border-radius: 20%;
     background-color: white;
     box-shadow: 0 $offset 200px $softShadowColor;
+  }
+
+  article {
+    margin-top: 100px;
   }
 
   article h1 {
@@ -72,6 +72,14 @@ $fancyHeadingFontSize: 10rem;
     article {
       width: 100%;
       text-align: center;
+
+      h1 {
+        text-align: left;
+        display: block;
+        margin-right: auto;
+        margin-left: auto;
+      }
+
     }
 
   }
@@ -85,6 +93,9 @@ $fancyHeadingFontSize: 10rem;
 
 .projectsSection {
 
+  background-color: white;
+  z-index: 1;
+
   position: relative;
   padding: 100px 0 0 5%;
   margin: 200px 0;
@@ -94,9 +105,9 @@ $fancyHeadingFontSize: 10rem;
   gap: 100px;
 
 
-  $top: 50px;
+  $top: 0px;
   $line-length: 80%;
-  $line-width: 5px;
+  $line-width: 3px;
   $font-size: 30px;
 
   .line {
@@ -202,7 +213,7 @@ $fancyHeadingFontSize: 10rem;
     }
 
     $line-length: 100%;
-    $line-width: 5px;
+    $line-width: 3px;
   
     .line {
       width: $line-length;
@@ -241,6 +252,13 @@ $fancyHeadingFontSize: 10rem;
       > article {
         text-align: center;
         margin-bottom: 100px;
+
+        h2 {
+          display: block;
+          margin-right: auto;
+          margin-left: auto;
+        }
+
       }
 
     }
@@ -254,14 +272,16 @@ $fancyHeadingFontSize: 10rem;
   padding-top: 0;
   padding-right: 0;
 
+  position: relative;
+  z-index: 2;
+
   > .fancyHeading {
     position: absolute;
     top: 0;
-    left: $fancyHeadingFontSize;
-    text-align: end;
-    
-    transform-origin: top left;
-    transform: rotateZ(90deg);
+    left: 0;
+
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
   }
 
 
@@ -316,15 +336,23 @@ $fancyHeadingFontSize: 10rem;
   height: 500px;
   flex-direction: column;
 }
+.youtube iframe {
+  box-shadow: 0 50px 150px $softShadowColor;
+}
 
-@media screen and (max-width: $mediaQuerySize1) {
+@media screen 
+  and (max-width: $mediaQuerySize1) {
   
   .socialMediaSection {
     padding: 100px 5%;
   }
 
-  .socialMediaSection > article, .socialMediaSection > h2 {
+  .socialMediaSection > article, 
+  .socialMediaSection > h2 {
     text-align: center;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
   }
 
   .github .simplebar {
@@ -335,3 +363,89 @@ $fancyHeadingFontSize: 10rem;
   }
 
 } 
+
+
+.contactSection {
+
+  margin-top: $fancyHeadingFontSize * 2;
+  position: relative;
+  width: 100%;
+
+  .fancySection {
+
+    top: 0;
+    right: 0;
+    position: absolute;
+    width: fit-content;
+
+    .fancyHeading {
+      position: absolute;
+      top: 0;
+  
+      &:first-child {
+        right: $fancyHeadingFontSize;
+      }
+      &:nth-child(2) {
+        top: $fancyHeadingFontSize;
+        right: 0;
+      }
+      &:nth-child(3) {
+        top: $fancyHeadingFontSize * 2;
+        left: 0;
+      }
+  
+    }
+
+  }
+
+  > h1 {
+    position: absolute;
+    left: 0;
+    top: -$fancyHeadingFontSize;
+    opacity: $backgroundOpacity * 2;
+  }
+
+  .line {
+    position: absolute;
+    height: 3px;
+    width: 40%;
+
+    top: 0;
+    left: 0;
+
+    text-align: end;
+    background-color: black;
+    opacity: $backgroundOpacity * 2;
+  }
+
+
+  display: grid;
+  grid-template-areas: 
+    "form article"
+    "form article";
+  grid-template-columns: 60% 30%;
+  gap: 100px;
+
+  h2 {
+    grid-area: heading;
+    width: min-content;
+  }
+
+  aside {
+    grid-area: article;
+  }
+
+  .form {
+    grid-area: form;
+
+    display: grid;
+    gap: 50px;
+    grid-row: repeat(5, 1fr);
+
+    input[type="submit"] {
+      width: fit-content;
+    }
+
+  }
+
+}

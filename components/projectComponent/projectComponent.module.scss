@@ -28,7 +28,6 @@
     background-color: whitesmoke;
     padding: 50px;
     flex: 1;
-
   }
 
   .projectImage {
@@ -44,6 +43,32 @@
       object-position: 0 center;
     }
     
+  }
+
+  &::after {
+    
+    $lineWidth: 3px;
+    
+    content: "";
+    display: block;
+  
+    position: absolute;
+    z-index: 100;
+    bottom: -$lineWidth;
+    left: 0;
+  
+    height: $lineWidth;
+    width: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+  
+    transition: width 0.5s ease;
+
+  }
+
+  &:hover, &:focus {
+    &::after {
+      width: 100%;
+    }
   }
 
 }

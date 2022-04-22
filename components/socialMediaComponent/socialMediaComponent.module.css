@@ -16,11 +16,17 @@
   left: 0;
   width: 100vw;
   opacity: 2;
+  height: 3px;
 }
 .socialSubSection .heading {
   margin-top: 50px;
   grid-area: heading;
   width: 100%;
+}
+.socialSubSection .fancyHeading {
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 .socialSubSection .description {
   grid-area: description;
