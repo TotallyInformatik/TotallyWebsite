@@ -29,12 +29,12 @@ import SimpleBar from "simplebar-react";
 type HomeData = { 
   projectsData: PublicProjectsData,
   linksData: PublicLinksData,
-  instagramData: InstagramPostData[],
-  instagramProfileData: InstagramProfileData,
-  githubProfileData: GithubProfileData,
-  githubRepoData: GithubRepoData[],
-  youtubeProfileData: YouTubeProfileData,
-  youtubePostsData: YouTubePostData[]
+  instagramData: InstagramPostData[] | undefined,
+  instagramProfileData: InstagramProfileData | undefined,
+  githubProfileData: GithubProfileData | undefined,
+  githubRepoData: GithubRepoData[] | undefined,
+  youtubeProfileData: YouTubeProfileData | undefined,
+  youtubePostsData: YouTubePostData[] | undefined
 }
 
 class Home extends 
@@ -47,25 +47,39 @@ class Home extends
 
   constructor(props: HomeData) {
     super(props);
+    this.sendProjectRequest = this.sendProjectRequest.bind(this);
   }
 
   componentDidMount() {
-    this.rellax = new Rellax(`.${Home.verticalRellaxString}`);
-    this.scrollout = new ScrollOut({
-      once: true
+
+    window.onload = () => {
+      this.rellax = new Rellax(`.${Home.verticalRellaxString}`);
+      this.scrollout = new ScrollOut({
+        once: true
+      });
+    }
+
+    window.addEventListener("resize", () => {
+      this.rellax.refresh();
     });
+
   }
 
   componentWillUnmount() {
-    this.rellax.destroy();
-    this.scrollout.teardown();
+    
+    try {
+      this.rellax.destroy();
+      this.scrollout.teardown();
+    } catch (e) { /* ignored lol */ }
+    
   }
 
   componentDidUpdate() {
+    
     this.rellax.refresh();
     this.scrollout.update();
+    
   }
-
 
   render() {
     //** This following line might work in development, but in production, secrets are only available to the node.js server */
@@ -155,101 +169,113 @@ class Home extends
             <p>Explanations, Code Details, Valuable Lessons, etc.</p>
           </article>
 
-          <SocialMediaComponent 
-            className={styles.github}
-            title="Github"
-            socialMediaLink={this.props.githubProfileData.html_url}
-            profileInformation={
-              <>
-                <b>
-                  <a href={this.props.githubProfileData.html_url}>
-                    {this.props.githubProfileData.login}
-                  </a>
-                </b>
-                <p>{this.props.githubProfileData.bio}</p>
-                <p>{this.props.githubProfileData.public_repos} Public Repos</p>
-              </>
-            }
-          >
-            <SimpleBar autoHide={true} className={styles.simplebar} >
-              {
-                this.props.githubRepoData.map(
-                  (value) => {
-                    return <GithubRepoComponent 
-                      key={value.name}
-                      title={value.name}
-                      description={value.description}
-                      language={value.language}
-                      updated_at={value.updated_at}
-                      html_url={value.html_url}
-                    />
-                  }
-                )
-              }
-            </SimpleBar>
-          </SocialMediaComponent>
-
-          <SocialMediaComponent 
-            className={styles.instagram}
-            title="Instagram"
-            socialMediaLink={this.props.linksData.instagram}
-            profileInformation={
-              <>
-                <b><a href={this.props.linksData.instagram}>{this.props.instagramProfileData.username}</a></b>
-                <p>16, Student | Passion: Math, Computer Science, Physics | Student prez at Annette Grammar | Leader of the Annette-Entwickelt-Software Group</p>
-                <p>{this.props.instagramProfileData.media_count} Posts</p>
-              </>
-            }
-          >
-            {
-              this.props.instagramData.map(
-                (value) => {
-                  return <InstagramPostComponent 
-                    key={value.id}
-                    postData={value}
-                    profileData={this.props.instagramProfileData}
-                  /> 
+          {
+            this.props.githubProfileData != undefined && 
+            this.props.githubRepoData != undefined ?
+              <SocialMediaComponent 
+                className={styles.github}
+                title="Github"
+                socialMediaLink={this.props.githubProfileData.html_url}
+                profileInformation={
+                  <>
+                    <b>
+                      <a href={this.props.githubProfileData.html_url}>
+                        {this.props.githubProfileData.login}
+                      </a>
+                    </b>
+                    <p>{this.props.githubProfileData.bio}</p>
+                    <p>{this.props.githubProfileData.public_repos} Public Repos</p>
+                  </>
                 }
-              )
-            }
-          </SocialMediaComponent>
+              >
+                <SimpleBar autoHide={true} className={styles.simplebar} >
+                  {
+                    this.props.githubRepoData.map(
+                      (value) => {
+                        return <GithubRepoComponent 
+                          key={value.name}
+                          title={value.name}
+                          description={value.description}
+                          language={value.language}
+                          updated_at={value.updated_at}
+                          html_url={value.html_url}
+                        />
+                      }
+                    )
+                  }
+                </SimpleBar>
+              </SocialMediaComponent> : null
+          }
 
-          <SocialMediaComponent
-            className={styles.youtube}
-            title="YouTube"
-            socialMediaLink={this.props.linksData.youtube}
-            profileInformation={
-              <>
-                <b><a href={this.props.linksData.youtube}>
-                {this.props.youtubeProfileData.brandingSettings.channel.title}
-                </a></b>
-                <p>
-                  {this.props.youtubeProfileData.brandingSettings.channel.description}
-                </p>
-                <p>
-                  {this.props.youtubeProfileData.statistics.videoCount} Videos
-                </p>
-              </>
-            }
-          >
-            {
-              this.props.youtubePostsData.map((value) => {
-                return <iframe 
-                  className={Home.verticalRellaxString}
-                  data-rellax-speed="3"
-                  data-rellax-percentage="0.5"
-                  key={value.id.videoId}
-                  width="560" 
-                  height="315" 
-                  src={`https://www.youtube.com/embed/${value.id.videoId}?`}  
-                  title="YouTube video player" 
-                  frameBorder="0" 
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                  allowFullScreen>
-                </iframe>;
-              })
-            }
-          </SocialMediaComponent>
+          {
+            this.props.instagramData != undefined && 
+            this.props.instagramProfileData ?
+              <SocialMediaComponent 
+                className={styles.instagram}
+                title="Instagram"
+                socialMediaLink={this.props.linksData.instagram}
+                profileInformation={
+                  <>
+                    <b><a href={this.props.linksData.instagram}>{this.props.instagramProfileData.username}</a></b>
+                    <p>16, Student | Passion: Math, Computer Science, Physics | Student prez at Annette Grammar | Leader of the Annette-Entwickelt-Software Group</p>
+                    <p>{this.props.instagramProfileData.media_count} Posts</p>
+                  </>
+                }
+              >
+                {
+                  this.props.instagramData.map(
+                    (value) => {
+                      return <InstagramPostComponent 
+                        key={value.id}
+                        postData={value}
+                        profileData={this.props.instagramProfileData!}
+                      /> 
+                    }
+                  )
+                }
+              </SocialMediaComponent> : null
+          }
+
+          {
+            this.props.youtubeProfileData != undefined &&
+            this.props.youtubePostsData != undefined ?
+              <SocialMediaComponent
+                className={styles.youtube}
+                title="YouTube"
+                socialMediaLink={this.props.linksData.youtube}
+                profileInformation={
+                  <>
+                    <b><a href={this.props.linksData.youtube}>
+                    {this.props.youtubeProfileData.brandingSettings.channel.title}
+                    </a></b>
+                    <p>
+                      {this.props.youtubeProfileData.brandingSettings.channel.description}
+                    </p>
+                    <p>
+                      {this.props.youtubeProfileData.statistics.videoCount} Videos
+                    </p>
+                  </>
+                }
+              >
+                {
+                  this.props.youtubePostsData.map((value) => {
+                    return <iframe 
+                      className={Home.verticalRellaxString}
+                      data-rellax-speed="3"
+                      data-rellax-percentage="0.5"
+                      key={value.id.videoId}
+                      width="560" 
+                      height="315" 
+                      src={`https://www.youtube.com/embed/${value.id.videoId}?`}  
+                      title="YouTube video player" 
+                      frameBorder="0" 
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                      allowFullScreen>
+                    </iframe>;
+                  })
+                }
+              </SocialMediaComponent> : null
+          }
 
         </section>
 
@@ -269,7 +295,7 @@ class Home extends
 
           <aside 
             className={`${Home.verticalRellaxString}`}
-            data-rellax-speed="-10"
+            data-rellax-speed="-2"
             data-rellax-percentage="0.2"
           >
             <h2 className="standardHeading">Have a Project / Idea?</h2>
@@ -278,20 +304,54 @@ class Home extends
               <li>No Rules</li>
               <li>No Licenses</li>
               <li>No Payment</li>
-              <li>Just what you want</li>
+              <li>Just what you want. Without the hassle.</li>
             </ul>
           </aside>
-          <form action="POST" className={styles.form}>
-            <input name="name" placeholder="Full Name" type="text"></input>
-            <input name="email" placeholder="Email Adress" type="email"></input>
-            <input name="tel" placeholder="Mobile Number" type="tel"></input>
-            <textarea name="self-description" placeholder="Details About Yourself"></textarea>
-            <textarea name="project-description" placeholder="Project / Idea Description:"></textarea>
+          <form className={styles.form}>
+            <input name="name" id="name" placeholder="Full Name *" type="text" required></input>
+            <input name="email" id="email" placeholder="Email Adress *" type="email" required></input>
+            <input name="title" id="title" placeholder="Project Name / Title *"></input>
+            <textarea name="self-description" id="self-description" placeholder="Details About Yourself *" required></textarea>
+            <textarea name="project-description" id="project-description" placeholder="Project / Idea Description: *" required></textarea>
+            <sub>* required</sub>
+            <input 
+              type="submit" 
+              value="Send Request" 
+              onClick={(e) => this.sendProjectRequest(e)}
+            ></input>
           </form>
         </section>
 
       </main>
     </>;
+  }
+
+  /// fetching from own nextjs backend api
+  async sendProjectRequest(e: React.MouseEvent) {
+
+    e.preventDefault();
+
+    const nameInput: any = document.querySelector("#name");
+    const emailInput: any = document.querySelector("#email");
+    const titleInput: any = document.querySelector("#title");
+    const selfDescriptionInput: any = document.querySelector("#self-description");
+    const projectDescriptionInput: any = document.querySelector("#project-description");
+
+    const formData = {
+      name: nameInput.value,
+      email: emailInput.value,
+      title: titleInput.value,
+      selfDescription: selfDescriptionInput.value,
+      projectDescription: projectDescriptionInput.value
+    }
+
+    const result = await fetch(`${process.env.NEXT_PUBLIC_DOMAIN}/api/emailing/post`, {
+      method: "POST",
+      body: JSON.stringify(formData)
+    });
+
+    console.log(await result.json());
+
   }
 
 }
@@ -304,6 +364,7 @@ export async function getStaticProps() {
 
   //* NOTE that you should not fetch from your own api in a server-side function such as getStaticProps. 
   //* Just use the functions you've written, it will be exaclty as safe, since this runs on the server-side 
+
 
   const projectsData = await getFirestoreDataFromApiQuery(["public", "projects"]) as PublicProjectsData;
   const linksData = await getFirestoreDataFromApiQuery(["public", "links"]) as PublicLinksData;

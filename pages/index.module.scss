@@ -442,6 +442,10 @@
     gap: 50px;
     grid-row: repeat(5, 1fr);
 
+    input[type="submit"] {
+      width: fit-content;
+    }
+
   }
 
 }

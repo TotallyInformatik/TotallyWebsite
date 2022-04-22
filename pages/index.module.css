@@ -346,4 +346,9 @@
   display: grid;
   gap: 50px;
   grid-row: repeat(5, 1fr);
+}
+.contactSection .form input[type=submit] {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
 }/*# sourceMappingURL=index.module.css.map */

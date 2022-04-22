@@ -1,7 +1,5 @@
 import React from "react";
 
-const Duration = require("duration-js");
-
 import styles from "./githubRepoComponent.module.css";
 import { githubLanguageColorData } from "../../lib/githubColors";
 
