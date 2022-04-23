@@ -71,3 +71,17 @@ export type YouTubePostData = {
     description: string
   }
 }
+
+
+export type EmailingStatus = {
+  sent: boolean,
+  resultMessage: any,
+}
+
+export type EmailingApiResponse = {
+  status: number,
+  error?: string,
+  message?: string,
+  userMessage: string 
+  // * string that is displayed to the user as a response 
+}

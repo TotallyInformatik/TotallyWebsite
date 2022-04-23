@@ -350,8 +350,6 @@ class Home extends
       body: JSON.stringify(formData)
     });
 
-    console.log(await result.json());
-
   }
 
 }
