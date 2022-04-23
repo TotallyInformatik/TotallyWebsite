@@ -290,7 +290,7 @@
   width: 100%;
   display: grid;
   grid-template-areas: "form article" "form article";
-  grid-template-columns: 60% 30%;
+  grid-template-columns: 60% 40%;
   gap: 100px;
 }
 .contactSection .fancySection {
@@ -340,8 +340,10 @@
 }
 .contactSection aside {
   grid-area: article;
+  width: 100%;
 }
 .contactSection .form {
+  width: 100%;
   grid-area: form;
   display: grid;
   gap: 50px;
@@ -364,4 +366,34 @@
 }
 .contactSection .form .flexBox .statusSuccess {
   color: green;
+}
+
+@media screen and (max-width: 1050px) {
+  .contactSection {
+    padding: 100px 5%;
+    grid-template-areas: "article article" "form form";
+    grid-template-columns: calc(60% - 50px) calc(40% - 50px);
+  }
+  .contactSection .fancySection .fancyHeading:nth-child(3) {
+    top: 20rem;
+    right: 0;
+    left: unset;
+  }
+  .contactSection .line {
+    width: 80%;
+    top: -10rem;
+  }
+  .contactSection .form {
+    margin-top: 150px;
+    position: relative;
+    background-color: white;
+    z-index: 1;
+    margin-left: -5%;
+    width: 110%;
+    padding: 5%;
+    border-top: solid 3px rgba(0, 0, 0, 0.05);
+  }
+  .contactSection aside {
+    width: 100%;
+  }
 }/*# sourceMappingURL=index.module.css.map */

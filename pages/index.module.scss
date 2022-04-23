@@ -372,7 +372,6 @@
   width: 100%;
 
   .fancySection {
-
     top: 0;
     right: 0;
     position: absolute;
@@ -419,12 +418,13 @@
   }
 
 
+  $gap: 100px;
   display: grid;
   grid-template-areas: 
     "form article"
     "form article";
-  grid-template-columns: 60% 30%;
-  gap: 100px;
+  grid-template-columns: 60% 40%;
+  gap: $gap;
 
   h2 {
     grid-area: heading;
@@ -433,9 +433,11 @@
 
   aside {
     grid-area: article;
+    width: 100%;
   }
 
   .form {
+    width: 100%;
     grid-area: form;
 
     display: grid;
@@ -461,6 +463,48 @@
         color: green;
       }
 
+    }
+
+  }
+
+}
+
+@media screen and (max-width: 1050px) {
+
+  .contactSection {
+
+    padding: 100px 5%;
+    grid-template-areas: 
+      "article article"
+      "form form";
+    $gap: 100px;
+    grid-template-columns: calc(60% - $gap / 2)  calc(40% - $gap / 2);
+
+    .fancySection .fancyHeading:nth-child(3) {
+      top: $fancyHeadingFontSize * 2;
+      right: 0;
+      left: unset;
+    }
+    
+    .line {
+      width: 80%;
+      top: -$fancyHeadingFontSize;
+    }
+
+    .form {
+      margin-top: 150px;
+      position: relative;
+      background-color: white;
+      z-index: 1;
+      margin-left: -5%;
+      width: 110%;
+      padding: 5%;
+      border-top: solid 3px rgba(0, 0, 0, $backgroundOpacity);
+    }
+
+
+    aside {
+      width: 100%;
     }
 
   }
