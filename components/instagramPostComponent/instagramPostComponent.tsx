@@ -61,6 +61,7 @@ class InstagramPostComponent extends
                 width={logoSize}
                 height={logoSize}
                 src="/images/logo.png"
+                alt="logo"
               />
             </div>
             <b>{this.props.profileData.username}</b>
@@ -73,6 +74,7 @@ class InstagramPostComponent extends
               width={logoSize}
               height={logoSize}
               src="/images/logo.png"
+              alt="logo"
             />
           </div>
           <article>

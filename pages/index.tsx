@@ -326,7 +326,7 @@ class Home extends
     </>;
   }
 
-  /// fetching from own nextjs backend api
+  /// fetching from own nextjs backend api to send email.
   async sendProjectRequest(e: React.MouseEvent) {
 
     e.preventDefault();
@@ -358,13 +358,14 @@ class Home extends
 
 export default Home
 
+// * getStaticProps because I can't afford calling the api every time a user requests the website
+// * no funding. Am poor.
 export async function getStaticProps() {
  
   //* Note that a change in Environment Variables requires a full restart of the development server
 
   //* NOTE that you should not fetch from your own api in a server-side function such as getStaticProps. 
   //* Just use the functions you've written, it will be exaclty as safe, since this runs on the server-side 
-
 
   const projectsData = await getFirestoreDataFromApiQuery(["public", "projects"]) as PublicProjectsData;
   const linksData = await getFirestoreDataFromApiQuery(["public", "links"]) as PublicLinksData;
