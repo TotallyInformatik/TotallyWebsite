@@ -51,6 +51,7 @@ class InstagramPostComponent extends
           src={this.props.postData.media_url}
           width={postSize}
           height={postSize}
+          alt={"Image for Instagram Post with ID " + this.props.postData.id}
         />
       </section>
       <section className={styles.captionSection}>

@@ -345,7 +345,7 @@ class Home extends
       projectDescription: projectDescriptionInput.value
     }
 
-    const result = await fetch(`${process.env.NEXT_PUBLIC_DOMAIN}/api/emailing/post`, {
+    const result = await fetch(`/api/emailing/post`, {
       method: "POST",
       body: JSON.stringify(formData)
     });
