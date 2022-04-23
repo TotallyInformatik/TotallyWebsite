@@ -30,9 +30,9 @@ export default async function handler(
   /// TODO: wrap all inputs in special notation to prevent code execution
 
   const transporter = nodemailer.createTransport({
-    service: "Gmail",
+    service: "SendGrid",
     auth: {
-      user: process.env.SECRET_EMAILING_TRANSPORTER_EMAIL,
+      user: process.env.SECRET_EMAIL,
       pass: process.env.SECRET_EMAILING_TRANSPORTER_PASSWORD
     }
   });
