@@ -30,7 +30,8 @@ export default async function handler(
     res.status(400).json({
       status: 400,
       error: "invalid request parameters",
-      userMessage: "Form input invalid."
+      userMessage: 
+        "Form input invalid. Please recheck inputs. <br /> Try to limit usage of special characters due to security precautions."
     });
     return;
 
@@ -48,16 +49,19 @@ export default async function handler(
 
 function validateParameters(reqBody: any): boolean {
 
+  const standardTextRule = ["required", "string", "regex:/^[a-zA-Z0-9\\.\\-\\(\\)\\s]*$/"];
+
   const rules = {
-    name: 'required',
+    name: standardTextRule,
     email: 'required|email',
-    title: 'required',
-    selfDescription: 'required',
-    projectDescription: 'required'
+    title: standardTextRule,
+    selfDescription: standardTextRule,
+    projectDescription: standardTextRule
   };
 
-  const validation = new Validator(reqBody, rules);
-  return validation.passes()!;
+  const validatorJsValidation = new Validator(reqBody, rules);
+
+  return validatorJsValidation.passes()!;
 
 }
 

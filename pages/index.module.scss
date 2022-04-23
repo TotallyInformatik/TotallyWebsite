@@ -446,6 +446,23 @@
       width: fit-content;
     }
 
+    .flexBox {
+      padding: 0;
+      display: flex;
+      gap: 50px;
+      justify-content: start;
+      align-items: center;
+
+      .statusError {
+        color: indianred;
+      }
+  
+      .statusSuccess {
+        color: green;
+      }
+
+    }
+
   }
 
 }

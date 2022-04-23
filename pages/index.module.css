@@ -351,4 +351,17 @@
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
+}
+.contactSection .form .flexBox {
+  padding: 0;
+  display: flex;
+  gap: 50px;
+  justify-content: start;
+  align-items: center;
+}
+.contactSection .form .flexBox .statusError {
+  color: indianred;
+}
+.contactSection .form .flexBox .statusSuccess {
+  color: green;
 }/*# sourceMappingURL=index.module.css.map */

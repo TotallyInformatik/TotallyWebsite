@@ -60,7 +60,9 @@ class Home extends
     }
 
     window.addEventListener("resize", () => {
-      this.rellax.refresh();
+      try {
+        this.rellax.refresh();
+      } catch (e) { /* ignored lol */ }
     });
 
   }
@@ -75,9 +77,11 @@ class Home extends
   }
 
   componentDidUpdate() {
-    
-    this.rellax.refresh();
-    this.scrollout.update();
+    try {
+      this.rellax.refresh();
+      this.scrollout.update();
+    } catch (e) { /* ignored lol */ }
+
     
   }
 
@@ -307,18 +311,21 @@ class Home extends
               <li>Just what you want. Without the hassle.</li>
             </ul>
           </aside>
-          <form className={styles.form}>
+          <form className={styles.form} method="none" onSubmit={(e) => this.sendProjectRequest(e)}>
             <input name="name" id="name" placeholder="Full Name *" type="text" required></input>
             <input name="email" id="email" placeholder="Email Adress *" type="email" required></input>
-            <input name="title" id="title" placeholder="Project Name / Title *"></input>
+            <input name="title" id="title" placeholder="Project Name / Title *" required></input>
             <textarea name="self-description" id="self-description" placeholder="Details About Yourself *" required></textarea>
             <textarea name="project-description" id="project-description" placeholder="Project / Idea Description: *" required></textarea>
             <sub>* required</sub>
-            <input 
-              type="submit" 
-              value="Send Request" 
-              onClick={(e) => this.sendProjectRequest(e)}
-            ></input>
+            <section className={styles.flexBox}>
+              <input 
+                type="submit" 
+                value="Send Request"
+                className="standardHoverAnimation"
+              />
+              <label id="status"></label>
+            </section>
           </form>
         </section>
 
@@ -327,9 +334,12 @@ class Home extends
   }
 
   /// fetching from own nextjs backend api to send email.
-  async sendProjectRequest(e: React.MouseEvent) {
+  async sendProjectRequest(e: React.FormEvent) {
 
     e.preventDefault();
+
+    const statusElement = document.querySelector("#status");
+    statusElement!.innerHTML = "";
 
     const nameInput: any = document.querySelector("#name");
     const emailInput: any = document.querySelector("#email");
@@ -349,6 +359,20 @@ class Home extends
       method: "POST",
       body: JSON.stringify(formData)
     });
+
+    const resultJson = await result.json();
+
+    if (resultJson.status == 200) {
+
+      statusElement!.className = styles.statusSuccess;
+      statusElement!.innerHTML = resultJson.userMessage;
+
+    } else {
+      
+      statusElement!.className = styles.statusError;
+      statusElement!.innerHTML = resultJson.userMessage;
+
+    }
 
   }
 

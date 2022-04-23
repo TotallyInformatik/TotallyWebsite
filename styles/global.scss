@@ -37,6 +37,7 @@
   width: 100%;
   // * new way of containing elements and not showing overflow
   contain: paint;
+  scroll-behavior: smooth;
 }
 
 main {
@@ -91,6 +92,37 @@ main {
     }
   }
 
+}
+
+// TODO: FIX!!!
+.standardHoverAnimation {
+  position: relative;
+
+  $offset: 5px;
+  $halfDuration: 0.2s;
+  &::before {
+    display: block;
+    content: "d";
+
+    position: absolute;
+    bottom: -$offset;
+    left: 0;
+    background-color: rgba(0, 0, 0, $backgroundOpacity);
+    width: 100px;
+    height: 100px;
+    transition: 
+      width $halfDuration ease, 
+      height $halfDuration ease;
+  }
+
+  &:hover, &:focus {
+
+    &::before {
+      width: calc(100% + $offset);
+      height: 100%;
+    }
+
+  }
 }
 
 h1 {
