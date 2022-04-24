@@ -1,56 +1,97 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 
-import nodemailer from "nodemailer";
 import Validator from 'validatorjs';
+
+import sgMail from '@sendgrid/mail';
+import { EmailingApiResponse, EmailingStatus } from '../../../lib/types';
+
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse
+  res: NextApiResponse<EmailingApiResponse>
 ) {
-  
-  // validating user input and body parameters
 
-  /*
+  if (req.method != "POST") {
+
+    res.status(400).json({
+      status: 400,
+      error: "invalid api method",
+      userMessage: "Internal API error. Please try again later."
+    });
+    return;
+
+  }
+
+  const reqBody = JSON.parse(req.body);
+  const validationPassed = validateParameters(reqBody);
+
+  if (!validationPassed) {
+
+    res.status(400).json({
+      status: 400,
+      error: "invalid request parameters",
+      userMessage: 
+        "Form input invalid. Please recheck inputs. <br /> Try to limit usage of special characters due to security precautions."
+    });
+    return;
+
+  }
+
+  const emailingStatus = await sendEmailWithSendGrid();
+  const statusCode = emailingStatus.sent ? 200 : 400;
+  res.status(statusCode).json({
+    status: statusCode,
+    message: emailingStatus.resultMessage,
+    userMessage: emailingStatus.sent ? "Request sent." : "Request failed. Please try again later."
+  });
+
+}
+
+function validateParameters(reqBody: any): boolean {
+
+  const standardTextRule = ["required", "string", "regex:/^[a-zA-Z0-9\\.\\-\\(\\)\\s]*$/"];
+
   const rules = {
-    name: 'required',
+    name: standardTextRule,
     email: 'required|email',
-    title: 'required',
-    selfDescription: 'required',
-    projectDescription: 'required'
+    title: standardTextRule,
+    selfDescription: standardTextRule,
+    projectDescription: standardTextRule
   };
 
-  const validation = 
-    new Validator(rules, JSON.parse(req.body));
-  */
+  const validatorJsValidation = new Validator(reqBody, rules);
+
+  return validatorJsValidation.passes()!;
+
+}
 
 
+async function sendEmailWithSendGrid(): Promise<EmailingStatus> {
 
-  /// TODO:use REGEX to prevent name to have any special characters
+  let status: EmailingStatus = {
+    sent: false,
+    resultMessage: ""
+  };
 
-  /// TODO: wrap all inputs in special notation to prevent code execution
+  sgMail.setApiKey(process.env.SECRET_SEND_GRID_API_KEY!);
+  const msg = {
+    to: process.env.SECRET_EMAIL!,
+    from: process.env.SECRET_EMAILING_TRANSPORTER_EMAIL!,
+    subject: 'Sending with SendGrid is Fun',
+    text: 'and easy to do anywhere, even with Node.js',
+    html: '<strong>and easy to do anywhere, even with Node.js</strong>',
+  };
 
-  const transporter = nodemailer.createTransport({
-    service: "SendGrid",
-    auth: {
-      user: process.env.SECRET_EMAIL,
-      pass: process.env.SECRET_EMAILING_TRANSPORTER_PASSWORD
-    }
-  });
+  await sgMail
+    .send(msg)
+    .then(() => {
+      status.sent = true;
+      status.resultMessage = "Email sent!";
+    })
+    .catch((error) => {
+      status.resultMessage = error;
+    });
 
-  const response = await transporter.sendMail({
-    from: JSON.parse(req.body).email,
-    to: process.env.SECRET_EMAIL,
-    subject: JSON.parse(req.body).title,
-    text: "hello"
-  });
-
-  res.status(200).json({sent: true, res: response});
-
-
-  // if (validation.passes()) {
-
-  // } else {
-  //   res.status(403).json({sent: false});
-  // }
+  return status;
 
 }
