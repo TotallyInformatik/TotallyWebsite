@@ -55,6 +55,14 @@ main {
   user-select: none;
 }
 
+@media screen and (max-width: $fancyHeadingDecreaseWidth) {
+
+  .fancyHeading {
+    font-size: $fancyHeadingFontSize2;
+  }
+
+}
+
 .standardHeading {
   z-index: 4;
   position: relative;

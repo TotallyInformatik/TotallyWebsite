@@ -268,8 +268,6 @@ class Home extends
                       data-rellax-speed="3"
                       data-rellax-percentage="0.5"
                       key={value.id.videoId}
-                      width="560" 
-                      height="315" 
                       src={`https://www.youtube.com/embed/${value.id.videoId}?`}  
                       title="YouTube video player" 
                       frameBorder="0" 
