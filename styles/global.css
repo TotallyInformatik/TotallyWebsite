@@ -24,6 +24,7 @@
   position: absolute;
   color: black;
   z-index: -1;
+  overflow-y: hidden;
 }
 
 .transitionHeading {

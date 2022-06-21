@@ -23,6 +23,7 @@
   position: absolute;
   color: black;
   z-index: -1;
+  overflow-y: hidden;
 }
 .transitionHeading {
   transition: opacity 0.2s ease;
