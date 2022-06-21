@@ -53,7 +53,7 @@ class Home extends
   componentDidMount() {
 
     window.onload = () => {
-      this.rellax = new Rellax(`.${Home.verticalRellaxString}`);
+      //this.rellax = new Rellax(`.${Home.verticalRellaxString}`);
       this.scrollout = new ScrollOut({
         once: true
       });
