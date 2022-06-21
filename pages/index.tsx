@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import Head from 'next/head';
 
-const Rellax = require("rellax");
+//const Rellax = require("rellax");
 const ScrollOut = require("scroll-out");
 
 import { getFirestoreDataFromApiQuery, sortProjects } from "../lib/firebase";
@@ -70,7 +70,7 @@ class Home extends
   componentWillUnmount() {
     
     try {
-      this.rellax.destroy();
+      //this.rellax.destroy();
       this.scrollout.teardown();
     } catch (e) { /* ignored lol */ }
     
@@ -78,7 +78,7 @@ class Home extends
 
   componentDidUpdate() {
     try {
-      this.rellax.refresh();
+      //this.rellax.refresh();
       this.scrollout.update();
     } catch (e) { /* ignored lol */ }
 
