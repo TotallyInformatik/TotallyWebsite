@@ -8,10 +8,6 @@
   width: -moz-fit-content;
   width: fit-content;
   text-align: right;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
 }
 .progressComponent p {
   font-size: 3rem;

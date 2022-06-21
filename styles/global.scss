@@ -17,7 +17,6 @@
 .chinese {
   font-family: 'Noto Sans SC', sans-serif;
   margin-bottom: 0;
-  user-select: none;
 }
 .transparent {
   position: absolute;
@@ -298,14 +297,4 @@ section {
 [data-scroll="out"] {
   transform: translateX(200px);
   opacity: 0;
-}
-
-
-@media (pointer: none), (pointer: coarse) {
-  * {
-    user-select: none !important;
-  }
-  *:hover {
-    
-  }
 }
