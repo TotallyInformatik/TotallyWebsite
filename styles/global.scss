@@ -52,7 +52,7 @@ main {
   font-family: 'Playfair Display', serif;
   line-height: 0.9em;
   opacity: $backgroundOpacity;
-  user-select: none;
+  //user-select: none;
 }
 
 @media screen and (max-width: $fancyHeadingDecreaseWidth) {
@@ -303,5 +303,8 @@ section {
 @media (pointer: none), (pointer: coarse) {
   * {
     user-select: none !important;
+  }
+  *:hover {
+    
   }
 }
