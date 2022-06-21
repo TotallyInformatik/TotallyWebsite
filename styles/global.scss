@@ -298,3 +298,10 @@ section {
   transform: translateX(200px);
   opacity: 0;
 }
+
+
+@media (pointer: none), (pointer: coarse) {
+  * {
+    user-select: none !important;
+  }
+}
