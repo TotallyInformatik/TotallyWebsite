@@ -35,11 +35,15 @@
 
 #__next, body, html {
   width: 100%;
-  contain: paint;
   scroll-behavior: smooth;
 }
 
+#__next {
+  contain: paint;
+}
+
 main {
+  contain: paint;
   min-width: 100%;
 }
 
