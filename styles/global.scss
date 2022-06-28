@@ -35,9 +35,12 @@
 
 #__next, body, html {
   width: 100%;
+  scroll-behavior: smooth;
+}
+
+#__next {
   // * new way of containing elements and not showing overflow
   contain: paint;
-  scroll-behavior: smooth;
 }
 
 main {
