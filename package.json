@@ -23,6 +23,7 @@
     "rellax": "^1.12.1",
     "scroll-out": "^2.2.12",
     "simplebar-react": "^2.3.6",
+    "sitemap": "^7.1.1",
     "validatorjs": "^3.22.1"
   },
   "devDependencies": {
