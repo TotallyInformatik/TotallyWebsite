@@ -1,4 +1,5 @@
 Sitemap: https://website-totallyinformatik.vercel.app/api/sitemap
+Sitemap: /sitemap.xml
 
 User-agent: *
 Allow: /*
