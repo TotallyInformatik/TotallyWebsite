@@ -13,7 +13,8 @@ import {
   GithubProfileData, 
   GithubRepoData, 
   YouTubeProfileData,
-  YouTubePostData
+  YouTubePostData,
+  ContactBody
 } from "../lib/types";
 import { Github, Instagram, YouTube } from "../lib/socialMedia";
 
@@ -345,7 +346,7 @@ class Home extends
     const selfDescriptionInput: any = document.querySelector("#self-description");
     const projectDescriptionInput: any = document.querySelector("#project-description");
 
-    const formData = {
+    const formData: ContactBody = {
       name: nameInput.value,
       email: emailInput.value,
       title: titleInput.value,
