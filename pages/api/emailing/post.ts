@@ -3,7 +3,7 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import Validator from 'validatorjs';
 
 import sgMail from '@sendgrid/mail';
-import { EmailingApiResponse, EmailingStatus } from '../../../lib/types';
+import { ContactBody, EmailingApiResponse, EmailingStatus } from '../../../lib/types';
 
 
 export default async function handler(
@@ -22,7 +22,7 @@ export default async function handler(
 
   }
 
-  const reqBody = JSON.parse(req.body);
+  const reqBody: ContactBody = JSON.parse(req.body);
   const validationPassed = validateParameters(reqBody);
 
   if (!validationPassed) {
@@ -37,7 +37,7 @@ export default async function handler(
 
   }
 
-  const emailingStatus = await sendEmailWithSendGrid();
+  const emailingStatus = await sendEmailWithSendGrid(reqBody);
   const statusCode = emailingStatus.sent ? 200 : 400;
   res.status(statusCode).json({
     status: statusCode,
@@ -66,20 +66,37 @@ function validateParameters(reqBody: any): boolean {
 }
 
 
-async function sendEmailWithSendGrid(): Promise<EmailingStatus> {
+async function sendEmailWithSendGrid(reqBody: ContactBody): Promise<EmailingStatus> {
 
   let status: EmailingStatus = {
     sent: false,
     resultMessage: ""
   };
 
+  const subject = `Project Request from ${reqBody.name} - ${reqBody.title}`;
+  const emailText = `
+  
+    Name: ${reqBody.name}
+    Email: ${reqBody.email}
+    Title: ${reqBody.title}
+
+    Self-Description: 
+
+    ${reqBody.selfDescription}
+    
+
+    Request-Description:
+
+    ${reqBody.projectDescription}
+
+  `;
+
   sgMail.setApiKey(process.env.SECRET_SEND_GRID_API_KEY!);
   const msg = {
     to: process.env.SECRET_EMAIL!,
     from: process.env.SECRET_EMAILING_TRANSPORTER_EMAIL!,
-    subject: 'Sending with SendGrid is Fun',
-    text: 'and easy to do anywhere, even with Node.js',
-    html: '<strong>and easy to do anywhere, even with Node.js</strong>',
+    subject: subject,
+    text: emailText
   };
 
   await sgMail
