@@ -76,18 +76,18 @@ async function sendEmailWithSendGrid(reqBody: ContactBody): Promise<EmailingStat
   const subject = `Project Request from ${reqBody.name} - ${reqBody.title}`;
   const emailText = `
   
-    Name: ${reqBody.name}
-    Email: ${reqBody.email}
-    Title: ${reqBody.title}
+Name: ${reqBody.name}
+Email: ${reqBody.email}
+Title: ${reqBody.title}
 
-    Self-Description: 
+Self-Description: 
 
-    ${reqBody.selfDescription}
-    
+${reqBody.selfDescription}
 
-    Request-Description:
 
-    ${reqBody.projectDescription}
+Request-Description:
+
+${reqBody.projectDescription}
 
   `;
 
