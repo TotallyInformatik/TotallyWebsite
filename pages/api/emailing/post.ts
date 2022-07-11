@@ -49,7 +49,7 @@ export default async function handler(
 
 function validateParameters(reqBody: any): boolean {
 
-  const standardTextRule = ["required", "string", "regex:/^[a-zA-Z0-9\\.\\-\\(\\)\\s]*$/"];
+  const standardTextRule = ["required", "string"];
 
   const rules = {
     name: standardTextRule,
