@@ -30,8 +30,6 @@ import SimpleBar from "simplebar-react";
 type HomeData = { 
   projectsData: PublicProjectsData,
   linksData: PublicLinksData,
-  instagramData: InstagramPostData[] | undefined,
-  instagramProfileData: InstagramProfileData | undefined,
   githubProfileData: GithubProfileData | undefined,
   githubRepoData: GithubRepoData[] | undefined,
   youtubeProfileData: YouTubeProfileData | undefined,
@@ -213,6 +211,7 @@ class Home extends
           }
 
           {
+            /*
             this.props.instagramData != undefined && 
             this.props.instagramProfileData ?
               <SocialMediaComponent 
@@ -239,6 +238,7 @@ class Home extends
                   )
                 }
               </SocialMediaComponent> : null
+              */
           }
 
           {
@@ -391,8 +391,8 @@ export async function getStaticProps() {
   const projectsData = await getFirestoreDataFromApiQuery(["public", "projects"]) as PublicProjectsData;
   const linksData = await getFirestoreDataFromApiQuery(["public", "links"]) as PublicLinksData;
 
-  const instagramData = await Instagram.getMostRecentPosts() as InstagramPostData[];
-  const instagramProfileData = await Instagram.getUserProfile() as InstagramProfileData;
+  //const instagramData = await Instagram.getMostRecentPosts() as InstagramPostData[];
+  //const instagramProfileData = await Instagram.getUserProfile() as InstagramProfileData;
 
   const githubProfileData = await Github.getUserProfile() as GithubProfileData;
   const githubRepoData = await Github.getRepositories() as GithubRepoData[];
@@ -404,8 +404,6 @@ export async function getStaticProps() {
     props: {
       projectsData: projectsData,
       linksData: linksData,
-      instagramData: instagramData,
-      instagramProfileData: instagramProfileData,
       githubProfileData: githubProfileData,
       githubRepoData: githubRepoData,
       youtubeProfileData: youtubeProfileData,
