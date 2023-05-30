@@ -26,6 +26,7 @@ import InstagramPostComponent from "../components/instagramPostComponent/instagr
 import ProgressComponent from "../components/progressComponent/progressComponent";
 import GithubRepoComponent from "../components/githubRepoComponent/githubRepoComponent";
 import SimpleBar from "simplebar-react";
+import { getAge } from "../lib/utils";
 
 type HomeData = { 
   projectsData: PublicProjectsData,
@@ -115,7 +116,7 @@ class Home extends
 
           <article>
             <h1 className={`${styles.priorityHeading} standardHeading`}>Totally<br/>Informatik</h1>
-            <p>Rui Zhang - 16 - Male - German</p>
+            <p>Rui Zhang - {getAge()} - Male - German</p>
             <p>Enthusiastic and Creative Student, Creator and Programmer.</p>
             <p>Established and Leads {"\""}Annette-Entwickelt-Software{"\""}.</p>
           </article>
@@ -195,14 +196,14 @@ class Home extends
                   {
                     this.props.githubRepoData.map(
                       (value) => {
-                        return <GithubRepoComponent 
+                        return value.language !== null ? <GithubRepoComponent 
                           key={value.name}
                           title={value.name}
                           description={value.description}
                           language={value.language}
                           updated_at={value.updated_at}
                           html_url={value.html_url}
-                        />
+                        /> : null
                       }
                     )
                   }
@@ -399,7 +400,6 @@ export async function getStaticProps() {
 
   const youtubeProfileData = (await YouTube.getUserProfile()).items[0] as YouTubeProfileData;
   const youtubePostsData = (await YouTube.getMostRecentPosts()).items as YouTubePostData[];
-
   return {
     props: {
       projectsData: projectsData,
