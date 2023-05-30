@@ -1,5 +1,20 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700;900&family=Playfair+Display:wght@800&family=Poppins:wght@300&family=Roboto:wght@100;300;400;500;700;900&display=swap');
 @import "./constants";
+
+@font-face {
+  font-family: "Noto Sans SC";
+  src: url("./../public/fonts/Noto_Sans_SC/NotoSansSC-Regular.otf");
+}
+
+@font-face {
+  font-family: "Playfair Display";
+  src: url("./../public/fonts/Playfair_Display/PlayfairDisplay-VariableFont_wght.ttf");
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("./../public/fonts/Inter/Inter-VariableFont_slnt\,wght.ttf");
+}
+
 
 * {
   box-sizing: border-box;
