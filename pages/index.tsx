@@ -118,7 +118,8 @@ class Home extends
             <h1 className={`${styles.priorityHeading} standardHeading`}>Totally<br/>Informatik</h1>
             <p>Rui Zhang - {getAge()} - Male - German</p>
             <p>Enthusiastic and Creative Student, Creator and Programmer.</p>
-            <p>Established and Leads {"\""}Annette-Entwickelt-Software{"\""}.</p>
+            <p>Established and Lead {"\""}Annette-Entwickelt-Software{"\""}.</p>
+            <p>Established and Lead {"\""}Community der Informatischen AGs{"\""}.</p>
           </article>
           <img 
             className={Home.verticalRellaxString} data-rellax-speed="-2"
@@ -161,7 +162,7 @@ class Home extends
           <h1 
             className={`fancyHeading ${styles.fancyHeading} transitionHeading ${Home.verticalRellaxString}`}
             data-rellax-speed="-10" data-rellax-percentage="0.1"
-          >Online Social Media</h1>
+          >Social Media</h1>
           <h1 
             className={`${styles.chinese} chinese ${Home.verticalRellaxString}`}
             data-rellax-speed="-2" data-rellax-percentage="0.5"
