@@ -241,6 +241,7 @@ class Home extends
           }
 
           {
+            /*
             this.props.youtubeProfileData != undefined &&
             this.props.youtubePostsData != undefined ?
               <SocialMediaComponent
@@ -277,6 +278,7 @@ class Home extends
                   })
                 }
               </SocialMediaComponent> : null
+              */
           }
 
         </section>
