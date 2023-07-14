@@ -13,7 +13,8 @@ import {
   GithubProfileData, 
   GithubRepoData, 
   YouTubeProfileData,
-  YouTubePostData
+  YouTubePostData,
+  ContactBody
 } from "../lib/types";
 import { Github, Instagram, YouTube } from "../lib/socialMedia";
 
@@ -25,12 +26,11 @@ import InstagramPostComponent from "../components/instagramPostComponent/instagr
 import ProgressComponent from "../components/progressComponent/progressComponent";
 import GithubRepoComponent from "../components/githubRepoComponent/githubRepoComponent";
 import SimpleBar from "simplebar-react";
+import { getAge } from "../lib/utils";
 
 type HomeData = { 
   projectsData: PublicProjectsData,
   linksData: PublicLinksData,
-  instagramData: InstagramPostData[] | undefined,
-  instagramProfileData: InstagramProfileData | undefined,
   githubProfileData: GithubProfileData | undefined,
   githubRepoData: GithubRepoData[] | undefined,
   youtubeProfileData: YouTubeProfileData | undefined,
@@ -116,7 +116,7 @@ class Home extends
 
           <article>
             <h1 className={`${styles.priorityHeading} standardHeading`}>Totally<br/>Informatik</h1>
-            <p>Rui Zhang - 16 - Male - German</p>
+            <p>Rui Zhang - {getAge()} - Male - German</p>
             <p>Enthusiastic and Creative Student, Creator and Programmer.</p>
             <p>Established and Leads {"\""}Annette-Entwickelt-Software{"\""}.</p>
           </article>
@@ -196,14 +196,14 @@ class Home extends
                   {
                     this.props.githubRepoData.map(
                       (value) => {
-                        return <GithubRepoComponent 
+                        return value.language !== null ? <GithubRepoComponent 
                           key={value.name}
                           title={value.name}
                           description={value.description}
                           language={value.language}
                           updated_at={value.updated_at}
                           html_url={value.html_url}
-                        />
+                        /> : null
                       }
                     )
                   }
@@ -212,6 +212,7 @@ class Home extends
           }
 
           {
+            /*
             this.props.instagramData != undefined && 
             this.props.instagramProfileData ?
               <SocialMediaComponent 
@@ -238,6 +239,7 @@ class Home extends
                   )
                 }
               </SocialMediaComponent> : null
+              */
           }
 
           {
@@ -347,7 +349,7 @@ class Home extends
     const selfDescriptionInput: any = document.querySelector("#self-description");
     const projectDescriptionInput: any = document.querySelector("#project-description");
 
-    const formData = {
+    const formData: ContactBody = {
       name: nameInput.value,
       email: emailInput.value,
       title: titleInput.value,
@@ -392,21 +394,18 @@ export async function getStaticProps() {
   const projectsData = await getFirestoreDataFromApiQuery(["public", "projects"]) as PublicProjectsData;
   const linksData = await getFirestoreDataFromApiQuery(["public", "links"]) as PublicLinksData;
 
-  const instagramData = await Instagram.getMostRecentPosts() as InstagramPostData[];
-  const instagramProfileData = await Instagram.getUserProfile() as InstagramProfileData;
+  //const instagramData = await Instagram.getMostRecentPosts() as InstagramPostData[];
+  //const instagramProfileData = await Instagram.getUserProfile() as InstagramProfileData;
 
   const githubProfileData = await Github.getUserProfile() as GithubProfileData;
   const githubRepoData = await Github.getRepositories() as GithubRepoData[];
 
   const youtubeProfileData = (await YouTube.getUserProfile()).items[0] as YouTubeProfileData;
   const youtubePostsData = (await YouTube.getMostRecentPosts()).items as YouTubePostData[];
-
   return {
     props: {
       projectsData: projectsData,
       linksData: linksData,
-      instagramData: instagramData,
-      instagramProfileData: instagramProfileData,
       githubProfileData: githubProfileData,
       githubRepoData: githubRepoData,
       youtubeProfileData: youtubeProfileData,

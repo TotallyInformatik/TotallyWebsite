@@ -50,7 +50,6 @@
 @media screen and (max-width: 1500px) {
   .projectItem {
     flex-direction: column;
-    height: -webkit-fit-content;
     height: -moz-fit-content;
     height: fit-content;
     width: 90%;
@@ -59,7 +58,6 @@
     width: 100%;
   }
   .projectItem .projectImage {
-    height: -webkit-fit-content;
     height: -moz-fit-content;
     height: fit-content;
   }
@@ -79,7 +77,6 @@
   .projectItem .simplebar h3 {
     font-size: 2em;
   }
-
   .projectItem .simplebar {
     padding: 50px 5%;
   }

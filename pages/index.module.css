@@ -19,9 +19,7 @@
 }
 .landingSection .landingChinese h1 {
   font-size: 6rem;
-  -ms-writing-mode: tb-lr;
-      writing-mode: vertical-lr;
-  height: -webkit-fit-content;
+  writing-mode: vertical-lr;
   height: -moz-fit-content;
   height: fit-content;
 }
@@ -44,7 +42,6 @@
   word-wrap: normal;
   word-break: keep-all;
   -webkit-hyphens: initial;
-      -ms-hyphens: initial;
           hyphens: initial;
 }
 .landingSection article p {
@@ -107,7 +104,6 @@
 }
 .projectsSection .bannerVertical {
   top: 3px;
-  height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
   padding: 20px 0;
@@ -125,13 +121,11 @@
 }
 .projectsSection .headingAside > .fancyHeading {
   z-index: 2;
-  position: -webkit-sticky;
   position: sticky;
   text-align: right;
   top: 0px;
   line-height: 1;
   width: min-intrinsic;
-  width: -webkit-min-content;
   width: -moz-min-content;
   width: min-content;
   display: table-caption;
@@ -181,7 +175,6 @@
     font-size: 150px;
     position: absolute;
     width: 320px;
-    height: -webkit-fit-content;
     height: -moz-fit-content;
     height: fit-content;
     top: calc(10rem + 200px);
@@ -216,8 +209,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  -ms-writing-mode: tb-rl;
-      writing-mode: vertical-rl;
+  writing-mode: vertical-rl;
   text-orientation: mixed;
 }
 .socialMediaSection .chinese {
@@ -248,7 +240,6 @@
     word-wrap: normal;
     word-break: keep-all;
     -webkit-hyphens: initial;
-        -ms-hyphens: initial;
             hyphens: initial;
     transform: rotateZ(0deg);
   }
@@ -279,15 +270,13 @@
   .socialMediaSection {
     padding: 100px 5%;
   }
-
   .socialMediaSection > article,
-.socialMediaSection > h2 {
+  .socialMediaSection > h2 {
     text-align: center;
     display: block;
     margin-right: auto;
     margin-left: auto;
   }
-
   .github .simplebar {
     display: flex;
     width: 100%;
@@ -308,7 +297,6 @@
   top: 0;
   right: 0;
   position: absolute;
-  width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
 }
@@ -345,7 +333,6 @@
 }
 .contactSection h2 {
   grid-area: heading;
-  width: -webkit-min-content;
   width: -moz-min-content;
   width: min-content;
 }
@@ -361,7 +348,6 @@
   grid-row: repeat(5, 1fr);
 }
 .contactSection .form input[type=submit] {
-  width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
 }

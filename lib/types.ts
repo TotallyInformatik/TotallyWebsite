@@ -85,3 +85,11 @@ export type EmailingApiResponse = {
   userMessage: string 
   // * string that is displayed to the user as a response 
 }
+
+export type ContactBody = {
+  name: string,
+  email: string,
+  title: string,
+  selfDescription: string,
+  projectDescription: string
+}

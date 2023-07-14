@@ -1,7 +1,6 @@
 .socialSubSection {
   margin-top: 300px;
   padding: 0 0;
-  height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
   width: 100%;
@@ -38,7 +37,6 @@
 }
 .socialSubSection .postsSection {
   width: 100%;
-  height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
   grid-area: posts;
